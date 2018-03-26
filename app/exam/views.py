@@ -2,6 +2,7 @@
 from flask import render_template, redirect, url_for, flash, request, abort, session
 from flask_login import current_user, login_required, login_user
 from . import exam
+from .. import config
 import pymysql
 
 '''
@@ -24,7 +25,7 @@ def index():
 @exam.route('/exam_page&id=<int:id>', methods=['GET'])
 def exam_page(id):
     # id = 5
-    db = pymysql.connect('localhost', 'root', '970306', 'net_lesson', charset='utf8')
+    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     sql_choice = 'SELECT Question, Choice_a, Choice_b, Choice_c, Choice_d, Answer ' \
                  'FROM choice_problems WHERE Lesson_id = %s ORDER BY rand() LIMIT 3;'
