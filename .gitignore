@@ -1,15 +1,2 @@
 .idea/
-app/__init__.pyc
-app/auth/__init__.pyc
-app/auth/errors.pyc
-app/auth/views.pyc
-app/exam/__init__.pyc
-app/exam/errors.pyc
-app/exam/views.pyc
-app/forum/__init__.pyc
-app/forum/errors.pyc
-app/forum/views.pyc
-app/test/__init__.pyc
-app/test/errors.pyc
-app/test/views.pyc
-config.pyc
+*.pyc
