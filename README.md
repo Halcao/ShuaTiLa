@@ -1,3 +1,1 @@
 # ShuaTiLa
-## eryatiku
-### shujukusheji
