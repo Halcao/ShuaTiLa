@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>{% block title %}尔雅网课刷题系统{% endblock title %}</title>
+
+{%- endblock head %}
+
+{% block content %}
+你的得分为{{ score }}分。<br />
+<form action="{{ url_for('exam.review') }}" method="post">
+    <input type="submit" name="test_jiaojuan" value="查看错题">
+</form>   
+
+{% endblock content %}

@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>{% block title %}尔雅网课刷题系统{% endblock title %}</title>
+
+{%- block metas %}
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{%- endblock metas %}
+
+{%- block styles %}
+<link href="../static/exam/main.css" rel="stylesheet" type="text/css" />
+<link href="../static/exam/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="../static/exam/test.css" rel="stylesheet" type="text/css" />
+{%- endblock styles %}
+
+<style>
+.hasBeenAnswer {
+	background: #5d9cec;
+	color:#fff;
+}
+</style>
+
+{% endblock head %}
+
+{% block content %}
+	<div class="main">
+		<!--nr start-->
+		<div class="test_main">
+			<div class="nr_left">
+				<div class="test">
+					<form action="{{ url_for('exam.answer') }}" method="post">
+						<div class="test_title">
+							<font><input type="submit" name="test_jiaojuan" value="交卷"></font>
+						</div>
+                        <div class="rt_content_tt">
+                            <h1>你的成绩为：{{ score }}分</h1>
+                        </div>
+                    {% if wrong_list|length > 0%}
+                        <div class="rt_content_tt">
+                            <h2>选择题</h2>
+                        </div>
+                        <div class="test_content_nr">
+                        <ul>
+                            {% for question_id in range(wrong_list|length) %}
+                                <li id= {{ "qu_0_" + question_id|string }}>
+                                    <div class="test_content_nr_tt">
+                                        <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_list[question_id][0] }}</font><b class="icon iconfont">&#xe881;</b>
+                                    </div>
+
+                                    <div class="test_content_nr_main">
+                                        <ul>
+                                            <li class="option">
+                                                <label for={{ "0_answer_" + question_id|string + "_option_1" }}>
+                                                    A.
+                                                    <p class="ue" style="display: inline;">{{ wrong_list[question_id][1] }}</p>
+                                                </label>
+                                            </li>
+
+                                            <li class="option">
+                                                <label for={{ "0_answer_" + question_id|string + "_option_2" }}>
+                                                    B.
+                                                    <p class="ue" style="display: inline;">{{ wrong_list[question_id][2] }}</p>
+                                                </label>
+                                            </li>
+
+                                            <li class="option">
+                                                <label for={{ "0_answer_" + question_id|string + "_option_3" }}>
+                                                    C.
+                                                    <p class="ue" style="display: inline;">{{ wrong_list[question_id][3] }}</p>
+                                                </label>
+                                            </li>
+
+                                            <li class="option">
+                                                <label for={{ "0_answer_" + question_id|string + "_option_4" }}>
+                                                    D.
+                                                    <p class="ue" style="display: inline;">{{ wrong_list[question_id][4] }}</p>
+                                                </label>
+                                            </li>
+
+                                            <li class="option">
+                                                你的答案：{{ wrong_list[question_id][6] }}，正确答案：{{ wrong_list[question_id][5] }}
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+
+                            {% endfor %}
+                        </ul>
+
+                        </div>
+                    {% endif %}
+
+                    {% if wrong_judge_list|length > 0%}
+                        <div class="rt_content_tt">
+                            <h2>判断题</h2>
+                        </div>
+                        <div class="test_content_nr">
+                        <ul>
+
+                            {% for question_id in range(wrong_judge_list|length) %}
+                                <li id= {{ "qu_1_" + question_id|string }}>
+                                    <div class="test_content_nr_tt">
+                                        <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_judge_list[question_id][0] }}</font><b class="icon iconfont">&#xe881;</b>
+                                    </div>
+
+                                    <div class="test_content_nr_main">
+                                        <ul>
+
+                                            <li class="option">
+                                                你的答案：
+                                                {%if wrong_judge_list[question_id][1] == "0" %}
+                                                    错
+                                                {% else %}
+                                                    对
+                                                {% endif %}
+                                                ，正确答案：
+                                                {%if wrong_judge_list[question_id][2] == "0" %}
+                                                    错
+                                                {% else %}
+                                                    对
+                                                {% endif %}
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+
+                            {% endfor %}
+                        </ul>
+
+                        </div>
+
+                    {% endif %}
+
+                    {% if wrong_fill_list|length > 0%}
+                        <div class="rt_content_tt">
+                            <h2>填空题</h2>
+                        </div>
+                        <div class="test_content_nr">
+                        <ul>
+
+                            {% for question_id in range(wrong_fill_list|length) %}
+                                <li id= {{ "qu_2_" + question_id|string }}>
+                                    <div class="test_content_nr_tt">
+                                        <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_fill_list[question_id][0] }}</font><b class="icon iconfont">&#xe881;</b>
+                                    </div>
+
+                                    <div class="test_content_nr_main">
+                                        <ul>
+
+                                            <li class="option">
+                                                你的答案：{{ wrong_fill_list[question_id][2] }}，
+                                                正确答案：{{ wrong_fill_list[question_id][1] }}
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+
+                            {% endfor %}
+                        </ul>
+
+                        </div>
+                        {% endif %}
+						
+						<br />
+						<br />
+						
+					</form>
+				</div>
+
+			</div>
+
+		</div>
+		<!--nr end-->
+		<div class="foot"></div>
+	</div>
+{% endblock content %}
+{% block scripts %}
+	<script src="../static/exam/jquery-1.11.3.min.js"></script>
+	<script src="../static/exam/jquery.easy-pie-chart.js"></script>
+
+
+{% endblock scripts %}
