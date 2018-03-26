@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import render_template, redirect, url_for, flash, request, abort, session
-from flask_login import current_user, login_required, current_app, login_user
+from flask_login import current_user, login_required, login_user
 from . import exam
 import pymysql
 

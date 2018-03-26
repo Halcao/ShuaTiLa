@@ -21,7 +21,7 @@ def create_app(config_name):
     login_mamager.init_app(app)
 
     from .auth import auth as auth_blueprint
-    app.register_blueprint(auth_blueprint, url_prefix='/auth')
+    app.register_blueprint(auth_blueprint)
 
     from .exam import exam as exam_blueprint
     app.register_blueprint(exam_blueprint, url_prefix='/exam')
