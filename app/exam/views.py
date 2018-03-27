@@ -27,11 +27,11 @@ def exam_page(lesson_id):
     # id = 5
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
-    sql_choice = 'SELECT Question, Choice_a, Choice_b, Choice_c, Choice_d, Answer ' \
+    sql_choice = 'SELECT Problem_id, Question, Choice_a, Choice_b, Choice_c, Choice_d, Answer ' \
                  'FROM choice_problems WHERE Lesson_id = %s ORDER BY rand() LIMIT 3;'
-    sql_judge = 'SELECT Question, Answer FROM judge_problems ' \
+    sql_judge = 'SELECT Problem_id, Question, Answer FROM judge_problems ' \
                 'WHERE Lesson_id = %s ORDER BY rand() LIMIT 2;'
-    sql_fill = 'SELECT Question, Answer FROM fill_problems ' \
+    sql_fill = 'SELECT Problem_id, Question, Answer FROM fill_problems ' \
                 'WHERE Lesson_id = %s ORDER BY rand() LIMIT 2;'
 
     cur.execute(sql_choice, (lesson_id))

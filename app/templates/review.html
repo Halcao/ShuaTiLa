@@ -45,7 +45,7 @@
                             {% for question_id in range(wrong_list|length) %}
                                 <li id= {{ "qu_0_" + question_id|string }}>
                                     <div class="test_content_nr_tt">
-                                        <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_list[question_id][0] }}</font><b class="icon iconfont">&#xe881;</b>
+                                        <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_list[question_id][1] }}</font><b class="icon iconfont">&#xe881;</b>
                                     </div>
 
                                     <div class="test_content_nr_main">
@@ -53,33 +53,33 @@
                                             <li class="option">
                                                 <label for={{ "0_answer_" + question_id|string + "_option_1" }}>
                                                     A.
-                                                    <p class="ue" style="display: inline;">{{ wrong_list[question_id][1] }}</p>
+                                                    <p class="ue" style="display: inline;">{{ wrong_list[question_id][2] }}</p>
                                                 </label>
                                             </li>
 
                                             <li class="option">
                                                 <label for={{ "0_answer_" + question_id|string + "_option_2" }}>
                                                     B.
-                                                    <p class="ue" style="display: inline;">{{ wrong_list[question_id][2] }}</p>
+                                                    <p class="ue" style="display: inline;">{{ wrong_list[question_id][3] }}</p>
                                                 </label>
                                             </li>
 
                                             <li class="option">
                                                 <label for={{ "0_answer_" + question_id|string + "_option_3" }}>
                                                     C.
-                                                    <p class="ue" style="display: inline;">{{ wrong_list[question_id][3] }}</p>
+                                                    <p class="ue" style="display: inline;">{{ wrong_list[question_id][4] }}</p>
                                                 </label>
                                             </li>
 
                                             <li class="option">
                                                 <label for={{ "0_answer_" + question_id|string + "_option_4" }}>
                                                     D.
-                                                    <p class="ue" style="display: inline;">{{ wrong_list[question_id][4] }}</p>
+                                                    <p class="ue" style="display: inline;">{{ wrong_list[question_id][5] }}</p>
                                                 </label>
                                             </li>
 
                                             <li class="option">
-                                                你的答案：{{ wrong_list[question_id][6] }}，正确答案：{{ wrong_list[question_id][5] }}
+                                                你的答案：{{ wrong_list[question_id][7] }}，正确答案：{{ wrong_list[question_id][6] }}
                                             </li>
 
                                         </ul>
@@ -102,7 +102,7 @@
                             {% for question_id in range(wrong_judge_list|length) %}
                                 <li id= {{ "qu_1_" + question_id|string }}>
                                     <div class="test_content_nr_tt">
-                                        <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_judge_list[question_id][0] }}</font><b class="icon iconfont">&#xe881;</b>
+                                        <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_judge_list[question_id][1] }}</font><b class="icon iconfont">&#xe881;</b>
                                     </div>
 
                                     <div class="test_content_nr_main">
@@ -110,7 +110,7 @@
 
                                             <li class="option">
                                                 你的答案：
-                                                {%if wrong_judge_list[question_id][1] == "0" %}
+                                                {%if wrong_judge_list[question_id][3] == "0" %}
                                                     错
                                                 {% else %}
                                                     对
@@ -144,15 +144,15 @@
                             {% for question_id in range(wrong_fill_list|length) %}
                                 <li id= {{ "qu_2_" + question_id|string }}>
                                     <div class="test_content_nr_tt">
-                                        <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_fill_list[question_id][0] }}</font><b class="icon iconfont">&#xe881;</b>
+                                        <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_fill_list[question_id][1] }}</font><b class="icon iconfont">&#xe881;</b>
                                     </div>
 
                                     <div class="test_content_nr_main">
                                         <ul>
 
                                             <li class="option">
-                                                你的答案：{{ wrong_fill_list[question_id][2] }}，
-                                                正确答案：{{ wrong_fill_list[question_id][1] }}
+                                                你的答案：{{ wrong_fill_list[question_id][3] }}，
+                                                正确答案：{{ wrong_fill_list[question_id][2] }}
                                             </li>
 
                                         </ul>
@@ -163,7 +163,7 @@
                         </ul>
 
                         </div>
-                        {% endif %}
+                    {% endif %}
 						
 						<br />
 						<br />
