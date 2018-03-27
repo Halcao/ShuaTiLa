@@ -89,7 +89,7 @@
 .login {width:521px;position:fixed;top:25%;left:0;right:0;margin:auto;z-index:2999;background:#fff;border-radius:6px;
         height:256px;display:none;}
 .reg {width:521px;position:fixed;top:25%;left:0;right:0;margin:auto;z-index:3000;background:#fff;border-radius:6px;
-        height:256px;display:none;}
+        height:310px;display:none;}
 .login-title {
 	position:relative;
 	height:18px;

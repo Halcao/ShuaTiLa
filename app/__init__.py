@@ -3,7 +3,9 @@ from flask_moment import Moment
 from flask_login import LoginManager
 from config import config
 from flask_pagedown import PageDown
+from flask_bootstrap import Bootstrap
 
+bootstrap = Bootstrap()
 moment = Moment()
 pagedown = PageDown()
 login_mamager = LoginManager()
@@ -16,6 +18,7 @@ def create_app(config_name):
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
 
+    bootstrap.init_app(app)
     moment.init_app(app)
     pagedown.init_app(app)
     login_mamager.init_app(app)

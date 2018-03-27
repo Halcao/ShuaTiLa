@@ -42,6 +42,7 @@
                        <li ><a href="active.html">社区</a></li>
                         {% if  user_name %}
                             <li >欢迎,{{ user_name }}</li>
+                            <li ><a href={{ url_for('auth.log_off') }}>注销</a></li>
                         {% else: %}
                            <li class="login-click ">登录</li>
                            <li  class="reg-click ">注册</li>
@@ -208,9 +209,9 @@
         <div class="login-b"></div>
         <div class="login-c close">x</div>
     </div>
-    <form action="{{  url_for('auth.login')}}" onsubmit="return vaild()" name="f" method="post">
+    <form action="{{  url_for('auth.login')}}" onsubmit="return vaild_login()" name="f" method="post">
     <div class="login-btm">
-        <div class="login-d"><input id='logname' name='logname' type="text" class="login-text" placeholder="注册时填写的邮箱"></div>
+        <div class="login-d"><input id='logname' name='logname' type="text" class="login-text" placeholder="注册时填写的学号"></div>
         <div class="login-d"><input id='logpass' name='logpass' type="password" class="login-pas" placeholder="密码"></div>
         <div class="login-d"><input type="submit" class="login-btn" onclick="" value="登录"></div>
         <div class="login-f">
@@ -227,10 +228,12 @@
         <div class="login-b"></div>
         <div class="login-c close">x</div>
     </div>
-    <form action="{{  url_for('auth.auth_page')}}" name="f" method="post">
+    <form action="{{  url_for('auth.regist')}}" onsubmit="return vaild_regist()" name="f" method="post">
     <div class="login-btm">
-        <div class="login-d"><input name='regname' type="text" class="login-text" placeholder="邮箱/手机号"></div>
-        <div class="login-d"><input name='regpass' type="password" class="login-pas" placeholder="密码"></div>
+        <div class="login-d"><input id ='regname' name='regname' type="text" class="login-text" placeholder="同学，输下你的学号"></div>
+        <div class="login-d"><input id ='regemail' name='regemail' type="text" class="login-text" placeholder="再给个邮箱/手机号"></div>
+        <div class="login-d"><input id ='regpass' name='regpass' type="password" class="login-pas" placeholder="现在输密码,要多于6位的字母和数字"></div>
+        <div class="login-d"><input id ='regpass2' name='regpass2' type="password" class="login-pas" placeholder="最后一步了,重复下密码"></div>
         <div class="login-d"><input type="submit" class="login-btn" value="注册"></div>
     </div>
     </form>
@@ -244,12 +247,12 @@
     <script src="../static/auth/js/Action.js"></script>
     <script src="../static/auth/js/jquery.SuperSlide.2.1.1.js"></script>
     <script>
-    function vaild()
+    function vaild_login()
     {
         var logname = document.getElementById("logname").value;
         var logpass = document.getElementById("logpass").value;
         if(logname ==  null || logname==''){
-            alert("用户名不能为空");
+            alert("学号不能为空");
             return false;
         }
         if(logpass ==  null || logpass==''){
@@ -257,6 +260,32 @@
             return false;
         }
    return true;
+    }
+    function vaild_regist() {
+        var regname = document.getElementById("regname").value;
+        var regpass = document.getElementById("regpass").value;
+        var regpass2 = document.getElementById("regpass2").value;
+        var regemail = document.getElementById("regemail").value;
+        if(regname ==  null || regname==''){
+            alert("学号不能为空");
+            return false;
+        }
+        if(regpass ==  null || regpass==''){
+            alert("密码不能为空");
+            return false;
+        }
+        if(regemail ==  null || regemail==''){
+            alert("邮件/手机号不能为空");
+            return false;
+        }
+        if (regpass.length<6){
+            alert("密码长度不够");
+            return false;
+        }
+        if (regpass != regpass2){
+            alert("两次密码不同");
+            return false;
+        }
     }
     </script>
     <script>
