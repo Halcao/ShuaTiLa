@@ -29,7 +29,7 @@
 		<div class="test_main">
 			<div class="nr_left">
 				<div class="test">
-					<form action="{{ url_for('exam.answer') }}" method="post">
+					<form action="{{ url_for('exam.answer', lesson_id=lesson_id) }}" method="post">
 						<div class="test_title">
 							<p class="test_time">
 								<i class="icon iconfont">&#xe6fb;</i><b class="alt-1">01:40</b>

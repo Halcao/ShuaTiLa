@@ -29,7 +29,7 @@
 		<div class="test_main">
 			<div class="nr_left">
 				<div class="test">
-					<form action="{{ url_for('exam.answer') }}" method="post">
+					<form action="{{ url_for('exam.answer', lesson_id=lesson_id) }}" method="post">
 						<div class="test_title">
 							<font><input type="submit" name="test_jiaojuan" value="交卷"></font>
 						</div>
