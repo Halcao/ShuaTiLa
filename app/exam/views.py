@@ -18,37 +18,37 @@ wrong_fill_list——错误的填空题
 @exam.route('/', methods=['GET', 'POST'])
 def index():
     # return render_template('index.html')
-    id=1
-    return redirect(url_for('.exam_page', id=id))
+    lesson_id=1
+    return redirect(url_for('.exam_page', lesson_id=lesson_id))
 
 # 选出考试题目
-@exam.route('/exam_page&id=<int:id>', methods=['GET'])
-def exam_page(id):
+@exam.route('/exam_page&lesson_id=<int:lesson_id>', methods=['GET'])
+def exam_page(lesson_id):
     # id = 5
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
-    sql_choice = 'SELECT Question, Choice_a, Choice_b, Choice_c, Choice_d, Answer ' \
+    sql_choice = 'SELECT Problem_id, Question, Choice_a, Choice_b, Choice_c, Choice_d, Answer ' \
                  'FROM choice_problems WHERE Lesson_id = %s ORDER BY rand() LIMIT 3;'
-    sql_judge = 'SELECT Question, Answer FROM judge_problems ' \
+    sql_judge = 'SELECT Problem_id, Question, Answer FROM judge_problems ' \
                 'WHERE Lesson_id = %s ORDER BY rand() LIMIT 2;'
-    sql_fill = 'SELECT Question, Answer FROM fill_problems ' \
+    sql_fill = 'SELECT Problem_id, Question, Answer FROM fill_problems ' \
                 'WHERE Lesson_id = %s ORDER BY rand() LIMIT 2;'
 
-    cur.execute(sql_choice, (id))
+    cur.execute(sql_choice, (lesson_id))
     questions = cur.fetchall()
 
     question_list = []
     for question in questions:
         question_list.append(list(question))
 
-    cur.execute(sql_judge, (id))
+    cur.execute(sql_judge, (lesson_id))
     questions = cur.fetchall()
 
     judge_list = []
     for question in questions:
         judge_list.append(list(question))
 
-    cur.execute(sql_fill, (id))
+    cur.execute(sql_fill, (lesson_id))
     questions = cur.fetchall()
 
     fill_list = []
@@ -60,12 +60,12 @@ def exam_page(id):
     session['question_list'] = question_list
     session['judge_list'] = judge_list
     session['fill_list'] = fill_list
-    return render_template('exam.html', question_list=question_list,
+    return render_template('exam.html', lesson_id=lesson_id, question_list=question_list,
                            judge_list=judge_list, fill_list=fill_list)
 
 # 计算测试成绩
-@exam.route('/answer', methods=['POST'])
-def answer():
+@exam.route('/answer&lesson_id=<int:lesson_id>', methods=['POST'])
+def answer(lesson_id):
     if request.method == "POST":
         # reply_list = []
         # for i in range(4):
@@ -123,7 +123,7 @@ def answer():
         # return render_template('answer.html', score=score)
         return render_template('review.html', score=score, wrong_list=wrong_list,
                            wrong_judge_list=wrong_judge_list,
-                           wrong_fill_list=wrong_fill_list)
+                           wrong_fill_list=wrong_fill_list, lesson_id=lesson_id)
 
 # @exam.route('/review', methods=['POST'])
 # def review():

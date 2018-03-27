@@ -29,10 +29,10 @@
 		<div class="test_main">
 			<div class="nr_left">
 				<div class="test">
-					<form action="{{ url_for('exam.answer') }}" method="post">
+					<form action="{{ url_for('exam.answer', lesson_id=lesson_id) }}" method="post">
 						<div class="test_title">
 							<p class="test_time">
-								<i class="icon iconfont">&#xe6fb;</i><b class="alt-1">01:40</b>
+								<i>剩余时间</i><b class="alt-1">01:20</b>
 							</p>
 							<font><input type="submit" name="test_jiaojuan" value="交卷"></font>
 						</div>
@@ -50,7 +50,7 @@
                                 {% for question_id in range(question_list|length) %}
                                     <li id= {{ "qu_0_" + question_id|string }}>
 										<div class="test_content_nr_tt">
-											<i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ question_list[question_id][0] }}</font><b class="icon iconfont">&#xe881;</b>
+											<i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ question_list[question_id][1] }}</font><b class="icon iconfont">&#xe881;</b>
 										</div>
 									{% if question_list[question_id][-1]|length == 1 %}
 										<div class="test_content_nr_main">
@@ -62,7 +62,7 @@
 															value="A"
 														/>
                                                         A.
-														<p class="ue" style="display: inline;">{{ question_list[question_id][1] }}</p>
+														<p class="ue" style="display: inline;">{{ question_list[question_id][2] }}</p>
 													</label>
 												</li>
 
@@ -73,7 +73,7 @@
 															value="B"
 														/>
                                                         B.
-														<p class="ue" style="display: inline;">{{ question_list[question_id][2] }}</p>
+														<p class="ue" style="display: inline;">{{ question_list[question_id][3] }}</p>
 													</label>
 												</li>
 
@@ -84,7 +84,7 @@
 															value="C"
 														/>
                                                         C.
-														<p class="ue" style="display: inline;">{{ question_list[question_id][3] }}</p>
+														<p class="ue" style="display: inline;">{{ question_list[question_id][4] }}</p>
 													</label>
 												</li>
 
@@ -95,7 +95,7 @@
 															value="D"
 														/>
                                                         D.
-														<p class="ue" style="display: inline;">{{ question_list[question_id][4] }}</p>
+														<p class="ue" style="display: inline;">{{ question_list[question_id][5] }}</p>
 													</label>
 												</li>
 
@@ -115,7 +115,7 @@
 
                                                     <label for={{ "0_answer_" + question_id|string + "_option_1" }}>
                                                         A.
-                                                        <p class="ue" style="display: inline;">{{ question_list[question_id][1] }}</p>
+                                                        <p class="ue" style="display: inline;">{{ question_list[question_id][2] }}</p>
                                                     </label>
                                                 </li>
 
@@ -129,7 +129,7 @@
 
                                                     <label for={{ "0_answer_" + question_id|string + "_option_2" }}>
                                                         B.
-                                                        <p class="ue" style="display: inline;">{{ question_list[question_id][2] }}</p>
+                                                        <p class="ue" style="display: inline;">{{ question_list[question_id][3] }}</p>
                                                     </label>
                                                 </li>
 
@@ -143,7 +143,7 @@
 
                                                     <label for={{ "0_answer_" + question_id|string + "_option_3" }}>
                                                         C.
-                                                        <p class="ue" style="display: inline;">{{ question_list[question_id][3] }}</p>
+                                                        <p class="ue" style="display: inline;">{{ question_list[question_id][4] }}</p>
                                                     </label>
                                                 </li>
 
@@ -157,7 +157,7 @@
 
                                                     <label for={{ "0_answer_" + question_id|string + "_option_4" }}>
                                                         D.
-                                                        <p class="ue" style="display: inline;">{{ question_list[question_id][4] }}</p>
+                                                        <p class="ue" style="display: inline;">{{ question_list[question_id][5] }}</p>
                                                     </label>
                                                 </li>
 
@@ -184,7 +184,7 @@
                                 {% for question_id in range(judge_list|length) %}
                                     <li id= {{ "qu_1_" + question_id|string }}>
 										<div class="test_content_nr_tt">
-											<i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ judge_list[question_id][0] }}</font><b class="icon iconfont">&#xe881;</b>
+											<i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ judge_list[question_id][1] }}</font><b class="icon iconfont">&#xe881;</b>
 										</div>
 										<div class="test_content_nr_main">
 											<ul>
@@ -233,7 +233,7 @@
                                 {% for question_id in range(fill_list|length) %}
                                     <li id= {{ "qu_2_" + question_id|string }}>
 										<div class="test_content_nr_tt">
-											<i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ fill_list[question_id][0] }}</font><b class="icon iconfont">&#xe881;</b>
+											<i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ fill_list[question_id][1] }}</font><b class="icon iconfont">&#xe881;</b>
 										</div>
 										<div class="test_content_nr_main">
 
@@ -266,10 +266,10 @@
 					<div class="rt_nr1">
 						<div class="rt_nr1_title">
 							<h1>
-								<i class="icon iconfont">&#xe692;</i>答题卡
+								<i class="icon iconfont"></i>答题卡
 							</h1>
 							<p class="test_time">
-								<i class="icon iconfont">&#xe6fb;</i><b class="alt-1">01:40</b>
+								<b class="alt-1">01:40</b>
 							</p>
 						</div>
 						
