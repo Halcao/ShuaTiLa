@@ -9,9 +9,10 @@
 {%- endblock metas %}
 
 {%- block styles %}
-<link href="../static/exam/main.css" rel="stylesheet" type="text/css" />
-<link href="../static/exam/iconfont.css" rel="stylesheet" type="text/css" />
-<link href="../static/exam/test.css" rel="stylesheet" type="text/css" />
+{#    {{ super() }}#}
+    <link href="../static/exam/main.css" rel="stylesheet" type="text/css" />
+    <link href="../static/exam/iconfont.css" rel="stylesheet" type="text/css" />
+    <link href="../static/exam/test.css" rel="stylesheet" type="text/css" />
 {%- endblock styles %}
 
 <style>
@@ -22,6 +23,8 @@
 </style>
 
 {% endblock head %}
+
+{% block navbar %}{% endblock navbar %}
 
 {% block content %}
 	<div class="main">
@@ -269,7 +272,7 @@
 								<i class="icon iconfont"></i>答题卡
 							</h1>
 							<p class="test_time">
-								<b class="alt-1">01:40</b>
+								<b class="alt-1">01:20</b>
 							</p>
 						</div>
 						
