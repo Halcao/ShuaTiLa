@@ -12,26 +12,29 @@
 
 /*登录注册*/
 $(".mask").click(function(){
-	$(".mask,.login").hide();	
-     })
-	$(".login-click").click(function () {
-        $(".mask").css({
-            display: "block", height: $(document).height()
-        });
-		 var $box = $('.login');
-        $box.css({
-           display: "block"
-        });
-		$(".close").click(function () {
-        $(".mask,.login").css("display", "none");
-       });
+	$(".mask,.login").hide()
+     });
 
+
+$(".login-click").click(function () {
+    $(".mask").css({
+        display: "block", height: $(document).height()
     });
+     var $box = $('.login');
+    $box.css({
+       display: "block"
+    });
+    $(".close").click(function () {
+    $(".mask,.login").css("display", "none");
+   });
+
+});
 
 $(".mask").click(function(){
-	$(".mask,.reg").hide();	
-     })
-	$(".reg-click").click(function () {
+	$(".mask,.reg").hide();
+     });
+
+$(".reg-click").click(function () {
         $(".mask").css({
             display: "block", height: $(document).height()
         });
@@ -42,12 +45,27 @@ $(".mask").click(function(){
 		$(".close").click(function () {
         $(".mask,.reg").css("display", "none");
        });
-
-
     });
 
 $(".mask").click(function(){
-	$(".mask,.reg").hide();	
+	$(".mask,.find").hide();
+     });
+$(".find-click").click(function () {
+        $(".mask").css({
+            display: "block", height: $(document).height()
+        });
+		 var $box = $('.find');
+        $box.css({
+           display: "block"
+        });
+		$(".close").click(function () {
+        $(".mask,.find").css("display", "none");
+       });
+    });
+
+
+$(".mask").click(function(){
+	$(".mask,.reg").hide();
      })
 	$(".reg-href").click(function () {
         $(".mask").css({
@@ -61,9 +79,30 @@ $(".mask").click(function(){
         $box.css({
            display: "block"
         });
-		
+
 		$(".close").click(function () {
         $(".mask,.reg").css("display", "none");
+       });
+    });
+
+$(".mask").click(function(){
+	$(".mask,.find").hide();
+     })
+	$(".find-href").click(function () {
+        $(".mask").css({
+            display: "block", height: $(document).height()
+        });
+		 var $t = $('.login');
+        $t.css({
+           display: "none"
+        });
+		 var $box = $('.find');
+        $box.css({
+           display: "block"
+        });
+
+		$(".close").click(function () {
+        $(".mask,.find").css("display", "none");
        });
     });
 		

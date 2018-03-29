@@ -90,13 +90,15 @@
         height:256px;display:none;}
 .reg {width:521px;position:fixed;top:25%;left:0;right:0;margin:auto;z-index:3000;background:#fff;border-radius:6px;
         height:310px;display:none;}
+.find {width:521px;position:fixed;top:25%;left:0;right:0;margin:auto;z-index:3000;background:#fff;border-radius:6px;
+        height:310px;display:none;}
 .login-title {
 	position:relative;
 	height:18px;
 	padding:0 120px 0 0px;
 	margin:30px 0 0 116px;}
 .login-a {
-	width:70px;
+	width:100px;
 	font-size:18px;
 	color:#292929;
 	background:#fff;
@@ -1423,7 +1425,7 @@
 	display:block;
 	border:0;}
 .tsm-height {
-	height:135px;}
+	height:80px;}
 .art-height {
 	height:120px;}
 .col-height {height:90px;}	

@@ -33,11 +33,11 @@ def login():
     cur.close()
     db.close()
     if len(results) == 0:
-        flash(u"没有这个用户哦",'info')
+        flash(u"没有这个用户哦", 'info')
         return redirect(url_for('.auth_page'))
     elif results[0][1] != password:
         # 需要提示密码错
-        flash(u"密码输错了...",'warning')
+        flash(u"密码输错了...", 'warning')
         return redirect(url_for('.auth_page'))
     else:
         session['username'] = name
@@ -54,11 +54,11 @@ def regist():
     cur.execute("select Student_id from student where Student_id=%s", (regname))
     results = cur.fetchall()
     if len(results) > 0:
-        flash(u"这个ID已经被注册了噢，换一个吧",'info')
+        flash(u"这个ID已经被注册了噢，换一个吧", 'info')
         return redirect(url_for('.auth_page'))
     else:
         cur.execute("insert into student VALUES (%s,%s,%s)", (regname, regpass, regemail))
-        flash(u"注册成功啦，现在可以登录啦",'success')
+        flash(u"注册成功啦，现在可以登录啦", 'success')
     cur.close()
     db.commit()
     db.close()
@@ -69,4 +69,29 @@ def regist():
 def log_off():
     if session:
         session.clear()
+    return redirect(url_for('.auth_page'))
+
+
+@auth.route('/find', methods=['GET', 'POST'])
+def find():
+    flogname = request.values.get("flogname")
+    flogemail = request.values.get("flogemail")
+    flogpass = request.values.get("flogpass")
+    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+    cur = db.cursor()
+    # sql =  "select Student_id, Student_password from student where Student_id='%s'"%(str(name))
+    cur.execute("select Student_id, Email from student where Student_id=%s", (flogname))
+    results = cur.fetchall()
+    if len(results) == 0:
+        flash(u"没有这个用户哦", 'info')
+        return redirect(url_for('.auth_page'))
+    elif results[0][1] != flogemail:
+        # 需要提示密码错
+        flash(u"邮箱/手机号输错了...，再想想", 'warning')
+        return redirect(url_for('.auth_page'))
+    cur.execute("update student set Student_password=%s where Student_id=%s", (flogpass,flogname))
+    cur.close()
+    db.commit()
+    db.close()
+    flash(u"修改密码成功，可以登录啦", 'success')
     return redirect(url_for('.auth_page'))
