@@ -36,7 +36,9 @@ var itemList2=["√","×"]
 var activeQuestion=0; //当前操作的考题编号
 var questioned = 0; //
 var checkQues = []; //已做答的题的集合
+var checkans ;//当前题的选项
 var nowanswer;
+var choice;
 /*实现计时器*/
 var time = setInterval(function () {
     if (timeState) {
@@ -67,6 +69,7 @@ function showQuestion(id){
     $(".question").find(".question_info").remove();
     var question = questions[id];
     nowanswer = question.questionAnswer;
+    choice = nowanswer;
     $(".question_title").html("<strong>第 "+(id+1)+" 题 、</strong>"+question.questionTitle);
     var items = question.questionItems.split(";");
     var item="";
@@ -81,10 +84,13 @@ function showQuestion(id){
     }
     else if(items.length==2){
     for(var i=0;i<items.length;i++){
-        if(nowanswer=="1")
-            nowanswer="√";
-        else if(nowanswer=="0")
+        if(nowanswer=="1"){
+            choice="A";
+            nowanswer="√";}
+        else if(nowanswer=="0"){
             nowanswer="×";
+            choice = "B";
+            }
           item ="<li class='question_info' onclick='clickTrim(this)' id='item"
                   +i+"'><input type='radio' name='item' value='"+itemList[i]+"'>&nbsp;"+itemList2[i]+"."+items[i]+"</li>";
           $(".question").append(item);
@@ -103,9 +109,11 @@ function showQuestion(id){
             $("#"+checkQues[i].item).addClass("clickTrim");
             $("#ques"+activeQuestion).removeClass("question_id").addClass("clickQue");
         }
+
     }
     progress();
     $(".correct-answers").hide();
+    $(".wrong-answers").hide();
     $("#showAnswers").show();
     $("#unheart").show();
     $("#heart").hide();
@@ -128,11 +136,13 @@ function clickTrim(source){
     $("#"+id).addClass("clickTrim");
     $("#ques"+activeQuestion).removeClass("question_id").addClass("clickQue");
     var ques =0;
+
     for(var i=0;i<checkQues.length;i++){
        if( checkQues[i].id==activeQuestion&&checkQues[i].item!=id){
            ques = checkQues[i].id;
            checkQues[i].item = id;//获取当前考题的选项ID
            checkQues[i].answer =$("#"+id).find("input[name=item]:checked").val();//获取当前考题的选项值
+           checkans=$("#"+id).find("input[name=item]:checked").val();
        }
     }
     if(checkQues.length==0||Question!=activeQuestion&&activeQuestion!=ques){
@@ -140,6 +150,7 @@ function clickTrim(source){
         check.id=activeQuestion;//获取当前考题的编号
         check.item = id;//获取当前考题的选项ID
         check.answer =$("#"+id).find("input[name=item]:checked").val();//获取当前考题的选项值
+        checkans=$("#"+id).find("input[name=item]:checked").val();
         checkQues.push(check);
     }
     $(".question_info").each(function(){
@@ -215,9 +226,20 @@ $(function(){
     $("#showAnswers").click(function(){
         /*alert(JSON.stringify(checkQues));*/
         //alert("已做答:"+($(".clickQue").length)+"道题,还有"+(questions.length-($(".clickQue").length))+"道题未完成");
-        $(".correct-answers").text(nowanswer);
-        $(".correct-answers").show();
-        $("#showAnswers").hide();
+        if(activeQuestion>questions_choice.length+questions_judge.length)
+            checkans=$("#fill-answer").val();
+        if(checkans==choice){
+            nowanswer="Right!    Answer:"+nowanswer;
+            $(".correct-answers").text(nowanswer);
+            $(".correct-answers").show();
+            $("#showAnswers").hide();
+        }else{
+            nowanswer="Wrong!    Answer:"+nowanswer;
+            $(".wrong-answers").text(nowanswer);
+            $(".wrong-answers").show();
+            $("#showAnswers").hide();
+        }
+
     })
     //返回上一题
     $("#preQuestion").click(function(){
@@ -305,7 +327,8 @@ $(function(){
                   <div class="text-right" style="margin-right: 20px;">
 
                     <div class="form-group" style="color: #FFF;">
-                        <span style="color:#C40000;font-size: 20px" class="correct-answers"></span>
+                        <span style="color:#00EE00;font-size: 20px" class="correct-answers"></span>
+                      <span style="color:#C40000;font-size: 20px" class="wrong-answers"></span>
                       <button class="btn btn-success" id="showAnswers">显示答案</button>
                         <button class="btn btn-info" id="preQuestion">上一题</button>
                       <button class="btn btn-info" id="nextQuestion">下一题</button>
@@ -333,7 +356,7 @@ $(function(){
       </div>
     </div>
     <div style="width: 100%;height: auto;display: inline-block;border: 1px solid white;">
-      <div class="text-center" style="width: 100%;"> 底部 </div>
+      <div class="text-center" style="width: 100%;">  </div>
     </div>
   </div>
 </div>
