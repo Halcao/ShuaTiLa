@@ -1,0 +1,110 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Flask Blogs{% endblock %}
+
+{% block head %}
+{{ super() }}
+{%- block styles %}
+    {{ super() }}
+    <link href="../static/auth/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="../static/auth/css/style.css" rel="stylesheet" type="text/css" />
+{%- endblock styles %}
+{% endblock %}
+
+{% block navbar %}
+    <div class="head-box">
+    <div class="head wrap">
+          <div class="logo fl"><a href=""><img src="https://3wfy-ans.chaoxing.com/template/school/eryanew/img/logo.png"></a></div>
+          <div class="head-right fr">
+              <div class="clearfix"></div>
+              <div class="nav fr">
+                  <ul>
+                       <li class="nav-cut"><a  href="">首页</a></li>
+                       <li><a href=""></a>
+                           <div class="sub-nav">
+                                <div class="bich-top"></div>
+                                 <div class="bich">
+                                     <a href="">服饰</a>
+                                     <a href="">美食</a>
+                                     <a href="">出行</a>
+                                     <a href="">约会</a>
+                                 </div>
+
+                           </div>
+                       </li>
+                       <li><a href="community.html">刷题</a></li>
+                       <li><a href="course.html">真题模拟</a></li>
+                       <li ><a href="active.html">社区</a></li>
+                        {% if  user_name %}
+                            <li >欢迎,{{ user_name }}</li>
+                            <li ><a href={{ url_for('auth.log_off') }}>注销</a></li>
+                        {% else: %}
+                           <li class="login-click ">登录</li>
+                           <li  class="reg-click ">注册</li>
+                        {% endif %}
+                  </ul>
+              </div>
+              <div class="clearfix"></div>
+          </div>
+    </div>
+</div>
+{% endblock navbar %}
+
+{% block content %}
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    {% block page_content %}{% endblock %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{% endblock %}
+
+
+
+{#{% block doc -%}#}
+{##}
+{#<html {% block html_attribs %}{% endblock html_attribs %}>#}
+{#{%- block html %}#}
+{#  <head>#}
+{#    {%- block head %}#}
+{#    <title>{% block title %}aaaa{% endblock title %}</title>#}
+{#    {%- block metas %}#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    {%- endblock metas %}#}
+{##}
+{#    {%- block styles %}#}
+{#    <!-- Bootstrap -->#}
+{#    {%- endblock styles %}#}
+{#    {%- endblock head %}#}
+{#  </head>#}
+{#  <body{% block body_attribs %}{% endblock body_attribs %}>#}
+{#    {% block body -%}#}
+{#    {% block navbar %}#}
+{#    {%- endblock navbar %}#}
+{#    {% block content -%}#}
+{#        <div class="container">#}
+{#        {% for message in get_flashed_messages() %}#}
+{#            <div class="alert alert-warning">#}
+{#                <button type="button" class="close" data-dismiss="alert">&times;</button>#}
+{#                {{ message }}#}
+{#            </div>#}
+{#    {% endfor %}#}
+{#            {% block page_content %}{% endblock %}#}
+{#        </div>#}
+{##}
+{#{% endblock %}#}
+{#    {% block scripts %}#}
+{#    {%- endblock scripts %}#}
+{#    {%- endblock body %}#}
+{#  </body>#}
+{#{%- endblock html %}#}
+{#</html>#}
+{#{% endblock doc -%}#}
