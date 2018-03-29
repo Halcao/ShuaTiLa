@@ -13,6 +13,6 @@ class Config:
 
 config = {
     'default': Config,
-    'MYSQL_PASSWORD': '970306'
+    'MYSQL_PASSWORD': ''
 }
 
