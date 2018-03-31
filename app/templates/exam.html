@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_boot.html" %}
 
 {% block head %}
     <title>{% block title %}尔雅网课刷题系统{% endblock title %}</title>
@@ -9,10 +9,10 @@
 {%- endblock metas %}
 
 {%- block styles %}
-{#    {{ super() }}#}
+    {{ super() }}
     <link href="../static/exam/main.css" rel="stylesheet" type="text/css" />
     <link href="../static/exam/iconfont.css" rel="stylesheet" type="text/css" />
-    <link href="../static/exam/test.css" rel="stylesheet" type="text/css" />
+    <link href="../static/exam/exam.css" rel="stylesheet" type="text/css" />
 {%- endblock styles %}
 
 <style>
@@ -24,7 +24,9 @@
 
 {% endblock head %}
 
-{% block navbar %}{% endblock navbar %}
+{% block navbar %}
+{{ super() }}
+{% endblock navbar %}
 
 {% block content %}
 	<div class="main">
