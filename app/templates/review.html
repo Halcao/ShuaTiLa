@@ -98,7 +98,7 @@
                                                              none;
                                                         "><span
                                                             class="glyphicon glyphicon-heart"></span>
-                                                        <span>♡已收藏（取消收藏？）</span>
+                                                        <span>♡取消收藏</span>
                                                     </div>
                                                 </div>
 
@@ -159,7 +159,7 @@
                                                      none;
                                                 "><span
                                                     class="glyphicon glyphicon-heart"></span>
-                                                <span>♡已收藏（取消收藏？）</span>
+                                                <span>♡取消收藏</span>
                                             </div>
                                         </div>
                                     </div>
@@ -207,7 +207,7 @@
                                                      none;
                                                 "><span
                                                     class="glyphicon glyphicon-heart"></span>
-                                                <span>♡已收藏（取消收藏？）</span>
+                                                <span>♡取消收藏</span>
                                             </div>
                                         </div>
                                     </div>
@@ -235,6 +235,9 @@
     </div>
 {% endblock content %}
 {% block scripts %}
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
     <script src="../static/exam/jquery-1.11.3.min.js"></script>
     <script src="../static/exam/jquery.easy-pie-chart.js"></script>
     <script>
@@ -244,15 +247,36 @@
                 debugger;
                 var examId = $(this).closest('.test_content_nr_main').closest('li').attr('id'); // 得到题目ID
 
-                window.alert(examId)
+{#                window.alert(examId)#}
                 if ($("#unHeart" + examId).css('display') !== 'none') {
                     $("#unHeart" + examId).hide();
                     $("#heart" + examId).show();
+                    {# the method in flask document #}
+                    $.post($SCRIPT_ROOT + '/exam/add_collect', {
+                        examId: examId,
+                        lesson_id: {{ lesson_id }}
+                    });
+{#                    the ordinary method of ajax#}
+{#                    var data = examId;#}
+{#                    $.ajax({#}
+{#                        type: 'POST',#}
+{#                        url: "/exam/add_collect",#}
+{#                        data: data,  //转化字符串#}
+{#                        contentType: 'application/json; charset=UTF-8',#}
+{#                        success: function (data) { //成功的话，得到消息#}
+{#                            addselect(data);#}
+{#                        }#}
+{#                    });#}
                 }
                 else {
                     $("#heart" + examId).hide();
                     $("#unHeart" + examId).show();
+                    $.post($SCRIPT_ROOT + '/exam/delete_collect', {
+                        examId: examId,
+                        lesson_id: {{ lesson_id }}
+                    });
                 }
+
             });
         });
 
