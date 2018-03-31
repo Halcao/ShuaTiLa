@@ -44,10 +44,9 @@
                             <div class="test_content_nr">
                                 <ul>
                                     {% for question_id in range(wrong_list|length) %}
-                                        <li id= {{ "qu_0_" + question_id|string }}>
+                                        <li id= {{ "qu_0_" + wrong_list[question_id][0]|string }}>
                                             <div class="test_content_nr_tt">
-                                                <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_list[question_id][1] }}</font><b
-                                                    class="icon iconfont">&#xe881;</b>
+                                                <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_list[question_id][1] }}</font>
                                             </div>
 
                                             <div class="test_content_nr_main">
@@ -92,115 +91,147 @@
                                                 <div class="operation">
                                                     <div class="text-left"
                                                          style="margin-left:20px;font-size: 15px;float: left;line-height: 30px;">
-                                                        <div id="unHeart" style="color:#999999;"><span
+                                                        <div id={{ "unHeartqu_0_" + wrong_list[question_id][0]|string }} style="color:#999999;"><span
                                                                 class="glyphicon glyphicon-heart-empty"></span>
                                                             <span>♡收藏本题</span></div>
-                                                        <div id="heart" style="color:#C40000;display: none;"><span
-                                                                class="glyphicon glyphicon-heart"></span>
-                                                            <span>♡已收藏</span>
-                                                        </div>
+                                                        <div id={{ "heartqu_0_" + wrong_list[question_id][0]|string }} style="color:#C40000;display:
+                                                             none;
+                                                        "><span
+                                                            class="glyphicon glyphicon-heart"></span>
+                                                        <span>♡已收藏（取消收藏？）</span>
                                                     </div>
-
                                                 </div>
-                                                <br/>
-                                                <br/>
+
                                             </div>
+                                            <br/>
+                                            <br/>
+                                        </div>
 
 
                                         </li>
 
                                     {% endfor %}
-                                </ul>
+                            </ul>
 
                             </div>
                         {% endif %}
 
-                        {% if wrong_judge_list|length > 0 %}
-                            <div class="rt_content_tt">
-                                <h2>判断题</h2>
-                            </div>
-                            <div class="test_content_nr">
-                                <ul>
+                {% if wrong_judge_list|length > 0 %}
+                    <div class="rt_content_tt">
+                        <h2>判断题</h2>
+                    </div>
+                    <div class="test_content_nr">
+                        <ul>
 
-                                    {% for question_id in range(wrong_judge_list|length) %}
-                                        <li id= {{ "qu_1_" + question_id|string }}>
-                                            <div class="test_content_nr_tt">
-                                                <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_judge_list[question_id][1] }}</font><b
-                                                    class="icon iconfont">&#xe881;</b>
+                            {% for question_id in range(wrong_judge_list|length) %}
+                                <li id= {{ "qu_1_" + wrong_judge_list[question_id][0]|string }}>
+                                    <div class="test_content_nr_tt">
+                                        <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_judge_list[question_id][1] }}</font>
+                                    </div>
+
+                                    <div class="test_content_nr_main">
+                                        <ul>
+
+                                            <li class="option">
+                                                你的答案：
+                                                {% if wrong_judge_list[question_id][3] == "0" %}
+                                                    错
+                                                {% else %}
+                                                    对
+                                                {% endif %}
+                                                ，正确答案：
+                                                {% if wrong_judge_list[question_id][2] == "0" %}
+                                                    错
+                                                {% else %}
+                                                    对
+                                                {% endif %}
+                                            </li>
+
+                                        </ul>
+
+                                        <div class="operation">
+                                            <div class="text-left"
+                                                 style="margin-left:20px;font-size: 15px;float: left;line-height: 30px;">
+                                                <div id={{ "unHeartqu_1_" + wrong_judge_list[question_id][0]|string }} style="color:#999999;"><span
+                                                        class="glyphicon glyphicon-heart-empty"></span>
+                                                    <span>♡收藏本题</span></div>
+                                                <div id={{ "heartqu_1_" + wrong_judge_list[question_id][0]|string }} style="color:#C40000;display:
+                                                     none;
+                                                "><span
+                                                    class="glyphicon glyphicon-heart"></span>
+                                                <span>♡已收藏（取消收藏？）</span>
                                             </div>
+                                        </div>
+                                    </div>
 
-                                            <div class="test_content_nr_main">
-                                                <ul>
+                                    <br/>
+                                    <br/>
+                                </li>
 
-                                                    <li class="option">
-                                                        你的答案：
-                                                        {% if wrong_judge_list[question_id][3] == "0" %}
-                                                            错
-                                                        {% else %}
-                                                            对
-                                                        {% endif %}
-                                                        ，正确答案：
-                                                        {% if wrong_judge_list[question_id][2] == "0" %}
-                                                            错
-                                                        {% else %}
-                                                            对
-                                                        {% endif %}
-                                                    </li>
+                            {% endfor %}
+                        </ul>
 
-                                                </ul>
+                    </div>
+
+                {% endif %}
+
+                {% if wrong_fill_list|length > 0 %}
+                    <div class="rt_content_tt">
+                        <h2>填空题</h2>
+                    </div>
+                    <div class="test_content_nr">
+                        <ul>
+
+                            {% for question_id in range(wrong_fill_list|length) %}
+                                <li id= {{ "qu_2_" + wrong_fill_list[question_id][0]|string }}>
+                                    <div class="test_content_nr_tt">
+                                        <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_fill_list[question_id][1] }}</font>
+                                    </div>
+
+                                    <div class="test_content_nr_main">
+                                        <ul>
+
+                                            <li class="option">
+                                                你的答案：{{ wrong_fill_list[question_id][3] }}，
+                                                正确答案：{{ wrong_fill_list[question_id][2] }}
+                                            </li>
+
+                                        </ul>
+                                        <div class="operation">
+                                            <div class="text-left"
+                                                 style="margin-left:20px;font-size: 15px;float: left;line-height: 30px;">
+                                                <div id={{ "unHeartqu_2_" + wrong_fill_list[question_id][0]|string }} style="color:#999999;"><span
+                                                        class="glyphicon glyphicon-heart-empty"></span>
+                                                    <span>♡收藏本题</span></div>
+                                                <div id={{ "heartqu_2_" + wrong_fill_list[question_id][0]|string }} style="color:#C40000;display:
+                                                     none;
+                                                "><span
+                                                    class="glyphicon glyphicon-heart"></span>
+                                                <span>♡已收藏（取消收藏？）</span>
                                             </div>
-                                        </li>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <br/>
+                                </li>
 
-                                    {% endfor %}
-                                </ul>
+                            {% endfor %}
+                        </ul>
 
-                            </div>
+                    </div>
+                {% endif %}
 
-                        {% endif %}
+                <br/>
+                <br/>
 
-                        {% if wrong_fill_list|length > 0 %}
-                            <div class="rt_content_tt">
-                                <h2>填空题</h2>
-                            </div>
-                            <div class="test_content_nr">
-                                <ul>
-
-                                    {% for question_id in range(wrong_fill_list|length) %}
-                                        <li id= {{ "qu_2_" + question_id|string }}>
-                                            <div class="test_content_nr_tt">
-                                                <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_fill_list[question_id][1] }}</font><b
-                                                    class="icon iconfont">&#xe881;</b>
-                                            </div>
-
-                                            <div class="test_content_nr_main">
-                                                <ul>
-
-                                                    <li class="option">
-                                                        你的答案：{{ wrong_fill_list[question_id][3] }}，
-                                                        正确答案：{{ wrong_fill_list[question_id][2] }}
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </li>
-
-                                    {% endfor %}
-                                </ul>
-
-                            </div>
-                        {% endif %}
-
-                        <br/>
-                        <br/>
-
-                    </form>
-                </div>
-
+                </form>
             </div>
 
         </div>
-        <!--nr end-->
-        <div class="foot"></div>
+
+    </div>
+    <!--nr end-->
+    <div class="foot"></div>
     </div>
 {% endblock content %}
 {% block scripts %}
@@ -208,16 +239,20 @@
     <script src="../static/exam/jquery.easy-pie-chart.js"></script>
     <script>
 
-        window.jQuery(function ($) {
-            "use strict";
+        $(function () {
+            $('div.operation').click(function () {
+                debugger;
+                var examId = $(this).closest('.test_content_nr_main').closest('li').attr('id'); // 得到题目ID
 
-            $("#unHeart").click(function () {
-                $(this).hide();
-                $("#heart").show();
-            });
-            $("#heart").click(function () {
-                $(this).hide();
-                $("#unHeart").show();
+                window.alert(examId)
+                if ($("#unHeart" + examId).css('display') !== 'none') {
+                    $("#unHeart" + examId).hide();
+                    $("#heart" + examId).show();
+                }
+                else {
+                    $("#heart" + examId).hide();
+                    $("#unHeart" + examId).show();
+                }
             });
         });
 
