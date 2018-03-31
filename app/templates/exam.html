@@ -369,10 +369,23 @@
 				var examId = $(this).closest('.test_content_nr_main').closest('li').attr('id'); // 得到题目ID
 				var cardLi = $('a[href=#' + examId + ']'); // 根据题目ID找到对应答题卡
 				// 设置已答题
-				if(!cardLi.hasClass('hasBeenAnswer')){
+				if(!cardLi.hasClass('hasBeenAnswer') ){
 					cardLi.addClass('hasBeenAnswer');
 				}
 				
+			});
+		});
+
+		$(function() {
+			$('div.test_content_nr_main label').change(function() {
+			debugger;
+				var examId = $(this).closest('li').attr('id'); // 得到题目ID
+				var cardLi = $('a[href=#' + examId + ']'); // 根据题目ID找到对应答题卡
+				// 设置已答题
+				if(!cardLi.hasClass('hasBeenAnswer')){
+					cardLi.addClass('hasBeenAnswer');
+				}
+
 			});
 		});
 
