@@ -4,6 +4,7 @@ from flask_login import current_user, login_required
 from . import auth
 from .. import config
 import pymysql
+import hashlib
 
 
 @auth.route('/', methods=['GET', 'POST'])
@@ -25,6 +26,7 @@ def auth_page():
 def login():
     name = request.values.get("logname")
     password = request.values.get("logpass")
+    password = hashlib.md5(password).hexdigest()
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     # sql =  "select Student_id, Student_password from student where Student_id='%s'"%(str(name))
@@ -49,6 +51,7 @@ def regist():
     regname = request.values.get("regname")
     regemail = request.values.get("regemail")
     regpass = request.values.get("regpass")
+    regpass = hashlib.md5(regpass).hexdigest()
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     cur.execute("select Student_id from student where Student_id=%s", (regname))
