@@ -10,7 +10,7 @@ moment = Moment()
 pagedown = PageDown()
 login_mamager = LoginManager()
 login_mamager.session_protection = 'strong'
-# login_mamager.login_view = 'auth.login'
+login_mamager.login_view = 'auth.login'
 
 
 def create_app(config_name):

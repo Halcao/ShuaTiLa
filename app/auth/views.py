@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from flask import render_template, redirect, url_for, flash, request, abort, current_app, session
-from flask_login import current_user, login_required
+from flask_login import current_user, logout_user, login_user
 from . import auth
 from .. import config
+from ..models import User
 import pymysql
 
 
@@ -14,9 +15,10 @@ def index():
 
 @auth.route('/auth_page', methods=['GET', 'POST'])
 def auth_page():
-    if session:
-        name = session.get('username')
-        return render_template('auth.html', user_name=name)
+    if current_user.is_authenticated:
+        # name = session.get('username')
+        # print current_user.id
+        return render_template('auth.html', user_name=current_user.id)
     else:
         return render_template('auth.html')
 
@@ -40,8 +42,10 @@ def login():
         flash(u"密码输错了...", 'warning')
         return redirect(url_for('.auth_page'))
     else:
-        session['username'] = name
-        return redirect(url_for('.auth_page'))
+        # session['username'] = name
+        user = User(id=name)
+        login_user(user)
+        return redirect(url_for('.auth_page', ))
 
 
 @auth.route('/regist', methods=['GET', 'POST'])
@@ -67,8 +71,7 @@ def regist():
 
 @auth.route('/log_off', methods=['GET', 'POST'])
 def log_off():
-    if session:
-        session.clear()
+    logout_user()
     return redirect(url_for('.auth_page'))
 
 
