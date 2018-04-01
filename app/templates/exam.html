@@ -69,7 +69,7 @@
 								<div class="test_content_title">
 									<h2>选择题</h2>
 									<p>
-										<span>共</span><i class="content_lit">{{ question_list|length }}</i><span>题，</span><span>合计</span><i class="content_fs">60</i><span>分</span>
+										<span>共</span><i class="content_lit">{{ question_list|length }}</i><span>题，</span><span>合计</span><i class="content_fs">{{ question_list|length }}</i><span>分</span>
 									</p>
 								</div>
 							</div>
@@ -203,7 +203,7 @@
 								<div class="test_content_title">
 									<h2>判断题</h2>
 									<p>
-										<span>共</span><i class="content_lit">{{ question_list|length }}</i><span>题，</span><span>合计</span><i class="content_fs">60</i><span>分</span>
+										<span>共</span><i class="content_lit">{{ judge_list|length }}</i><span>题，</span><span>合计</span><i class="content_fs">{{ judge_list|length }}</i><span>分</span>
 									</p>
 								</div>
 							</div>
@@ -252,7 +252,7 @@
 								<div class="test_content_title">
 									<h2>填空题</h2>
 									<p>
-										<span>共</span><i class="content_lit">{{ fill_list|length }}</i><span>题，</span><span>合计</span><i class="content_fs">60</i><span>分</span>
+										<span>共</span><i class="content_lit">{{ fill_list|length }}</i><span>题，</span><span>合计</span><i class="content_fs">{{ fill_list|length * 2}}</i><span>分</span>
 									</p>
 								</div>
 							</div>
@@ -261,7 +261,7 @@
                                 {% for question_id in range(fill_list|length) %}
                                     <li id= {{ "qu_2_" + question_id|string }}>
 										<div class="test_content_nr_tt">
-											<i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ fill_list[question_id][1] }}</font><b class="icon iconfont">&#xe881;</b>
+											<i>{{ question_id + 1 }}</i><span>(2分)</span><font>{{ fill_list[question_id][1] }}</font><b class="icon iconfont">&#xe881;</b>
 										</div>
 										<div class="test_content_nr_main">
 
