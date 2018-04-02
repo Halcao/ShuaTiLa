@@ -60,6 +60,6 @@ def test_page(id):
     cur.close()
     db.close()
 
-    return render_template('test.html', question_dict=json.dumps(question_dict),
+    return render_template('test.html', id=id, question_dict=json.dumps(question_dict),
                            judge_dict=json.dumps(judge_dict), fill_dict=json.dumps(fill_dict),
                            all_dict=json.dumps(all_dict))

@@ -4,15 +4,15 @@
     {{ super() }}
     <title>{% block title %}刷题啦-尔雅网课{% endblock title %}</title>
 
-{%- block metas %}
-    {{ super() }}
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{%- endblock metas %}
+    {%- block metas %}
+        {{ super() }}
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%- endblock metas %}
 
 
 
-{#{{ super() }}#}
+    {#{{ super() }}#}
 {% endblock head %}
 
 
@@ -22,208 +22,274 @@
 
     {{ super() }}
 
-<div class="content">
-    <div class="wrap">
-         <div class="tsm-height"></div>
-         {{ super() }}
-         <div class="act-banner">
-                 <div class="hd">
-                      <ul><li style="background:url(http://p.ananas.chaoxing.com/star2/2014-06/origin/1403007484652isxes.jpg) no-repeat center center;height:315px"></li>
-                          <li style="background:url(http://p.ananas.chaoxing.com/star2/2014-06/origin/1402558754659fhqkf.jpg) no-repeat center center;height:315px"></li></ul>
-                 </div>
-                 <div class="bd"><ul></ul></div>
-           </div>
+    <div class="content">
+        <div class="wrap">
+            <div class="tsm-height"></div>
+            {{ super() }}
 
-           <div class="act-a">
-                 <div class="act-a1 mr-20 fl">
-                           <div class="act-a-img"><img src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1403487930128kdgfn.jpg">
-                                                  <div class="inside"><div class="ins-a"><a href="">查看</a></div></div>
-                           </div>
-                           <div class="act-a2">中国古典小说巅峰：四大名著鉴赏</div>
+{#            1--创新创业领导力#}
+{#            2--当代中国经济#}
+{#            3--美学原理#}
+{#            4--微观经济学#}
+{#            5--西方哲学智慧#}
+{#            6--社会心理学#}
+{#            7--心理行为与文化#}
+{#            8--经济学百年#}
+{#            9--国际经济学#}
+{#            10--大学语文#}
+{#            11--先秦君子风范#}
 
-                 </div>
+            <div class="act-b">
+                <ul class="act-ul">
+                    <a href="{{ url_for('test.test_page', id=1) }}">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402993455473cuwue.jpg">
+                            </div>
+                            <div class="act-a2">创新创业领导力</div>
+                        </li>
+                    </a>
 
-                 <div class="act-a1 fl">
-                           <div class="act-a-img"><img src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1403007484652isxes.jpg">
-                                                 <div class="inside"><div class="ins-a"><a href="">查看</a></div></div>
-                           </div>
-                           <div class="act-a2">美学原理</div>
+                    <a href="{{ url_for('test.test_page', id=2) }}">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1402558754659fhqkf.jpg">
+                            </div>
+                            <div class="act-a2">当代中国经济</div>
+                        </li>
+                    </a>
 
-                 </div>
+                    <a href="{{ url_for('test.test_page', id=3) }}">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1403007484652isxes.jpg">
+                            </div>
+                            <div class="act-a2">美学原理</div>
+                        </li>
+                    </a>
 
-           </div>
-           <div class="act-b">
-                 <ul class="act-ul">
-                     <a href=""><li>
-                         <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1403487930128kdgfn.jpg"></div>
-                         <div class="act-a2">中国古典小说巅峰：四大名著鉴赏</div>
-                     </li></a>
+                    <a href="{{ url_for('test.test_page', id=4) }}">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star3/270_169/56d954bce4b0dfadae7a3fdd.jpg"></div>
+                            <div class="act-a2">微观经济学</div>
+                        </li>
+                    </a>
 
-                     <a href=""><li>
-                         <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1403007484652isxes.jpg"></div>
-                         <div class="act-a2">美学原理</div>
-                     </li></a>
-                      <a href=""><li>
-                          <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star3/270_169/56d955cce4b0dfadae7a4050.jpg"></div>
-                          <div class="act-a2">项目管理学</div>
-                      </li></a>
+                    <a href="{{ url_for('test.test_page', id=5) }}">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star3/270_169c/5550558a53706586fff9cb8b.jpg">
+                            </div>
+                            <div class="act-a2">西方哲学智慧</div>
+                        </li>
+                    </a>
 
-                      <a href=""><li>
-                          <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1403149529959dlymv.jpg"></div>
-                          <div class="act-a2">先秦君子风范</div>
-                      </li></a>
+                    <a href="{{ url_for('test.test_page', id=6) }}">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star3/270_169c/555054f653706586fff9cb81.jpg">
+                            </div>
+                            <div class="act-a2">社会心理学</div>
+                        </li>
+                    </a>
 
-                      <a href=""><li>
-                          <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star3/270_169c/5550558a53706586fff9cb8b.jpg"></div>
-                          <div class="act-a2">西方哲学智慧</div>
-                      </li></a>
+                    <a href="{{ url_for('test.test_page', id=7) }}">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star3/270_169/56d955f9e4b0dfadae7a405e.jpg"></div>
+                            <div class="act-a2">心理、行为与文化</div>
+                        </li>
+                    </a>
 
-                      <a href=""><li>
-                          <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star3/270_169/56d954bce4b0dfadae7a3fdd.jpg"></div>
-                          <div class="act-a2">微观经济学</div>
-                      </li></a>
+                    <a href="{{ url_for('test.test_page', id=8) }}">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star/270_169c/1395222258227jqpbs.png"></div>
+                            <div class="act-a2">经济学百年</div>
+                        </li>
+                    </a>
 
-                      <a href=""><li>
-                          <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star3/270_169c/555054f653706586fff9cb81.jpg"></div>
-                          <div class="act-a2">社会心理学</div>
-                      </li></a>
+                    <a href="{{ url_for('test.test_page', id=9) }}">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402974409755udxjp.jpg">
+                            </div>
+                            <div class="act-a2">国际经济学</div>
+                        </li>
+                    </a>
 
-                      <a href=""><li>
-                          <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star3/270_169c/56d94ef0e4b0dfadae7a3496.jpg"></div>
-                          <div class="act-a2">大学语文</div>
-                      </li></a>
+                    <a href="{{ url_for('test.test_page', id=10) }}">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star3/270_169c/56d94ef0e4b0dfadae7a3496.jpg">
+                            </div>
+                            <div class="act-a2">大学语文</div>
+                        </li>
+                    </a>
 
-                     <a href=""><li>
-                         <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402974177868fteuu.jpg"></div>
-                         <div class="act-a2">微生物与人类健康</div>
-                     </li></a>
+                    <a href="{{ url_for('test.test_page', id=11) }}">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1403149529959dlymv.jpg">
+                            </div>
+                            <div class="act-a2">先秦君子风范</div>
+                        </li>
+                    </a>
 
-                     <a href=""><li>
-                         <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star3/270_169c/730f10b991aa1381ef5b4a22cb17ef77.jpg"></div>
-                         <div class="act-a2">舌尖上的植物学</div>
-                     </li></a>
+                    <a href="">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star3/270_169/56d955cce4b0dfadae7a4050.jpg"></div>
+                            <div class="act-a2">项目管理学</div>
+                        </li>
+                    </a>
 
-                     <a href=""><li>
-                         <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402907577503faidu.jpg"></div>
-                         <div class="act-a2">商法</div>
-                     </li></a>
+                    <a href="">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1403487930128kdgfn.jpg">
+                            </div>
+                            <div class="act-a2">中国古典小说巅峰：四大名著鉴赏</div>
+                        </li>
+                    </a>
 
-                     <a href=""><li>
-                         <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star3/270_169c/3fd0e35f66f72f301196d96ead1657d0.jpg"></div>
-                         <div class="act-a2">《理想国》导读</div>
-                     </li></a>
+                    <a href="">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402974177868fteuu.jpg">
+                            </div>
+                            <div class="act-a2">微生物与人类健康</div>
+                        </li>
+                    </a>
 
-                     <a href=""><li>
-                         <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402974409755udxjp.jpg"></div>
-                         <div class="act-a2">国际经济学</div>
-                     </li></a>
+                    <a href="">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star3/270_169c/730f10b991aa1381ef5b4a22cb17ef77.jpg">
+                            </div>
+                            <div class="act-a2">舌尖上的植物学</div>
+                        </li>
+                    </a>
 
-                     <a href=""><li>
-                         <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star3/270_169/56d955f9e4b0dfadae7a405e.jpg"></div>
-                         <div class="act-a2">心理、行为与文化</div>
-                     </li></a>
+                    <a href="">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402907577503faidu.jpg">
+                            </div>
+                            <div class="act-a2">商法</div>
+                        </li>
+                    </a>
 
-                     <a href=""><li>
-                         <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star/270_169c/1395222258227jqpbs.png"></div>
-                         <div class="act-a2">经济学百年</div>
-                     </li></a>
+                    <a href="">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star3/270_169c/3fd0e35f66f72f301196d96ead1657d0.jpg">
+                            </div>
+                            <div class="act-a2">《理想国》导读</div>
+                        </li>
+                    </a>
 
-                     <a href=""><li>
-                         <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1402558754659fhqkf.jpg"></div>
-                         <div class="act-a2">当代中国经济</div>
-                     </li></a>
-
-                     <a href=""><li>
-                         <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star3/270_169c/55505a86e4b017d277eb6d34.jpg"></div>
-                         <div class="act-a2">从爱因斯坦到霍金的宇宙</div>
-                     </li></a>
-
-                     <a href=""><li>
-                         <div class="act-b1"><img src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402993455473cuwue.jpg"></div>
-                         <div class="act-a2">创新创业领导力</div>
-                     </li></a>
-                 </ul>
-           </div>
-
-</div>
-<div class="footer">
-   <div class="wrap">
-      <div class="foot">
-            <div class="foot-left fl">
-                 <a href="">关于我们</a>
-                 <a href="">加入我们</a>
-                 <a href="contact.html">联系我们</a>
-                 <a href="">媒体采访</a>
+                    <a href="">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star3/270_169c/55505a86e4b017d277eb6d34.jpg">
+                            </div>
+                            <div class="act-a2">从爱因斯坦到霍金的宇宙</div>
+                        </li>
+                    </a>
+                </ul>
             </div>
-            <div class="foot-c fl"><a href=""><img src="../static/auth/images/foot-logo.jpg"></a></div>
-            <div class="foot-right fr">
-                 <a href="">同城活动</a>
-                 <a href="">课程资讯</a>
-                 <a href="">最新发布</a>
-                 <a href="">热门文章</a>
-            </div>
-       </div>
-       <div class="foot-btm"> 网页制作by云邦</div>
-   </div>
-</div>
 
-
-<!--登录注册弹窗-->
-<div class="mask"></div>
-<div class="login">
-    <div class="login-title">
-        <div class="login-a">登录</div>
-        <div class="login-b"></div>
-        <div class="login-c close">x</div>
-    </div>
-    <form action="{{  url_for('auth.login')}}" onsubmit="return vaild_login()" name="f" method="post">
-    <div class="login-btm">
-        <div class="login-d"><input id='logname' name='logname' type="text" class="login-text" placeholder="注册时填写的学号"></div>
-        <div class="login-d"><input id='logpass' name='logpass' type="password" class="login-pas" placeholder="密码"></div>
-        <div class="login-d"><input type="submit" class="login-btn" onclick="" value="登录"></div>
-        <div class="login-f">
-             <a href="javascript:;" class="find-href">忘记密码</a>
-             <span>还没有账号?><a href="javascript:;" class="reg-href">点击注册</a></span>
         </div>
-    </div>
-    </form>
-</div>
+        <div class="footer">
+            <div class="wrap">
+                <div class="foot">
+                    <div class="foot-left fl">
+                        <a href="">关于我们</a>
+                        <a href="">加入我们</a>
+                        <a href="contact.html">联系我们</a>
+                        <a href="">媒体采访</a>
+                    </div>
+                    <div class="foot-c fl"><a href=""><img src="../static/auth/images/foot-logo.jpg"></a></div>
+                    <div class="foot-right fr">
+                        <a href="">同城活动</a>
+                        <a href="">课程资讯</a>
+                        <a href="">最新发布</a>
+                        <a href="">热门文章</a>
+                    </div>
+                </div>
+                <div class="foot-btm"> 网页制作by云邦</div>
+            </div>
+        </div>
 
-<div class="reg">
-    <div class="login-title">
-        <div class="login-a">注册</div>
-        <div class="login-b"></div>
-        <div class="login-c close">x</div>
-    </div>
-    <form action="{{  url_for('auth.regist')}}" onsubmit="return vaild_regist()" name="f" method="post">
-    <div class="login-btm">
-        <div class="login-d"><input id ='regname' name='regname' type="text" class="login-text" placeholder="同学，输下你的学号"></div>
-        <div class="login-d"><input id ='regemail' name='regemail' type="text" class="login-text" placeholder="再给个邮箱/手机号"></div>
-        <div class="login-d"><input id ='regpass' name='regpass' type="password" class="login-pas" placeholder="现在输密码,要多于6位的字母和数字"></div>
-        <div class="login-d"><input id ='regpass2' name='regpass2' type="password" class="login-pas" placeholder="最后一步了,重复下密码"></div>
-        <div class="login-d"><input type="submit" class="login-btn" value="注册"></div>
-    </div>
-    </form>
-</div>
 
-<div class="find">
-    <div class="login-title">
-        <div class="login-a">找回密码</div>
-        <div class="login-b"></div>
-        <div class="login-c close">x</div>
-    </div>
-    <form action="{{  url_for('auth.find')}}" onsubmit="return vaild_find()" name="f" method="post">
-    <div class="login-btm">
-        <div class="login-d"><input id ='flogname' name='flogname' type="text" class="login-text" placeholder="输入注册学号"></div>
-        <div class="login-d"><input id ='flogemail' name='flogemail' type="text" class="login-text" placeholder="输入注册邮箱/手机号"></div>
-        <div class="login-d"><input id ='flogpass' name='flogpass' type="text" class="login-text" placeholder="新密码"></div>
-        <div class="login-d"><input id ='flogpass1' name='flogpass1' type="text" class="login-text" placeholder="重复下新密码"></div>
-        <div class="login-d"><input type="submit" class="login-btn" value="提交"></div>
-    </div>
-    </form>
-</div>
+        <!--登录注册弹窗-->
+        <div class="mask"></div>
+        <div class="login">
+            <div class="login-title">
+                <div class="login-a">登录</div>
+                <div class="login-b"></div>
+                <div class="login-c close">x</div>
+            </div>
+            <form action="{{ url_for('auth.login') }}" onsubmit="return vaild_login()" name="f" method="post">
+                <div class="login-btm">
+                    <div class="login-d"><input id='logname' name='logname' type="text" class="login-text"
+                                                placeholder="注册时填写的学号"></div>
+                    <div class="login-d"><input id='logpass' name='logpass' type="password" class="login-pas"
+                                                placeholder="密码"></div>
+                    <div class="login-d"><input type="submit" class="login-btn" onclick="" value="登录"></div>
+                    <div class="login-f">
+                        <a href="javascript:;" class="find-href">忘记密码</a>
+                        <span>还没有账号?><a href="javascript:;" class="reg-href">点击注册</a></span>
+                    </div>
+                </div>
+            </form>
+        </div>
 
-</div>
+        <div class="reg">
+            <div class="login-title">
+                <div class="login-a">注册</div>
+                <div class="login-b"></div>
+                <div class="login-c close">x</div>
+            </div>
+            <form action="{{ url_for('auth.regist') }}" onsubmit="return vaild_regist()" name="f" method="post">
+                <div class="login-btm">
+                    <div class="login-d"><input id='regname' name='regname' type="text" class="login-text"
+                                                placeholder="同学，输下你的学号"></div>
+                    <div class="login-d"><input id='regemail' name='regemail' type="text" class="login-text"
+                                                placeholder="再给个邮箱/手机号"></div>
+                    <div class="login-d"><input id='regpass' name='regpass' type="password" class="login-pas"
+                                                placeholder="现在输密码,要多于6位的字母和数字"></div>
+                    <div class="login-d"><input id='regpass2' name='regpass2' type="password" class="login-pas"
+                                                placeholder="最后一步了,重复下密码"></div>
+                    <div class="login-d"><input type="submit" class="login-btn" value="注册"></div>
+                </div>
+            </form>
+        </div>
+
+        <div class="find">
+            <div class="login-title">
+                <div class="login-a">找回密码</div>
+                <div class="login-b"></div>
+                <div class="login-c close">x</div>
+            </div>
+            <form action="{{ url_for('auth.find') }}" onsubmit="return vaild_find()" name="f" method="post">
+                <div class="login-btm">
+                    <div class="login-d"><input id='flogname' name='flogname' type="text" class="login-text"
+                                                placeholder="输入注册学号"></div>
+                    <div class="login-d"><input id='flogemail' name='flogemail' type="text" class="login-text"
+                                                placeholder="输入注册邮箱/手机号"></div>
+                    <div class="login-d"><input id='flogpass' name='flogpass' type="text" class="login-text"
+                                                placeholder="新密码"></div>
+                    <div class="login-d"><input id='flogpass1' name='flogpass1' type="text" class="login-text"
+                                                placeholder="重复下新密码"></div>
+                    <div class="login-d"><input type="submit" class="login-btn" value="提交"></div>
+                </div>
+            </form>
+        </div>
+
+    </div>
 {% endblock content %}
 
 
@@ -233,98 +299,99 @@
     <script src="../static/auth/js/Action.js"></script>
     <script src="../static/auth/js/jquery.SuperSlide.2.1.1.js"></script>
     <script>
-    function vaild_login()
-    {
-        var logname = document.getElementById("logname").value;
-        var logpass = document.getElementById("logpass").value;
-        if(logname ==  null || logname==''){
-            alert("学号不能为空");
-            return false;
+        function vaild_login() {
+            var logname = document.getElementById("logname").value;
+            var logpass = document.getElementById("logpass").value;
+            if (logname == null || logname == '') {
+                alert("学号不能为空");
+                return false;
+            }
+            if (logpass == null || logpass == '') {
+                alert("密码不能为空");
+                return false;
+            }
+            return true;
         }
-        if(logpass ==  null || logpass==''){
-            alert("密码不能为空");
-            return false;
+
+        function vaild_regist() {
+            var regname = document.getElementById("regname").value;
+            var regpass = document.getElementById("regpass").value;
+            var regpass2 = document.getElementById("regpass2").value;
+            var regemail = document.getElementById("regemail").value;
+            if (regname == null || regname == '') {
+                alert("学号不能为空");
+                return false;
+            }
+            if (regpass == null || regpass == '') {
+                alert("密码不能为空");
+                return false;
+            }
+            if (regemail == null || regemail == '') {
+                alert("邮件/手机号不能为空");
+                return false;
+            }
+            if (regpass.length < 6) {
+                alert("密码长度不够");
+                return false;
+            }
+            if (regpass != regpass2) {
+                alert("两次密码不同");
+                return false;
+            }
         }
-   return true;
-    }
-    function vaild_regist() {
-        var regname = document.getElementById("regname").value;
-        var regpass = document.getElementById("regpass").value;
-        var regpass2 = document.getElementById("regpass2").value;
-        var regemail = document.getElementById("regemail").value;
-        if(regname ==  null || regname==''){
-            alert("学号不能为空");
-            return false;
+
+        function valid_find() {
+            var flogname = document.getElementById("flogname").value;
+            var flogemail = document.getElementById("flogemail").value;
+            var flogpass = document.getElementById("flogpass").value;
+            var flogpass1 = document.getElementById("flogpass1").value;
+            if (flogname == null || flogname == '') {
+                alert("学号不能为空");
+                return false;
+            }
+            if (flogemail == null || flogemail == '') {
+                alert("邮件/手机号不能为空");
+                return false;
+            }
+            if (flogpass == null || flogpass == '') {
+                alert("密码不能为空");
+                return false;
+            }
+            if (flogpass.length < 6) {
+                alert("密码长度不够");
+                return false;
+            }
+            if (flogpass != flogpass1) {
+                alert("两次密码不同");
+                return false;
+            }
         }
-        if(regpass ==  null || regpass==''){
-            alert("密码不能为空");
-            return false;
-        }
-        if(regemail ==  null || regemail==''){
-            alert("邮件/手机号不能为空");
-            return false;
-        }
-        if (regpass.length<6){
-            alert("密码长度不够");
-            return false;
-        }
-        if (regpass != regpass2){
-            alert("两次密码不同");
-            return false;
-        }
-    }
-    function valid_find() {
-        var flogname = document.getElementById("flogname").value;
-        var flogemail = document.getElementById("flogemail").value;
-        var flogpass = document.getElementById("flogpass").value;
-        var flogpass1 = document.getElementById("flogpass1").value;
-        if(flogname ==  null || flogname==''){
-            alert("学号不能为空");
-            return false;
-        }
-        if(flogemail ==  null || flogemail==''){
-            alert("邮件/手机号不能为空");
-            return false;
-        }
-        if(flogpass ==  null || flogpass==''){
-            alert("密码不能为空");
-            return false;
-        }
-        if (flogpass.length<6){
-            alert("密码长度不够");
-            return false;
-        }
-        if (flogpass != flogpass1){
-            alert("两次密码不同");
-            return false;
-        }
-    }
     </script>
     <script>
-    $(".act-banner").slide({
-		    titCell: ".bd ul" ,
-		    mainCell:".hd ul" ,
-	        effect:"fold",
-	        autoPlay:true,
-	        autoPage: true,
-		    mouseOverStop:false,
- 		    trigger: "click",
-		    startFun: function (i) {
-                    var curLi = jQuery(".act-banner .bd li").eq(i);
-                    if (!!curLi.attr("_src")) {
-                        curLi.css("background-image", curLi.attr("_src")).removeAttr("_src")
-                    }
+        $(".act-banner").slide({
+            titCell: ".bd ul",
+            mainCell: ".hd ul",
+            effect: "fold",
+            autoPlay: true,
+            autoPage: true,
+            mouseOverStop: false,
+            trigger: "click",
+            startFun: function (i) {
+                var curLi = jQuery(".act-banner .bd li").eq(i);
+                if (!!curLi.attr("_src")) {
+                    curLi.css("background-image", curLi.attr("_src")).removeAttr("_src")
                 }
-		 });
-    $(".act-a-img").hover(function(){
-        $(this).find(".inside").stop(true,true).animate({top:0},500);
-        },function(){
-            $(this).find(".inside").stop(true,true).animate({top:295},500);
+            }
         });
-    $(".page a").click(function(){
-      $(this).addClass("page-cut").siblings().removeClass("page-cut")
+        $(".act-a-img").hover(function () {
+            $(this).find(".inside").stop(true, true).animate({top: 0}, 500);
+        }, function () {
+            $(this).find(".inside").stop(true, true).animate({top: 295}, 500);
+        });
+        $(".page a").click(function () {
+            $(this).addClass("page-cut").siblings().removeClass("page-cut")
 
-    })
+        })
     </script>
 
-{%-  endblock scripts %}
+{%- endblock scripts %}

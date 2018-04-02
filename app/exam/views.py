@@ -15,8 +15,8 @@ wrong_judge_list——错误的判断题
 wrong_fill_list——错误的填空题
 '''
 
-
 @exam.route('/', methods=['GET', 'POST'])
+@login_required
 def index():
     # return render_template('index.html')
     lesson_id = 1
@@ -25,6 +25,7 @@ def index():
 
 # 选出考试题目
 @exam.route('/exam_page&lesson_id=<int:lesson_id>', methods=['GET'])
+@login_required
 def exam_page(lesson_id):
     # id = 5
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
@@ -78,6 +79,7 @@ def exam_page(lesson_id):
 
 # 计算测试成绩
 @exam.route('/answer&lesson_id=<int:lesson_id>', methods=['POST'])
+@login_required
 def answer(lesson_id):
     if request.method == "POST":
         # reply_list = []
@@ -166,6 +168,7 @@ examId:qu_题目类型_题号
 
 
 @exam.route('/add_collect', methods=['POST'])
+@login_required
 def add_collect():
     # the method in flask document
     examId = str(request.form.get('examId'))
@@ -201,6 +204,7 @@ def add_collect():
 
 
 @exam.route('/delete_collect', methods=['POST'])
+@login_required
 def delete_collect():
     # the method in flask document
     examId = str(request.form.get('examId'))
