@@ -17,6 +17,7 @@ def index():
 @test.route('/test_page&id=<int:id>', methods=['GET'])
 def test_page(id):
     # id = 5
+    print current_user.name
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     sql_choice = 'SELECT Problem_id,Question, Choice_a, Choice_b, Choice_c, Choice_d, Answer ' \
