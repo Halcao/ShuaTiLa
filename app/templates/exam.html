@@ -78,7 +78,7 @@
                                 {% for question_id in range(question_list|length) %}
                                     <li id= {{ "qu_0_" + question_id|string }}>
 										<div class="test_content_nr_tt">
-											<i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ question_list[question_id][1] }}</font><b class="icon iconfont">&#xe881;</b>
+											<i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ question_list[question_id][1] }}</font>
 										</div>
 									{% if question_list[question_id][-1]|length == 1 %}
 										<div class="test_content_nr_main">
@@ -212,7 +212,7 @@
                                 {% for question_id in range(judge_list|length) %}
                                     <li id= {{ "qu_1_" + question_id|string }}>
 										<div class="test_content_nr_tt">
-											<i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ judge_list[question_id][1] }}</font><b class="icon iconfont">&#xe881;</b>
+											<i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ judge_list[question_id][1] }}</font>
 										</div>
 										<div class="test_content_nr_main">
 											<ul>
@@ -261,7 +261,7 @@
                                 {% for question_id in range(fill_list|length) %}
                                     <li id= {{ "qu_2_" + question_id|string }}>
 										<div class="test_content_nr_tt">
-											<i>{{ question_id + 1 }}</i><span>(2分)</span><font>{{ fill_list[question_id][1] }}</font><b class="icon iconfont">&#xe881;</b>
+											<i>{{ question_id + 1 }}</i><span>(2分)</span><font>{{ fill_list[question_id][1] }}</font>
 										</div>
 										<div class="test_content_nr_main">
 

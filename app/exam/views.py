@@ -18,7 +18,6 @@ wrong_fill_list——错误的填空题
 @exam.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
-    # return render_template('index.html')
     lesson_id = 1
     return redirect(url_for('.exam_page', lesson_id=lesson_id))
 
@@ -82,9 +81,6 @@ def exam_page(lesson_id):
 @login_required
 def answer(lesson_id):
     if request.method == "POST":
-        # reply_list = []
-        # for i in range(4):
-        #     reply_list.append(request.values.get('question' + str(i)))
         score = 0  # 计算分数
         # 错误题目列表
         wrong_list = []
@@ -142,15 +138,9 @@ def answer(lesson_id):
                 q.append(reply)
                 wrong_fill_list.append(q)
 
-        # score = score / 4.0 * 100.0
-        # score = 50
         session.pop('question_list_index', None)
         session.pop('judge_list_index', None)
         session.pop('fill_list_index', None)
-        # session['wrong_list'] = wrong_list
-        # session['wrong_judge_list'] = wrong_judge_list
-        # session['wrong_fill_list'] = wrong_fill_list
-        # return render_template('answer.html', score=score)
         cur.close()
         db.close()
         return render_template('review.html', score=score, wrong_list=wrong_list,
@@ -188,10 +178,6 @@ def add_collect():
     elif question_type == 2:
         sql = 'INSERT INTO fill_collection VALUES (%s, %s, %s)'
 
-    # pretend to have a student id
-    student_id = '3015216038'
-
-    print current_user.id
     try:
         cur.execute(sql, (question_id, lesson_id, current_user.id))
     except:
@@ -199,7 +185,6 @@ def add_collect():
     db.commit()
     cur.close()
     db.close()
-    # print examId, lesson_id
     return ''
 
 
@@ -227,9 +212,6 @@ def delete_collect():
         sql = 'DELETE FROM fill_collection WHERE Student_id = %s ' \
               'AND Lesson_id = %s AND Problem_id = %s'
 
-    # pretend to have a student id
-    student_id = '3015216038'
-    print current_user.id
     try:
         cur.execute(sql, (current_user.id, lesson_id, question_id))
     except:
