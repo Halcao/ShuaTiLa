@@ -18,20 +18,21 @@
         var questions_judge = {{judge_dict|safe}};
         var questions_fill = {{fill_dict|safe}};
         var questions_all = {{all_dict|safe}};
-        var last = {{last|safe}};
-        var return_last=last;
+
         //questions_all中的题型判断：
         //var question = questions[id];
         //var items = question.questionItems.split(";");
         //if(items.length==4)：选择题   if(items.length==2)：判断题   if(items.length==1 or 0)：选择题
 
-
+        //var questions=questions_choice    //选择题
+        //var questions=questions_judge     //判断题
+        //var questions=questions_fill      //填空题
         var questions = questions_all      //所有题
 
 
         var itemList = ["A", "B", "C", "D", "E", "F"]
         var itemList2 = ["√", "×"]
-        var activeQuestion = last; //当前操作的考题编号
+        var activeQuestion = 0; //当前操作的考题编号
         var questioned = 0; //
         var checkQues = []; //已做答的题的集合
         var checkans;//当前题的选项
@@ -63,8 +64,6 @@
         //展示考卷信息
         function showQuestion(id) {
             $(".questioned").text(id + 1);
-            return_last=activeQuestion;
-
             questioned = (id + 1) / questions.length
             if (activeQuestion != undefined) {
                 $("#ques" + activeQuestion).removeClass("question_id").addClass("active_question_id");
@@ -275,7 +274,7 @@
                     <button class="btn btn-default" type="button" onClick="location.reload()">刷新</button>
                     {% if current_user.is_authenticated %}
                     <button class="btn btn-default" type="button"
-                            onClick=window.open("{{ url_for('exam.exam_page', lesson_id=id) }}")>模拟测试
+                            onClick=window.open("{{ url_for('auth.auth_page', lesson_id=id) }}")>返回主页
                     </button>
                     {% endif %}
                 </div>
@@ -322,7 +321,7 @@
                             <div style="width: 100%;height: 50px;font-size:15px;color: #000;line-height: 50px;padding-left: 20px;">
                                 <div style="color:#FFF;background: red;width: 22px;height: 22px;border-radius:11px;line-height:22px;font-size:13px; text-align: center;"
                                      class="glyphicon glyphicon-map-marker"></div>
-                                题库顺序练习模     网课将于2018年5月5日考试，请提前做好复习规划，把握时间！
+                                收藏夹
                             </div>
                         </div>
                         <div style="width: 100%;height:auto;display: inline-block;border: 1px solid #CCC;border-bottom:1px dashed #CCC;background:#FFF;">

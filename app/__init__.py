@@ -29,6 +29,9 @@ def create_app(config_name):
     from .test import test as test_blueprint
     app.register_blueprint(test_blueprint, url_prefix='/test')
 
+    from .like import like as test_blueprint
+    app.register_blueprint(test_blueprint, url_prefix='/like')
+
     # from .auth import auth as auth_blueprint
     # app.register_blueprint(auth_blueprint, url_prefix = '/auth')
 
