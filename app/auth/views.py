@@ -45,7 +45,7 @@ def login():
         return redirect(url_for('.auth_page'))
     else:
         # session['username'] = name
-        user = User(id=name)
+        user = User(id=name, name='Arsener')
         login_user(user)
         return redirect(url_for('.auth_page', ))
 
@@ -56,6 +56,7 @@ def regist():
     regemail = request.values.get("regemail")
     regpass = request.values.get("regpass")
     regpass = hashlib.md5(regpass).hexdigest()
+    print regpass
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     cur.execute("select Student_id from student where Student_id=%s", (regname))
