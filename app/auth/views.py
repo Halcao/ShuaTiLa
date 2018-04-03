@@ -55,9 +55,9 @@ def regist():
     regname = request.values.get("regname")
     regstudentid = request.values.get("regstudentid")
     regemail = request.values.get("regemail")
+    print regemail
     regpass = request.values.get("regpass")
     regpass = hashlib.md5(regpass).hexdigest()
-    print regpass
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     cur.execute("select Student_name from student where Student_name=%s", (regname))
@@ -68,7 +68,7 @@ def regist():
     cur.execute("select Student_id from student where Student_id=%s", (regstudentid))
     results = cur.fetchall()
     if len(results) > 0:
-        flash(u"这个ID已经被注册了噢，换一个吧", 'info')
+        flash(u"这个学号已经被注册了噢，换一个吧", 'info')
         return redirect(url_for('.auth_page'))
     else:
         cur.execute("insert into student VALUES (%s,%s,%s,%s)", (regstudentid,regname,regpass, regemail))
