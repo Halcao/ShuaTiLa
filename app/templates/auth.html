@@ -366,6 +366,36 @@
         </div>
 
 
+    </div>
+    	<div class="footer">
+		<div class="footerinner">
+			<ul class="share">
+				<li>
+					<img class="qq_icon" src="../static/auth/images/share2.png" alt="">
+				</li>
+				<li>
+					<img class="twitter_icon" src="../static/auth/images/zhi.jpg" alt="">
+				</li>
+				<li>
+					<img class="wechat_icon" src="../static/auth/images/share4.png" alt="">
+				</li>
+			</ul>
+			<div class="code_wrap">
+				<ul class="code">
+					<li><img class="qq" src="../static/auth/images/qq.jpg" alt=""></li>
+					<li><img class="twitter" src="../static/auth/images/zhifubao.jpg" alt=""></li>
+					<li><img class="wechat" src="../static/auth/images/wechat1.png" alt=""></li>
+				</ul>
+			</div>
+			<div class="footerinfo">
+				<div class="footerinfoTop">
+					<p>本项目基于《数据库设计》课程开发，如果您觉得有帮助，欢迎打赏</p>
+					<p>如果不慎侵犯了您的权益或者需要反馈问题，请联系我们</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
         <!--登录注册弹窗-->
         <div class="mask"></div>
         <div class="login">
@@ -435,15 +465,58 @@
             </form>
         </div>
 
-    </div>
 {% endblock content %}
 
 
 {% block scripts %}
     {{ super() }}
-    <script src="../static/auth/js/jquery-1.11.1.min.js"></script>
+    <script src="../static/auth/js/jquery-1.12.4.min.js"></script>
     <script src="../static/auth/js/Action.js"></script>
     <script src="../static/auth/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script>
+	/*底部二维码*/
+
+	$(".weibo_icon").hover(function(){
+		$(".weibo").fadeIn(500);
+		$(".qq,.twitter,.wechat").fadeOut(0);
+		$(".code_wrap").css("z-index",200);
+	},function(){
+		$(".weibo").fadeOut(0);
+		$(".code_wrap").css("z-index",50);
+	});
+	$(".qq_icon").hover(function(){
+		$(".qq").fadeIn(500);
+		$(".weibo,.twitter,.wechat").fadeOut(0);
+		$(".code_wrap").css("z-index",200);
+	},function(){
+		$(".qq").fadeOut(0);
+		$(".code_wrap").css("z-index",50);
+	});
+	$(".twitter_icon").hover(function(){
+		$(".twitter").fadeIn(500);
+		$(".weibo,.qq,.wechat").fadeOut(0);
+		$(".code_wrap").css("z-index",200);
+	},function(){
+		$(".twitter").fadeOut(0);
+		$(".code_wrap").css("z-index",50);
+	});
+	$(".wechat_icon").hover(function(){
+		$(".wechat").fadeIn(500);
+		$(".weibo,.qq,.twitter").fadeOut(0);
+		$(".code_wrap").css("z-index",200);
+	},function(){
+		$(".wechat").fadeOut(0);
+		$(".code_wrap").css("z-index",50);
+	});
+	$(".weibo,.twitter,.wechat").hover(function(){
+		$(this).fadeIn(0);
+		$(".code_wrap").css("z-index",200);
+	},function(){
+		$(this).fadeOut(500);
+		$(".code_wrap").css("z-index",50);
+	});
+
+    </script>
     <script>
         function checkRate(nubmer) {
      var re =  /^[0-9a-zA-Z]*$/g;  //判断字符串是否为数字和字母组合     //判断正整数 /^[1-9]+[0-9]*]*$/

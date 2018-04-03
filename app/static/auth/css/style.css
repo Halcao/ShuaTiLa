@@ -310,36 +310,6 @@
 
 
 
-/*.footer*/
-.footer {
-	height:132px;
-	background:#000;}
-.foot {
-	height:86px;
-	line-height:86px;
-	border-bottom:1px solid #141414;
-	padding-top:10px;}
-.foot-left a {
-	display:block;
-	width:110px;
-	float:left;
-	font-size:14px;
-	color:#fff;}
-.foot-right a {
-	display:block;
-	width:110px;
-	float:left;
-	font-size:14px;
-	color:#fff;
-	text-align:right;}
-.foot-c {
-	margin:8px 0 0 30px;}
-.foot-btm {
-	font-size:14px;
-	color:#4d4d4d;
-	text-align:Center;
-	margin-top:5px;}
-
 /*focus*/
 .content {
 	width:1200px;
