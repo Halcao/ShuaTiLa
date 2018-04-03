@@ -32,7 +32,7 @@ def login():
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     # sql =  "select Student_id, Student_password from student where Student_id='%s'"%(str(name))
-    cur.execute("select Student_id, Student_password from student where Student_id=%s", (name))
+    cur.execute("select Student_id, Student_password from student where Student_name=%s", (name))
     results = cur.fetchall()
     cur.close()
     db.close()
@@ -45,7 +45,7 @@ def login():
         return redirect(url_for('.auth_page'))
     else:
         # session['username'] = name
-        user = User(id=name, name='Arsener')
+        user = User(id=results[0][0],name=name)
         login_user(user)
         return redirect(url_for('.auth_page', ))
 
@@ -53,19 +53,25 @@ def login():
 @auth.route('/regist', methods=['GET', 'POST'])
 def regist():
     regname = request.values.get("regname")
+    regstudentid = request.values.get("regstudentid")
     regemail = request.values.get("regemail")
     regpass = request.values.get("regpass")
     regpass = hashlib.md5(regpass).hexdigest()
     print regpass
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
-    cur.execute("select Student_id from student where Student_id=%s", (regname))
+    cur.execute("select Student_name from student where Student_name=%s", (regname))
+    results = cur.fetchall()
+    if len(results) > 0:
+        flash(u"这个用户名已经被注册了噢，换一个吧", 'info')
+        return redirect(url_for('.auth_page'))
+    cur.execute("select Student_id from student where Student_id=%s", (regstudentid))
     results = cur.fetchall()
     if len(results) > 0:
         flash(u"这个ID已经被注册了噢，换一个吧", 'info')
         return redirect(url_for('.auth_page'))
     else:
-        cur.execute("insert into student VALUES (%s,%s,%s)", (regname, regpass, regemail))
+        cur.execute("insert into student VALUES (%s,%s,%s,%s)", (regstudentid,regname,regpass, regemail))
         flash(u"注册成功啦，现在可以登录啦", 'success')
     cur.close()
     db.commit()
@@ -84,19 +90,24 @@ def find():
     flogname = request.values.get("flogname")
     flogemail = request.values.get("flogemail")
     flogpass = request.values.get("flogpass")
+    flogstudentid = request.values.get("flogstudentid")
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     # sql =  "select Student_id, Student_password from student where Student_id='%s'"%(str(name))
-    cur.execute("select Student_id, Email from student where Student_id=%s", (flogname))
+    cur.execute("select Student_id,Email from student where Student_name=%s", (flogname))
     results = cur.fetchall()
     if len(results) == 0:
         flash(u"没有这个用户哦", 'info')
         return redirect(url_for('.auth_page'))
+    elif results[0][0] != flogstudentid:
+        # 需要提示密码错
+        flash(u"学号输错了...，再想想", 'warning')
+        return redirect(url_for('.auth_page'))
     elif results[0][1] != flogemail:
         # 需要提示密码错
-        flash(u"邮箱/手机号输错了...，再想想", 'warning')
+        flash(u"邮箱输错了...，再想想", 'warning')
         return redirect(url_for('.auth_page'))
-    cur.execute("update student set Student_password=%s where Student_id=%s", (flogpass,flogname))
+    cur.execute("update student set Student_password=%s where Student_id=%s", (flogpass,flogstudentid))
     cur.close()
     db.commit()
     db.close()
