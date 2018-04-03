@@ -30,91 +30,97 @@
         <div class="test_main">
             <div class="nr_left">
                 <div class="test">
-                    <form action="{{ url_for('exam.answer', lesson_id=lesson_id) }}" method="post">
+                    <form action="{{ url_for('auth.auth_page') }}" method="post">
                         <div class="test_title">
-                            <font><input type="submit" name="test_jiaojuan" value="交卷"></font>
+                            <font><input type="submit" name="test_jiaojuan" value="返回首页"></font>
                         </div>
+                    </form>
+{#                    <form action="{{ url_for('test.test_page', id=lesson_id) }}" method="post">#}
+{#                        <div class="test_title">#}
+{#                            <input type="submit" name="test_jiaojuan" value="继续刷题">#}
+{#                        </div>#}
+{#                    </form>#}
+                    <div class="rt_content_tt">
+                        <h1>你的成绩为：{{ score }}分</h1>
+                    </div>
+                    {% if wrong_list|length > 0 %}
                         <div class="rt_content_tt">
-                            <h1>你的成绩为：{{ score }}分</h1>
+                            <h2>选择题</h2>
                         </div>
-                        {% if wrong_list|length > 0 %}
-                            <div class="rt_content_tt">
-                                <h2>选择题</h2>
-                            </div>
-                            <div class="test_content_nr">
-                                <ul>
-                                    {% for question_id in range(wrong_list|length) %}
-                                        <li id= {{ "qu_0_" + wrong_list[question_id][0]|string }}>
-                                            <div class="test_content_nr_tt">
-                                                <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_list[question_id][1] }}</font>
-                                            </div>
-
-                                            <div class="test_content_nr_main">
-                                                <ul>
-                                                    <li class="option">
-                                                        <label for={{ "0_answer_" + question_id|string + "_option_1" }}>
-                                                            A.
-                                                            <p class="ue"
-                                                               style="display: inline;">{{ wrong_list[question_id][2] }}</p>
-                                                        </label>
-                                                    </li>
-
-                                                    <li class="option">
-                                                        <label for={{ "0_answer_" + question_id|string + "_option_2" }}>
-                                                            B.
-                                                            <p class="ue"
-                                                               style="display: inline;">{{ wrong_list[question_id][3] }}</p>
-                                                        </label>
-                                                    </li>
-
-                                                    <li class="option">
-                                                        <label for={{ "0_answer_" + question_id|string + "_option_3" }}>
-                                                            C.
-                                                            <p class="ue"
-                                                               style="display: inline;">{{ wrong_list[question_id][4] }}</p>
-                                                        </label>
-                                                    </li>
-
-                                                    <li class="option">
-                                                        <label for={{ "0_answer_" + question_id|string + "_option_4" }}>
-                                                            D.
-                                                            <p class="ue"
-                                                               style="display: inline;">{{ wrong_list[question_id][5] }}</p>
-                                                        </label>
-                                                    </li>
-
-                                                    <li class="option">
-                                                        你的答案：{{ wrong_list[question_id][7] }}，正确答案：{{ wrong_list[question_id][6] }}
-                                                    </li>
-
-                                                </ul>
-                                                <div class="operation">
-                                                    <div class="text-left"
-                                                         style="margin-left:20px;font-size: 15px;float: left;line-height: 30px;">
-                                                        <div id={{ "unHeartqu_0_" + wrong_list[question_id][0]|string }} style="color:#999999;"><span
-                                                                class="glyphicon glyphicon-heart-empty"></span>
-                                                            <span>♡收藏本题</span></div>
-                                                        <div id={{ "heartqu_0_" + wrong_list[question_id][0]|string }} style="color:#C40000;display:
-                                                             none;
-                                                        "><span
-                                                            class="glyphicon glyphicon-heart"></span>
-                                                        <span>♡取消收藏</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <br/>
-                                            <br/>
+                        <div class="test_content_nr">
+                            <ul>
+                                {% for question_id in range(wrong_list|length) %}
+                                    <li id= {{ "qu_0_" + wrong_list[question_id][0]|string }}>
+                                        <div class="test_content_nr_tt">
+                                            <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ wrong_list[question_id][1] }}</font>
                                         </div>
 
+                                        <div class="test_content_nr_main">
+                                            <ul>
+                                                <li class="option">
+                                                    <label for={{ "0_answer_" + question_id|string + "_option_1" }}>
+                                                        A.
+                                                        <p class="ue"
+                                                           style="display: inline;">{{ wrong_list[question_id][2] }}</p>
+                                                    </label>
+                                                </li>
 
-                                        </li>
+                                                <li class="option">
+                                                    <label for={{ "0_answer_" + question_id|string + "_option_2" }}>
+                                                        B.
+                                                        <p class="ue"
+                                                           style="display: inline;">{{ wrong_list[question_id][3] }}</p>
+                                                    </label>
+                                                </li>
 
-                                    {% endfor %}
-                            </ul>
+                                                <li class="option">
+                                                    <label for={{ "0_answer_" + question_id|string + "_option_3" }}>
+                                                        C.
+                                                        <p class="ue"
+                                                           style="display: inline;">{{ wrong_list[question_id][4] }}</p>
+                                                    </label>
+                                                </li>
 
-                            </div>
-                        {% endif %}
+                                                <li class="option">
+                                                    <label for={{ "0_answer_" + question_id|string + "_option_4" }}>
+                                                        D.
+                                                        <p class="ue"
+                                                           style="display: inline;">{{ wrong_list[question_id][5] }}</p>
+                                                    </label>
+                                                </li>
+
+                                                <li class="option">
+                                                    你的答案：{{ wrong_list[question_id][7] }}，正确答案：{{ wrong_list[question_id][6] }}
+                                                </li>
+
+                                            </ul>
+                                            <div class="operation">
+                                                <div class="text-left"
+                                                     style="margin-left:20px;font-size: 15px;float: left;line-height: 30px;">
+                                                    <div id={{ "unHeartqu_0_" + wrong_list[question_id][0]|string }} style="color:#999999;"><span
+                                                            class="glyphicon glyphicon-heart-empty"></span>
+                                                        <span>♡收藏本题</span></div>
+                                                    <div id={{ "heartqu_0_" + wrong_list[question_id][0]|string }} style="color:#C40000;display:
+                                                         none;
+                                                    "><span
+                                                        class="glyphicon glyphicon-heart"></span>
+                                                    <span>♡取消收藏</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <br/>
+                                        <br/>
+                                    </div>
+
+
+                                    </li>
+
+                                {% endfor %}
+                        </ul>
+
+                        </div>
+                    {% endif %}
 
                 {% if wrong_judge_list|length > 0 %}
                     <div class="rt_content_tt">
@@ -224,7 +230,6 @@
                 <br/>
                 <br/>
 
-                </form>
             </div>
 
         </div>
@@ -247,7 +252,7 @@
                 debugger;
                 var examId = $(this).closest('.test_content_nr_main').closest('li').attr('id'); // 得到题目ID
 
-{#                window.alert(examId)#}
+                {#                window.alert(examId)#}
                 if ($("#unHeart" + examId).css('display') !== 'none') {
                     $("#unHeart" + examId).hide();
                     $("#heart" + examId).show();
@@ -256,17 +261,17 @@
                         examId: examId,
                         lesson_id: {{ lesson_id }}
                     });
-{#                    the ordinary method of ajax#}
-{#                    var data = examId;#}
-{#                    $.ajax({#}
-{#                        type: 'POST',#}
-{#                        url: "/exam/add_collect",#}
-{#                        data: data,  //转化字符串#}
-{#                        contentType: 'application/json; charset=UTF-8',#}
-{#                        success: function (data) { //成功的话，得到消息#}
-{#                            addselect(data);#}
-{#                        }#}
-{#                    });#}
+                    {#                    the ordinary method of ajax#}
+                    {#                    var data = examId;#}
+                    {#                    $.ajax({#}
+                    {#                        type: 'POST',#}
+                    {#                        url: "/exam/add_collect",#}
+                    {#                        data: data,  //转化字符串#}
+                    {#                        contentType: 'application/json; charset=UTF-8',#}
+                    {#                        success: function (data) { //成功的话，得到消息#}
+                    {#                            addselect(data);#}
+                    {#                        }#}
+                    {#                    });#}
                 }
                 else {
                     $("#heart" + examId).hide();
