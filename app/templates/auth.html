@@ -384,7 +384,7 @@
 				<ul class="code">
 					<li><img class="qq" src="../static/auth/images/qq.jpg" alt=""></li>
 					<li><img class="twitter" src="../static/auth/images/zhifubao.jpg" alt=""></li>
-					<li><img class="wechat" src="../static/auth/images/wechat1.png" alt=""></li>
+					<li><img class="wechat" src="../static/auth/images/weixin.png" alt=""></li>
 				</ul>
 			</div>
 			<div class="footerinfo">
@@ -428,7 +428,7 @@
             <form action="{{ url_for('auth.regist') }}" onsubmit="return vaild_regist()" name="f" method="post">
                 <div class="login-btm">
                     <div class="login-d"><input id='regname' name='regname' type="text" class="login-text"
-                                                placeholder="用户名/20个以内的英文或数字"></div>
+                                                placeholder="用户名/2-16位英文或数字"></div>
                     <div class="login-d"><input id='regstudentid' name='regstudentid' type="text" class="login-text"
                                                 placeholder="输下学号"></div>
                     <div class="login-d"><input id='regemail' name='regemail' type="text" class="login-text"
@@ -476,14 +476,7 @@
     <script>
 	/*底部二维码*/
 
-	$(".weibo_icon").hover(function(){
-		$(".weibo").fadeIn(500);
-		$(".qq,.twitter,.wechat").fadeOut(0);
-		$(".code_wrap").css("z-index",200);
-	},function(){
-		$(".weibo").fadeOut(0);
-		$(".code_wrap").css("z-index",50);
-	});
+
 	$(".qq_icon").hover(function(){
 		$(".qq").fadeIn(500);
 		$(".weibo,.twitter,.wechat").fadeOut(0);
@@ -538,12 +531,14 @@ function checknumber(nubmer) {
         return true;
      }
 }
-function EmailRegCheck(obj)
-{
- var str = obj.value;
- var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
- var flag = reg.test(str);
- return flag;
+function checkstudentid(number){
+     var re = /301(3|4|5|6|7)2(0|1|2|3)[0-9]{4}/;
+     return re.test(number)
+}
+
+function IsEmail(str) {
+    var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");;
+    return reg.test(str);
 }
         function vaild_login() {
             var logname = document.getElementById("logname").value;
@@ -581,17 +576,17 @@ function EmailRegCheck(obj)
                 alert("邮件不能为空");
                 return false;
             }
-            if(regname.length>20 || !checkRate(regname)){
+            if(regname.length>16 || regname.length<2 || !checkRate(regname)){
                 alert("用户名格式不对哦");
-                return false
+                return false;
             }
-            if(regstudentid.length!=10 || !checknumber(regstudentid)){
+            if(regstudentid.length!=10 || !checkstudentid(regstudentid)){
                 alert("学号格式不对哦");
-                return false
+                return false;
             }
-            if(!EmailRegCheck(regemail)){
-                altert("邮箱格式不对哦");
-                return false
+            if( !IsEmail(regemail)){
+                alert("邮箱格式不对哦");
+                return false;
             }
             if (regpass.length < 6 || !checkRate(regpass)) {
                 alert("密码格式不对噢");
