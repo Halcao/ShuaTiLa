@@ -18,7 +18,6 @@ def index():
 def test_page(id):
     # id = 5
     S_id = current_user.id
-    # print current_user.name
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     sql_choice = 'SELECT Problem_id,Question, Choice_a, Choice_b, Choice_c, Choice_d, Answer ' \

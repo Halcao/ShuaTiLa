@@ -32,7 +32,7 @@ def login():
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     # sql =  "select Student_id, Student_password from student where Student_id='%s'"%(str(name))
-    cur.execute("select Student_id, Student_password from student where Student_name=%s", (name))
+    cur.execute("select Student_id, Student_password, Email from student where Student_name=%s", (name))
     results = cur.fetchall()
     cur.close()
     db.close()
@@ -45,7 +45,7 @@ def login():
         return redirect(url_for('.auth_page'))
     else:
         # session['username'] = name
-        user = User(id=results[0][0],name=name)
+        user = User(id=results[0][0], name=name, email=results[0][2])
         login_user(user)
         return redirect(url_for('.auth_page', ))
 
@@ -71,7 +71,7 @@ def regist():
         flash(u"这个学号已经被注册了噢，换一个吧", 'info')
         return redirect(url_for('.auth_page'))
     else:
-        cur.execute("insert into student VALUES (%s,%s,%s,%s)", (regstudentid,regname,regpass, regemail))
+        cur.execute("insert into student VALUES (%s,%s,%s,%s)", (regstudentid, regname, regpass, regemail))
         flash(u"注册成功啦，现在可以登录啦", 'success')
     cur.close()
     db.commit()
@@ -107,7 +107,7 @@ def find():
         # 需要提示密码错
         flash(u"邮箱输错了...，再想想", 'warning')
         return redirect(url_for('.auth_page'))
-    cur.execute("update student set Student_password=%s where Student_id=%s", (flogpass,flogstudentid))
+    cur.execute("update student set Student_password=%s where Student_id=%s", (flogpass, flogstudentid))
     cur.close()
     db.commit()
     db.close()
