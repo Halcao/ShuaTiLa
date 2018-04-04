@@ -58,7 +58,7 @@
 .rt_content_tt h2{width:150px; font-size:14px; display:inline-block;}
 .rt_content_tt p{width:100px; display:inline-block;}
 .answerSheet ul{padding:10px; text-align:left;}
-.answerSheet li{ display:inline-block;margin-bottom:5px; height:30px; width:30px; line-height:30px; text-align:center; border:1px solid #e4e4e4;}
+.answerSheet li{display: inline-block; margin-bottom: 5px; height: 24px; width: 24px; line-height: 24px; text-align: center; border: 1px solid #e4e4e4;}
 .answerSheet li a{display:block;}
 .answerSheet li:hover{color:#389fc3;border-color: #389fc3;}
 

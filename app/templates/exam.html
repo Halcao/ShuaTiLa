@@ -3,417 +3,450 @@
 {% block head %}
     <title>{% block title %}尔雅网课刷题系统{% endblock title %}</title>
 
-{%- block metas %}
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{%- endblock metas %}
+    {%- block metas %}
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%- endblock metas %}
 
-{%- block styles %}
-    {{ super() }}
-    <link href="../static/exam/main.css" rel="stylesheet" type="text/css" />
-    <link href="../static/exam/iconfont.css" rel="stylesheet" type="text/css" />
-    <link href="../static/exam/exam.css" rel="stylesheet" type="text/css" />
-{%- endblock styles %}
+    {%- block styles %}
+        {{ super() }}
+        <link href="../static/exam/main.css" rel="stylesheet" type="text/css"/>
+        <link href="../static/exam/iconfont.css" rel="stylesheet" type="text/css"/>
+        <link href="../static/exam/exam.css" rel="stylesheet" type="text/css"/>
+    {%- endblock styles %}
 
-<style type="text/css">
-.hasBeenAnswer {
-	background: #5d9cec;
-	color:#fff;
-}
+    <style type="text/css">
+        .hasBeenAnswer {
+            background: #5d9cec;
+            color: #fff;
+        }
 
-.clearfloat {
-	clear: both;
-}
+        .clearfloat {
+            clear: both;
+        }
 
-.head-box {
-	position: relative;
-}
+        .head-box {
+            position: relative;
+        }
 
-.nav.fr {
-	background: transparent;
-	margin-top: 0px;
-}
+        .nav.fr {
+            background: transparent;
+            margin-top: 0px;
+        }
 
-.rt_nr1 {
-	top: 100px;
-}
+        .rt_nr1 {
+            top: 100px;
+        }
 
-.rt_nr1_title h1 {
-	line-height: 45px;
-}
+        .rt_nr1_title h1 {
+            line-height: 45px;
+        }
 
-</style>
+    </style>
 
 {% endblock head %}
 
 {% block navbar %}
-{{ super() }}
+    {{ super() }}
 {% endblock navbar %}
 
 {% block content %}
-	<div class="clearfloat"></div>
-	<div class="main">
-		<!--nr start-->
-		<div class="test_main">
-			<div class="nr_left">
-				<div class="test">
-					<form action="{{ url_for('exam.answer', lesson_id=lesson_id) }}" method="post">
-						<div class="test_title">
-							<p class="test_time">
-								<i>剩余时间</i><b class="alt-1">01:20</b>
-							</p>
-							<font><input type="submit" name="test_jiaojuan" value="交卷"></font>
-						</div>
-						
-							<div class="test_content">
-								<div class="test_content_title">
-									<h2>选择题</h2>
-									<p>
-										<span>共</span><i class="content_lit">{{ question_list|length }}</i><span>题，</span><span>合计</span><i class="content_fs">60</i><span>分</span>
-									</p>
-								</div>
-							</div>
-							<div class="test_content_nr">
+    <div class="clearfloat"></div>
+    <div class="main">
+        <!--nr start-->
+        <div class="test_main">
+            <div class="nr_left">
+                <div class="test">
+                    <form action="{{ url_for('exam.answer', lesson_id=lesson_id) }}" onsubmit="return sumbit_sure()" method="post">
+                        <div class="test_title">
+                            <p class="test_time">
+                                <i>剩余时间</i><b class="alt-1">01:20</b>
+                            </p>
+                            <font><input type="submit" name="test_jiaojuan" value="交卷"></font>
+                        </div>
+
+                        <div class="test_content">
+                            <div class="test_content_title">
+                                <h2>选择题</h2>
+                                <p>
+                                    <span>共</span><i
+                                        class="content_lit">{{ question_list|length }}</i><span>题，</span><span>合计</span><i
+                                        class="content_fs">{{ question_list|length }}</i><span>分</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="test_content_nr">
                             <ul>
                                 {% for question_id in range(question_list|length) %}
                                     <li id= {{ "qu_0_" + question_id|string }}>
-										<div class="test_content_nr_tt">
-											<i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ question_list[question_id][1] }}</font><b class="icon iconfont">&#xe881;</b>
-										</div>
-									{% if question_list[question_id][-1]|length == 1 %}
-										<div class="test_content_nr_main">
-											<ul>
-												<li class="option">
-													<label for={{ "0_answer_" + question_id|string + "_option_1" }}>
-														<input type="radio" class="radioOrCheck" name={{ 'question' + question_id|string }}
-															id={{ "0_answer_" + question_id|string + "_option_1" }}
-															value="A"
-														/>
-                                                        A.
-														<p class="ue" style="display: inline;">{{ question_list[question_id][2] }}</p>
-													</label>
-												</li>
-
-												<li class="option">
-													<label for={{ "0_answer_" + question_id|string + "_option_2" }}>
-														<input type="radio" class="radioOrCheck" name={{ 'question' + question_id|string }}
-															id={{ "0_answer_" + question_id|string + "_option_2" }}
-															value="B"
-														/>
-                                                        B.
-														<p class="ue" style="display: inline;">{{ question_list[question_id][3] }}</p>
-													</label>
-												</li>
-
-												<li class="option">
-													<label for={{ "0_answer_" + question_id|string + "_option_3" }}>
-														<input type="radio" class="radioOrCheck" name={{ 'question' + question_id|string }}
-															id={{ "0_answer_" + question_id|string + "_option_3" }}
-															value="C"
-														/>
-                                                        C.
-														<p class="ue" style="display: inline;">{{ question_list[question_id][4] }}</p>
-													</label>
-												</li>
-
-												<li class="option">
-                                                    <label for={{ "0_answer_" + question_id|string + "_option_4" }}>
-														<input type="radio" class="radioOrCheck" name={{ 'question' + question_id|string }}
-															id={{ "0_answer_" + question_id|string + "_option_4" }}
-															value="D"
-														/>
-                                                        D.
-														<p class="ue" style="display: inline;">{{ question_list[question_id][5] }}</p>
-													</label>
-												</li>
-
-											</ul>
-										</div>
-									{% else %}
-										<div class="test_content_nr_main">
-                                            <ul>
-
-                                                <li class="option">
-
-
-                                                    <input type="checkbox" class="radioOrCheck" name={{ 'question' + question_id|string }}
-															id={{ "0_answer_" + question_id|string + "_option_1" }}
-															value="A"
-                                                    />
-
-                                                    <label for={{ "0_answer_" + question_id|string + "_option_1" }}>
-                                                        A.
-                                                        <p class="ue" style="display: inline;">{{ question_list[question_id][2] }}</p>
-                                                    </label>
-                                                </li>
-
-                                                <li class="option">
-
-
-                                                    <input type="checkbox" class="radioOrCheck" name={{ 'question' + question_id|string }}
-															id={{ "0_answer_" + question_id|string + "_option_2" }}
-															value="B"
-                                                    />
-
-                                                    <label for={{ "0_answer_" + question_id|string + "_option_2" }}>
-                                                        B.
-                                                        <p class="ue" style="display: inline;">{{ question_list[question_id][3] }}</p>
-                                                    </label>
-                                                </li>
-
-                                                <li class="option">
-
-
-                                                    <input type="checkbox" class="radioOrCheck" name={{ 'question' + question_id|string }}
-															id={{ "0_answer_" + question_id|string + "_option_3" }}
-															value="C"
-                                                    />
-
-                                                    <label for={{ "0_answer_" + question_id|string + "_option_3" }}>
-                                                        C.
-                                                        <p class="ue" style="display: inline;">{{ question_list[question_id][4] }}</p>
-                                                    </label>
-                                                </li>
-
-                                                <li class="option">
-
-
-                                                    <input type="checkbox" class="radioOrCheck" name={{ 'question' + question_id|string }}
-															id={{ "0_answer_" + question_id|string + "_option_4" }}
-															value="D"
-                                                    />
-
-                                                    <label for={{ "0_answer_" + question_id|string + "_option_4" }}>
-                                                        D.
-                                                        <p class="ue" style="display: inline;">{{ question_list[question_id][5] }}</p>
-                                                    </label>
-                                                </li>
-
-                                            </ul>
+                                        <div class="test_content_nr_tt">
+                                            <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ question_list[question_id][1] }}</font>
                                         </div>
-									{% endif %}
-									</li>
+                                        {% if question_list[question_id][-1]|length == 1 %}
+                                            <div class="test_content_nr_main">
+                                                <ul>
+                                                    <li class="option">
+                                                        <label for={{ "0_answer_" + question_id|string + "_option_1" }}>
+                                                            <input type="radio" class="radioOrCheck"
+                                                                   name={{ 'question' + question_id|string }}
+                                                                           id={{ "0_answer_" + question_id|string + "_option_1" }}
+                                                                   value="A"
+                                                            />
+                                                            A.
+                                                            <p class="ue"
+                                                               style="display: inline;">{{ question_list[question_id][2] }}</p>
+                                                        </label>
+                                                    </li>
+
+                                                    <li class="option">
+                                                        <label for={{ "0_answer_" + question_id|string + "_option_2" }}>
+                                                            <input type="radio" class="radioOrCheck"
+                                                                   name={{ 'question' + question_id|string }}
+                                                                           id={{ "0_answer_" + question_id|string + "_option_2" }}
+                                                                   value="B"
+                                                            />
+                                                            B.
+                                                            <p class="ue"
+                                                               style="display: inline;">{{ question_list[question_id][3] }}</p>
+                                                        </label>
+                                                    </li>
+
+                                                    <li class="option">
+                                                        <label for={{ "0_answer_" + question_id|string + "_option_3" }}>
+                                                            <input type="radio" class="radioOrCheck"
+                                                                   name={{ 'question' + question_id|string }}
+                                                                           id={{ "0_answer_" + question_id|string + "_option_3" }}
+                                                                   value="C"
+                                                            />
+                                                            C.
+                                                            <p class="ue"
+                                                               style="display: inline;">{{ question_list[question_id][4] }}</p>
+                                                        </label>
+                                                    </li>
+
+                                                    <li class="option">
+                                                        <label for={{ "0_answer_" + question_id|string + "_option_4" }}>
+                                                            <input type="radio" class="radioOrCheck"
+                                                                   name={{ 'question' + question_id|string }}
+                                                                           id={{ "0_answer_" + question_id|string + "_option_4" }}
+                                                                   value="D"
+                                                            />
+                                                            D.
+                                                            <p class="ue"
+                                                               style="display: inline;">{{ question_list[question_id][5] }}</p>
+                                                        </label>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        {% else %}
+                                            <div class="test_content_nr_main">
+                                                <ul>
+
+                                                    <li class="option">
+
+
+                                                        <input type="checkbox" class="radioOrCheck"
+                                                               name={{ 'question' + question_id|string }}
+                                                                       id={{ "0_answer_" + question_id|string + "_option_1" }}
+                                                               value="A"
+                                                        />
+
+                                                        <label for={{ "0_answer_" + question_id|string + "_option_1" }}>
+                                                            A.
+                                                            <p class="ue"
+                                                               style="display: inline;">{{ question_list[question_id][2] }}</p>
+                                                        </label>
+                                                    </li>
+
+                                                    <li class="option">
+
+
+                                                        <input type="checkbox" class="radioOrCheck"
+                                                               name={{ 'question' + question_id|string }}
+                                                                       id={{ "0_answer_" + question_id|string + "_option_2" }}
+                                                               value="B"
+                                                        />
+
+                                                        <label for={{ "0_answer_" + question_id|string + "_option_2" }}>
+                                                            B.
+                                                            <p class="ue"
+                                                               style="display: inline;">{{ question_list[question_id][3] }}</p>
+                                                        </label>
+                                                    </li>
+
+                                                    <li class="option">
+
+
+                                                        <input type="checkbox" class="radioOrCheck"
+                                                               name={{ 'question' + question_id|string }}
+                                                                       id={{ "0_answer_" + question_id|string + "_option_3" }}
+                                                               value="C"
+                                                        />
+
+                                                        <label for={{ "0_answer_" + question_id|string + "_option_3" }}>
+                                                            C.
+                                                            <p class="ue"
+                                                               style="display: inline;">{{ question_list[question_id][4] }}</p>
+                                                        </label>
+                                                    </li>
+
+                                                    <li class="option">
+
+
+                                                        <input type="checkbox" class="radioOrCheck"
+                                                               name={{ 'question' + question_id|string }}
+                                                                       id={{ "0_answer_" + question_id|string + "_option_4" }}
+                                                               value="D"
+                                                        />
+
+                                                        <label for={{ "0_answer_" + question_id|string + "_option_4" }}>
+                                                            D.
+                                                            <p class="ue"
+                                                               style="display: inline;">{{ question_list[question_id][5] }}</p>
+                                                        </label>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                    </li>
 
                                 {% endfor %}
                             </ul>
 
-							</div>
+                        </div>
 
-                            <div class="test_content">
-								<div class="test_content_title">
-									<h2>判断题</h2>
-									<p>
-										<span>共</span><i class="content_lit">{{ question_list|length }}</i><span>题，</span><span>合计</span><i class="content_fs">60</i><span>分</span>
-									</p>
-								</div>
-							</div>
-							<div class="test_content_nr">
+                        <div class="test_content">
+                            <div class="test_content_title">
+                                <h2>判断题</h2>
+                                <p>
+                                    <span>共</span><i
+                                        class="content_lit">{{ judge_list|length }}</i><span>题，</span><span>合计</span><i
+                                        class="content_fs">{{ judge_list|length }}</i><span>分</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="test_content_nr">
                             <ul>
                                 {% for question_id in range(judge_list|length) %}
                                     <li id= {{ "qu_1_" + question_id|string }}>
-										<div class="test_content_nr_tt">
-											<i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ judge_list[question_id][1] }}</font><b class="icon iconfont">&#xe881;</b>
-										</div>
-										<div class="test_content_nr_main">
-											<ul>
-												<li class="option">
-													<label for={{ "1_answer_" + question_id|string + "_option_1" }}>
-                                                        <input type="radio" class="radioOrCheck" name={{ 'judge' + question_id|string }}
-															id={{ "1_answer_" + question_id|string + "_option_1" }}
-															value="1"
-														/>
-														对
-													</label>
-												</li>
+                                        <div class="test_content_nr_tt">
+                                            <i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ judge_list[question_id][1] }}</font>
+                                        </div>
+                                        <div class="test_content_nr_main">
+                                            <ul>
+                                                <li class="option">
+                                                    <label for={{ "1_answer_" + question_id|string + "_option_1" }}>
+                                                        <input type="radio" class="radioOrCheck"
+                                                               name={{ 'judge' + question_id|string }}
+                                                                       id={{ "1_answer_" + question_id|string + "_option_1" }}
+                                                               value="1"
+                                                        />
+                                                        对
+                                                    </label>
+                                                </li>
 
-												<li class="option">
-													<label for={{ "1_answer_" + question_id|string + "_option_2" }}>
-                                                        <input type="radio" class="radioOrCheck" name={{ 'judge' + question_id|string }}
-															id={{ "1_answer_" + question_id|string + "_option_2" }}
-															value="0"
-														/>
-														错
-													</label>
-												</li>
+                                                <li class="option">
+                                                    <label for={{ "1_answer_" + question_id|string + "_option_2" }}>
+                                                        <input type="radio" class="radioOrCheck"
+                                                               name={{ 'judge' + question_id|string }}
+                                                                       id={{ "1_answer_" + question_id|string + "_option_2" }}
+                                                               value="0"
+                                                        />
+                                                        错
+                                                    </label>
+                                                </li>
 
 
-											</ul>
-										</div>
+                                            </ul>
+                                        </div>
 
-									</li>
-
-                                {% endfor %}
-                            </ul>
-
-							</div>
-
-                        {% if fill_list|length > 0 %}
-							<div class="test_content">
-								<div class="test_content_title">
-									<h2>填空题</h2>
-									<p>
-										<span>共</span><i class="content_lit">{{ fill_list|length }}</i><span>题，</span><span>合计</span><i class="content_fs">60</i><span>分</span>
-									</p>
-								</div>
-							</div>
-							<div class="test_content_nr">
-                            <ul>
-                                {% for question_id in range(fill_list|length) %}
-                                    <li id= {{ "qu_2_" + question_id|string }}>
-										<div class="test_content_nr_tt">
-											<i>{{ question_id + 1 }}</i><span>(1分)</span><font>{{ fill_list[question_id][1] }}</font><b class="icon iconfont">&#xe881;</b>
-										</div>
-										<div class="test_content_nr_main">
-
-                                            <label for={{ "2_answer_" + question_id|string}}>
-                                                答：
-                                                <input type="text" class="form-control" name={{ 'fill' + question_id|string }}
-                                                    id={{ "2_answer_" + question_id|string}}
-                                                />
-                                            </label>
-
-										</div>
-
-									</li>
+                                    </li>
 
                                 {% endfor %}
                             </ul>
 
-							</div>
+                        </div>
+
+                        {% if fill_list|length > 0 %}
+                            <div class="test_content">
+                                <div class="test_content_title">
+                                    <h2>填空题</h2>
+                                    <p>
+                                        <span>共</span><i
+                                            class="content_lit">{{ fill_list|length }}</i><span>题，</span><span>合计</span><i
+                                            class="content_fs">{{ fill_list|length * 2 }}</i><span>分</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="test_content_nr">
+                                <ul>
+                                    {% for question_id in range(fill_list|length) %}
+                                        <li id= {{ "qu_2_" + question_id|string }}>
+                                            <div class="test_content_nr_tt">
+                                                <i>{{ question_id + 1 }}</i><span>(2分)</span><font>{{ fill_list[question_id][1] }}</font>
+                                            </div>
+                                            <div class="test_content_nr_main">
+
+                                                <label for={{ "2_answer_" + question_id|string }}>
+                                                    答：
+                                                    <input type="text" class="form-control"
+                                                           name={{ 'fill' + question_id|string }}
+                                                                   id={{ "2_answer_" + question_id|string }}
+                                                    />
+                                                </label>
+
+                                            </div>
+
+                                        </li>
+
+                                    {% endfor %}
+                                </ul>
+
+                            </div>
                         {% endif %}
-						
-						<br />
-						<br />
-						
-					</form>
-				</div>
 
-			</div>
-			<div class="nr_right">
-				<div class="nr_rt_main">
-					<div class="rt_nr1">
-						<div class="rt_nr1_title">
-							<h1>
-								<i class="icon iconfont"></i>答题卡
-							</h1>
-							<p class="test_time">
-								<b class="alt-1">01:20</b>
-							</p>
-						</div>
-						
-							<div class="rt_content">
-								<div class="rt_content_tt">
-									<h2>单选题</h2>
-									<p>
-										<span>共</span><i class="content_lit">{{ question_list|length }}</i><span>题</span>
-									</p>
-								</div>
-								<div class="rt_content_nr answerSheet">
-									<ul>
-										{% for question_id in range(question_list|length) %}
-                                            <li><a href={{ "#qu_0_" + question_id|string }}>{{ question_id + 1 }}</a></li>
-                                        {% endfor %}
+                        <br/>
+                        <br/>
 
-										
-									</ul>
-								</div>
-							</div>
+                    </form>
+                </div>
 
-                            <div class="rt_content">
-								<div class="rt_content_tt">
-									<h2>判断题</h2>
-									<p>
-										<span>共</span><i class="content_lit">{{ judge_list|length }}</i><span>题</span>
-									</p>
-								</div>
-								<div class="rt_content_nr answerSheet">
-									<ul>
-										{% for question_id in range(judge_list|length) %}
-                                            <li><a href={{ "#qu_1_" + question_id|string }}>{{ question_id + 1 }}</a></li>
-                                        {% endfor %}
+            </div>
+            <div class="nr_right">
+                <div class="nr_rt_main">
+                    <div class="rt_nr1">
+                        <div class="rt_nr1_title">
+                            <h1>
+                                <i class="icon iconfont"></i>答题卡
+                            </h1>
+                            <p class="test_time">
+                                <b class="alt-1">01:20</b>
+                            </p>
+                        </div>
+
+                        <div class="rt_content">
+                            <div class="rt_content_tt">
+                                <h2>单选题</h2>
+                                <p>
+                                    <span>共</span><i class="content_lit">{{ question_list|length }}</i><span>题</span>
+                                </p>
+                            </div>
+                            <div class="rt_content_nr answerSheet">
+                                <ul>
+                                    {% for question_id in range(question_list|length) %}
+                                        <li><a href={{ "#qu_0_" + question_id|string }}>{{ question_id + 1 }}</a></li>
+                                    {% endfor %}
 
 
-									</ul>
-								</div>
-							</div>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="rt_content">
+                            <div class="rt_content_tt">
+                                <h2>判断题</h2>
+                                <p>
+                                    <span>共</span><i class="content_lit">{{ judge_list|length }}</i><span>题</span>
+                                </p>
+                            </div>
+                            <div class="rt_content_nr answerSheet">
+                                <ul>
+                                    {% for question_id in range(judge_list|length) %}
+                                        <li><a href={{ "#qu_1_" + question_id|string }}>{{ question_id + 1 }}</a></li>
+                                    {% endfor %}
+
+
+                                </ul>
+                            </div>
+                        </div>
 
                         {% if fill_list|length > 0 %}
                             <div class="rt_content">
-								<div class="rt_content_tt">
-									<h2>填空题</h2>
-									<p>
-										<span>共</span><i class="content_lit">{{ fill_list|length }}</i><span>题</span>
-									</p>
-								</div>
-								<div class="rt_content_nr answerSheet">
-									<ul>
-										{% for question_id in range(fill_list|length) %}
-                                            <li><a href={{ "#qu_2_" + question_id|string }}>{{ question_id + 1 }}</a></li>
+                                <div class="rt_content_tt">
+                                    <h2>填空题</h2>
+                                    <p>
+                                        <span>共</span><i class="content_lit">{{ fill_list|length }}</i><span>题</span>
+                                    </p>
+                                </div>
+                                <div class="rt_content_nr answerSheet">
+                                    <ul>
+                                        {% for question_id in range(fill_list|length) %}
+                                            <li><a href={{ "#qu_2_" + question_id|string }}>{{ question_id + 1 }}</a>
+                                            </li>
                                         {% endfor %}
-									</ul>
-								</div>
-							</div>
+                                    </ul>
+                                </div>
+                            </div>
                         {% endif %}
 
 
+                    </div>
 
-					</div>
-
-				</div>
-			</div>
-		</div>
-		<!--nr end-->
-		<div class="foot"></div>
-	</div>
+                </div>
+            </div>
+        </div>
+        <!--nr end-->
+        <div class="foot"></div>
+    </div>
 {% endblock content %}
 {% block scripts %}
-	<script src="../static/exam/jquery-1.11.3.min.js"></script>
-	<script src="../static/exam/jquery.easy-pie-chart.js"></script>
-	<!--时间js-->
-	<script src="../static/exam/time/jquery.countdown.js"></script>
-	<script>
-		window.jQuery(function($) {
-			"use strict";
-			
-			$('time').countDown({
-				with_separators : false
-			});
-			$('.alt-1').countDown({
-				css_class : 'countdown-alt-1'
-			});
-			$('.alt-2').countDown({
-				css_class : 'countdown-alt-2'
-			});
-			
-		});
-		
-		
-		$(function() {
-			$('li.option label').click(function() {
-			debugger;
-				var examId = $(this).closest('.test_content_nr_main').closest('li').attr('id'); // 得到题目ID
-				var cardLi = $('a[href=#' + examId + ']'); // 根据题目ID找到对应答题卡
-				// 设置已答题
-				if(!cardLi.hasClass('hasBeenAnswer') ){
-					cardLi.addClass('hasBeenAnswer');
-				}
-				
-			});
-		});
+    <script src="../static/exam/jquery-1.11.3.min.js"></script>
+    <script src="../static/exam/jquery.easy-pie-chart.js"></script>
+    <!--时间js-->
+    <script src="../static/exam/time/jquery.countdown.js"></script>
+    <script>
+        window.jQuery(function ($) {
+            "use strict";
 
-		$(function() {
-			$('div.test_content_nr_main label').change(function() {
-			debugger;
-				var examId = $(this).closest('li').attr('id'); // 得到题目ID
-				var cardLi = $('a[href=#' + examId + ']'); // 根据题目ID找到对应答题卡
-				// 设置已答题
-				if(!cardLi.hasClass('hasBeenAnswer')){
-					cardLi.addClass('hasBeenAnswer');
-				}
+            $('time').countDown({
+                with_separators: false
+            });
+            $('.alt-1').countDown({
+                css_class: 'countdown-alt-1'
+            });
+            $('.alt-2').countDown({
+                css_class: 'countdown-alt-2'
+            });
 
-			});
-		});
+        });
 
-	</script>
+
+        $(function () {
+            $('li.option label').click(function () {
+                debugger;
+                var examId = $(this).closest('.test_content_nr_main').closest('li').attr('id'); // 得到题目ID
+                var cardLi = $('a[href=#' + examId + ']'); // 根据题目ID找到对应答题卡
+                // 设置已答题
+                if (!cardLi.hasClass('hasBeenAnswer')) {
+                    cardLi.addClass('hasBeenAnswer');
+                }
+
+            });
+        });
+
+        $(function () {
+            $('div.test_content_nr_main label').change(function () {
+                debugger;
+                var examId = $(this).closest('li').attr('id'); // 得到题目ID
+                var cardLi = $('a[href=#' + examId + ']'); // 根据题目ID找到对应答题卡
+                // 设置已答题
+                if (!cardLi.hasClass('hasBeenAnswer')) {
+                    cardLi.addClass('hasBeenAnswer');
+                }
+
+            });
+        });
+
+        function sumbit_sure() {
+            var gnl = confirm("交卷前请检查是否所有问题全部回答。确认交卷？");
+            if (gnl == true) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
 
 {% endblock scripts %}

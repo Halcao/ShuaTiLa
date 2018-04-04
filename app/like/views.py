@@ -1,46 +1,36 @@
 # -*- coding: utf-8 -*-
 from flask import render_template, redirect, url_for, flash, request, abort, session
 from flask_login import current_user, login_required, login_user
-from . import test
+from . import like
 from .. import config
 import pymysql
 import json
 
-@test.route('/', methods=['GET', 'POST'])
+
+@like.route('/', methods=['GET', 'POST'])
 def index():
     # return render_template('index.html')
     id = 1
-    return redirect(url_for('.test_page', id=id))
+    return redirect(url_for('.like_page', id=id))
 
 
-@test.route('/test_page&id=<int:id>', methods=['GET', 'POST'])
-def test_page(id):
+@like.route('/like_page&id=<int:id>', methods=['GET'])
+def like_page(id):
     # id = 5
-    S_id = current_user.id
+    print current_user.name
+    S_id=current_user.id
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
-
-    insert_user = 'INSERT INTO lesson_info(Student_id,Lesson_id) VALUES(%s,%s)'
-    try:
-        cur.execute(insert_user,(S_id,id))
-        db.commit()
-    except:
-        pass
-
     sql_choice = 'SELECT Problem_id,Question, Choice_a, Choice_b, Choice_c, Choice_d, Answer ' \
-                 'FROM choice_problems WHERE Lesson_id = %s ;'
+                 'FROM choice_problems WHERE Lesson_id = %s AND Problem_id in (' \
+                 'SELECT Problem_id FROM choice_collection WHERE Lesson_id=%s AND Student_id=%s);'
     sql_judge = 'SELECT Problem_id,Question, Answer FROM judge_problems ' \
-                'WHERE Lesson_id = %s ;'
+                'WHERE Lesson_id = %s  AND Problem_id in (' \
+                 'SELECT Problem_id FROM judge_collection WHERE Lesson_id=%s AND Student_id=%s);'
     sql_fill = 'SELECT Problem_id,Question, Answer FROM fill_problems ' \
-               'WHERE Lesson_id = %s ;'
-    sql_last = 'SELECT Last_index FROM lesson_info ' \
-               'WHERE Lesson_id = %s AND Student_id = %s;'
-
-    cur.execute(sql_last, (id,S_id))
-    last = cur.fetchone()
-    if last is None:
-        last=0
-    cur.execute(sql_choice, (id))
+               'WHERE Lesson_id = %s  AND Problem_id in (' \
+                 'SELECT Problem_id FROM fill_collection WHERE Lesson_id=%s AND Student_id=%s);'
+    cur.execute(sql_choice, (id,id,S_id))
     questions = cur.fetchall()
     question_dict = []
     all_dict = []
@@ -53,7 +43,7 @@ def test_page(id):
         question_dict.append(dict(zip(question2, question1)))
         all_dict.append(dict(zip(question2, question1)))
         # question_dict.append(list(question))
-    cur.execute(sql_judge, (id))
+    cur.execute(sql_judge, (id,id,S_id))
     questions = cur.fetchall()
     judge_dict = []
     for question in questions:
@@ -62,7 +52,7 @@ def test_page(id):
         question1 = [str(question1[0]), question1[1], " ; ", question1[2]]
         judge_dict.append(dict(zip(question2, question1)))
         all_dict.append(dict(zip(question2, question1)))
-    cur.execute(sql_fill, (id))
+    cur.execute(sql_fill, (id,id,S_id))
     questions = cur.fetchall()
     fill_dict = []
 
@@ -75,25 +65,6 @@ def test_page(id):
     cur.close()
     db.close()
 
-    return render_template('test.html', id=json.dumps(id), question_dict=json.dumps(question_dict),
+    return render_template('like.html', id=json.dumps(id), question_dict=json.dumps(question_dict),
                            judge_dict=json.dumps(judge_dict), fill_dict=json.dumps(fill_dict),
-                           all_dict=json.dumps(all_dict),last=json.dumps(last))
-
-
-@test.route('/save_page',methods=['GET', 'POST'])
-def save_last():
-    userlast = request.form.get('last')
-    lessonid = request.form.get('lessonid')
-    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
-    cur=db.cursor()
-
-    update_last = 'UPDATE lesson_info SET Last_index = %s WHERE Lesson_id = %s AND Student_id = %s'
-
-    test = 'SELECT Student_id FROM lesson_info'
-    cur.execute(update_last, (userlast,lessonid,current_user.id))
-    db.commit()
-    output = cur.fetchall()
-    #print "this is userlast "+ userlast
-    cur.close()
-    db.close()
-    return ''
+                           all_dict=json.dumps(all_dict))
