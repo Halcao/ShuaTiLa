@@ -6,7 +6,10 @@ from .. import config
 from ..models import User
 import pymysql
 import hashlib
+import jwt
 
+JWT_SECRET = 'ksaj./*&&*%&^$d9ad80fa'
+JWT_ALGORITHM = 'HS256'
 
 @auth.route('/', methods=['GET', 'POST'])
 def index():
@@ -47,7 +50,15 @@ def login():
         # session['username'] = name
         user = User(id=results[0][0], name=name, email=results[0][2])
         login_user(user)
-        return redirect(url_for('.auth_page', ))
+        payload = {
+            'id': results[0][0],
+            'name': name,
+            'email': results[0][2]
+        }
+        jwt_token = jwt.encode(payload, JWT_SECRET, JWT_ALGORITHM)
+        response = redirect(url_for('.auth_page'))
+        response.set_cookie('forum_token', jwt_token)
+        return response
 
 
 @auth.route('/regist', methods=['GET', 'POST'])
@@ -82,7 +93,9 @@ def regist():
 @auth.route('/log_off', methods=['GET', 'POST'])
 def log_off():
     logout_user()
-    return redirect(url_for('.auth_page'))
+    response = redirect(url_for('.auth_page'))
+    response.delete_cookie('forum_token')
+    return response
 
 
 @auth.route('/find', methods=['GET', 'POST'])
