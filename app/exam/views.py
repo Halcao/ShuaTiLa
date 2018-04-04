@@ -81,6 +81,11 @@ def exam_page(lesson_id):
 @login_required
 def answer(lesson_id):
     if request.method == "POST":
+        try:
+            session['question_list_index']
+        except:
+            return redirect(url_for('auth.auth_page'))
+
         score = 0  # 计算分数
         # 错误题目列表
         wrong_list = []
@@ -141,10 +146,32 @@ def answer(lesson_id):
         session.pop('question_list_index', None)
         session.pop('judge_list_index', None)
         session.pop('fill_list_index', None)
+
+        sql_score = 'SELECT History_score FROM lesson_info WHERE Student_id = %s AND Lesson_id = %s'
+        cur.execute(sql_score, (current_user.id, lesson_id))
+        if score < 10:
+            history_score = list(cur.fetchall()[0])[0] + '00' + str(score) + ';'
+        elif score < 100:
+            history_score = list(cur.fetchall()[0])[0] + '0' + str(score) + ';'
+        else:
+            history_score = list(cur.fetchall()[0])[0] + str(score) + ';'
+
+        if len(history_score) > 41:
+            history_score = history_score[4:]
+        score_list = history_score.split(';')
+        sum = 0
+        for i in range(1, len(score_list) - 1):
+            sum += int(score_list[i])
+
+        avg_score = sum * 1.0 / (len(score_list) - 2)
+
+        sql_update_score = 'UPDATE lesson_info SET History_score = %s WHERE Student_id = %s AND Lesson_id = %s'
+        cur.execute(sql_update_score, (history_score, current_user.id, lesson_id))
+        db.commit()
         cur.close()
         db.close()
-        return render_template('review.html', score=score, wrong_list=wrong_list,
-                               wrong_judge_list=wrong_judge_list,
+        return render_template('review.html', score=score, avg_score=avg_score,
+                               wrong_list=wrong_list,wrong_judge_list=wrong_judge_list,
                                wrong_fill_list=wrong_fill_list, lesson_id=lesson_id)
 
 
