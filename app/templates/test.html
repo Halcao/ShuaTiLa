@@ -20,6 +20,7 @@
         var questions_all = {{all_dict|safe}};
         var last = {{last|safe}};
         var return_last=last;
+        var lessonid = {{id|safe}};
         //questions_all中的题型判断：
         //var question = questions[id];
         //var items = question.questionItems.split(";");
@@ -32,7 +33,7 @@
         var itemList = ["A", "B", "C", "D", "E", "F"]
         var itemList2 = ["√", "×"]
         var activeQuestion = last; //当前操作的考题编号
-        var questioned = 0; //
+        var questioned = last; //
         var checkQues = []; //已做答的题的集合
         var checkans;//当前题的选项
         var nowanswer;
@@ -62,10 +63,12 @@
 
         //展示考卷信息
         function showQuestion(id) {
-            $(".questioned").text(id + 1);
+            checkans="#";
+            nowid=id+1;
+            $(".questioned").text(id+1);
             return_last=activeQuestion;
 
-            questioned = (id + 1) / questions.length
+            questioned = (id+1) / questions.length
             if (activeQuestion != undefined) {
                 $("#ques" + activeQuestion).removeClass("question_id").addClass("active_question_id");
             }
@@ -122,6 +125,18 @@
             $("#showAnswers").show();
             $("#unheart").show();
             $("#heart").hide();
+
+            $.ajax({
+                url:"./save_page",
+                type:'post',
+                data:{
+                    "last": activeQuestion,
+                    "lessonid" : lessonid
+                },
+                success:function(data){
+                    //alert(data);
+                }
+            })
         }
 
         /*答题卡*/
@@ -190,7 +205,9 @@
             $(".progress-left").width($(".middle-top-left").width() - 200);
             progress();
             answerCard();
-            showQuestion(0);
+            var now=activeQuestion-1
+            now = now+1
+            showQuestion(now);
             /*alert(QuestionJosn.length);*/
             /*实现进度条信息加载的动画*/
             var str = '';
@@ -251,15 +268,19 @@
             $("#preQuestion").click(function () {
                 $("#unHeart").show();
                 $("#Heart").hide();
-                if ((activeQuestion - 1) != -1) showQuestion(activeQuestion - 1);
-                showQuestion(activeQuestion)
+                if ((activeQuestion - 1) != -1)
+                    showQuestion(activeQuestion - 1);
+                else
+                    showQuestion(activeQuestion)
             })
             //进入下一题
             $("#nextQuestion").click(function () {
                 $("#unHeart").show();
                 $("#Heart").hide();
-                if ((activeQuestion + 1) != questions.length) showQuestion(activeQuestion + 1);
-                showQuestion(activeQuestion)
+                if ((activeQuestion + 1) < questions.length)
+                    showQuestion(activeQuestion + 1)
+                else
+                    showQuestion(activeQuestion)
             })
         })
     </script>
@@ -322,7 +343,7 @@
                             <div style="width: 100%;height: 50px;font-size:15px;color: #000;line-height: 50px;padding-left: 20px;">
                                 <div style="color:#FFF;background: red;width: 22px;height: 22px;border-radius:11px;line-height:22px;font-size:13px; text-align: center;"
                                      class="glyphicon glyphicon-map-marker"></div>
-                                题库顺序练习模     网课将于2018年5月5日考试，请提前做好复习规划，把握时间！
+                                题库顺序练习模块     网课将于2018年5月5日考试，请提前做好复习规划，把握时间！
                             </div>
                         </div>
                         <div style="width: 100%;height:auto;display: inline-block;border: 1px solid #CCC;border-bottom:1px dashed #CCC;background:#FFF;">
@@ -331,6 +352,10 @@
                                 <ul class="list-unstyled question" id="" name="">
                                     <li class="question_title"></li>
                                 </ul>
+
+                                <!--提交上一次的题号的表单
+                                <form  name="lastnumform" id="lastnumberform" method="post" action="/test_page">
+                                -->
                                 <form>
                                     <div class="glyphicon glyphicon-map-marker" id="answer-label">
                                         我的回答：
