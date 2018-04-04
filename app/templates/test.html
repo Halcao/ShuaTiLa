@@ -342,6 +342,9 @@
                     <button class="btn btn-default" type="button" onClick="location.reload()">刷新</button>
                     {% if current_user.is_authenticated %}
                     <button class="btn btn-default" type="button"
+                            onClick=window.open("{{ url_for('like.like_page', id=id) }}",'_self')>本门课程的收藏
+                    </button>
+                    <button class="btn btn-default" type="button"
                             onClick=window.open("{{ url_for('exam.exam_page', lesson_id=id) }}",'_self')>模拟测试
                     </button>
                     {% endif %}
