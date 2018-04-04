@@ -100,7 +100,7 @@
                     $(".question").append(item);
                 }
             }
-            else {
+            else if(items.length == 1){
                 $("#answer-label").show();
                 $("#fill-answer").show();
                 document.getElementById("fill-answer").value = "";
