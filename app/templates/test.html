@@ -13,7 +13,7 @@
         var mm = 0;//分
         var ss = 0;//秒
         var timeState = true;//时间状态 默认为true 开启时间
-
+        var all_like = {{all_like|safe}};//之前已收藏的题目list
         var questions_choice = {{question_dict|safe}};
         var questions_judge = {{judge_dict|safe}};
         var questions_fill = {{fill_dict|safe}};
@@ -34,6 +34,7 @@
         var itemList2 = ["√", "×"]
         var activeQuestion = last; //当前操作的考题编号
         var questioned = last; //
+        var jindu=last;
         var checkQues = []; //已做答的题的集合
         var checkans;//当前题的选项
         var nowanswer;
@@ -65,6 +66,8 @@
         function showQuestion(id) {
             checkans="#";
             nowid=id+1;
+            $("#unHeart").show();
+            $("#Heart").hide();
             $(".questioned").text(id+1);
             return_last=activeQuestion;
 
@@ -186,7 +189,8 @@
 
         /*设置进度条*/
         function progress() {
-            var prog = ($(".active_question_id").length + 1) / questions.length;
+            var prog = activeQuestion / questions.length;
+
             var pro = $(".progress").parent().width() * prog;
             $(".progres").text((prog * 100).toString().substr(0, 5) + "%")
             $(".progress").animate({
@@ -227,10 +231,52 @@
             $("#unHeart").click(function () {
                 $(this).hide();
                 $("#heart").show();
+                ptype=-1;
+                c_l=questions_choice.length
+                j_l=questions_judge.length
+                if(activeQuestion<questions_choice.length) ptype=1;//选择题
+                if(questions_choice.length<=activeQuestion && activeQuestion<(questions_choice.length+questions_judge.length))ptype=2;//判断题
+                if(activeQuestion>=(questions_choice.length+questions_judge.length))ptype=3;//填空题
+                $.ajax({
+                url:"./like_page",
+                type:'post',
+                data:{
+                    "likeid": activeQuestion,
+                    "lessonid" : lessonid,
+                    "problemtype": ptype,
+                    "c_l":c_l,
+                    "j_l":j_l
+                },
+                success:function(data){
+                    //alert(data);
+                }
+            })
+
             })
             $("#heart").click(function () {
                 $(this).hide();
                 $("#unHeart").show();
+                 ptype=-1;
+                 c_l=questions_choice.length;
+                j_l=questions_judge.length;
+                if(activeQuestion<questions_choice.length) ptype=1;//选择题
+                if(questions_choice.length<=activeQuestion && activeQuestion<(questions_choice.length+questions_judge.length))ptype=2;//判断题
+                if(activeQuestion>=(questions_choice.length+questions_judge.length))ptype=3;//填空题
+                $.ajax({
+                url:"./dislike_page",
+                type:'post',
+                data:{
+                    "dislikeid": activeQuestion,
+                    "lessonid" : lessonid,
+                    "problemtype": ptype,
+                    "c_l":c_l,
+                    "j_l":j_l
+                },
+                success:function(data){
+                    //alert(data);
+                }
+            })
+
             })
 
             /*答题卡的切换*/

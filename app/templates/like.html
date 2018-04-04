@@ -78,7 +78,10 @@
             var item = "";
             $("#answer-label").hide();
             $("#fill-answer").hide();
-            if (items.length == 4) {
+            if(questions.length==0){
+                $("#answer-label").hide();//当收藏夹为空时，我不知道为什么会有个框，而且还干不掉它
+                $("#fill-answer").hide();
+            }else if (items.length == 4) {
                 for (var i = 0; i < items.length; i++) {
                     item = "<li class='question_info' onclick='clickTrim(this)' id='item"
                         + i + "'><input type='radio' name='item' value='" + itemList[i] + "'>&nbsp;" + itemList[i] + "." + items[i] + "</li>";
@@ -170,7 +173,7 @@
 
         /*设置进度条*/
         function progress() {
-            var prog = ($(".active_question_id").length + 1) / questions.length;
+            var prog = activeQuestion / questions.length;
             var pro = $(".progress").parent().width() * prog;
             $(".progres").text((prog * 100).toString().substr(0, 5) + "%")
             $(".progress").animate({
