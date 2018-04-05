@@ -17,7 +17,7 @@ def index():
 @like.route('/like_page&id=<int:id>', methods=['GET'])
 def like_page(id):
     # id = 5
-    print current_user.name
+    # print current_user.name
     S_id=current_user.id
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()

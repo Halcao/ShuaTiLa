@@ -9,21 +9,21 @@ a:hover{text-decoration:none;}
 
 i{font-style:normal;}
 
-@font-face{font-family:iconfont;src:url(iconfont.eot?t=1493949807789);
-src:
-url(${pageContext.request.contextPath }/fonts/jzbh.eot?t=1493949807789#iefix) format('embedded-opentype'),
-url(${pageContext.request.contextPath }/fonts/jzbh.woff?t=1493949807789) format('woff'),
-url(${pageContext.request.contextPath }/fonts/jzbh.ttf?t=1493949807789) format('truetype'),
-url(${pageContext.request.contextPath }/fonts/jzbh.svg?t=1493949807789#iconfont) format('svg')}
-.iconfont{font-family:iconfont!important;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-#active{font-size:12px; color:#289cd5; font-weight:bold;}
-.course_main{width:100%; height:100%;}
+/*@font-face{font-family:iconfont;src:url(iconfont.eot?t=1493949807789);*/
+/*src:*/
+/*url(${pageContext.request.contextPath }/fonts/jzbh.eot?t=1493949807789#iefix) format('embedded-opentype'),*/
+/*url(${pageContext.request.contextPath }/fonts/jzbh.woff?t=1493949807789) format('woff'),*/
+/*url(${pageContext.request.contextPath }/fonts/jzbh.ttf?t=1493949807789) format('truetype'),*/
+/*url(${pageContext.request.contextPath }/fonts/jzbh.svg?t=1493949807789#iconfont) format('svg')}*/
+/*.iconfont{font-family:iconfont!important;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}*/
+/*#active{font-size:12px; color:#289cd5; font-weight:bold;}*/
+/*.course_main{width:100%; height:100%;}*/
 
 /*top start*/
 .top{width:100%; height:90px; background:#fff; color:#000;}
 .top_nr{width:1200px; margin:0 auto;}
 .top_left{height:90px; float:left;}
-.top_left i{width:180px; height:90px; display:block; float:left; background:../images/student/logo.png) no-repeat center;}
+/*.top_left i{width:180px; height:90px; display:block; float:left; background:../images/student/logo.png) no-repeat center;}*/
 .top_left h1{line-height:100px; display:block; float:left; font-size:28px; }
 
 .top_right{height:90px; float:right; line-height:90px; padding-right:10px;}
