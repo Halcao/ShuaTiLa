@@ -23,7 +23,7 @@
                        <li class="nav-cut"><a  href="{{ url_for('auth.auth_page') }}">首页</a></li>
 {#                       <li><a href="community.html">刷题</a></li>#}
 {#                       <li><a href="{{ url_for('exam.exam_page', lesson_id=1) }}">真题模拟</a></li>#}
-                       <li ><a href="http://0.0.0.0:4567">社区</a></li>
+                       <li ><a href="http://60.205.202.134:4567">社区</a></li>
                         {% if current_user.is_authenticated %}
                             <li >欢迎,{{ current_user.name }}</li>
                             <li ><a href={{ url_for('auth.log_off') }}>注销</a></li>
