@@ -126,7 +126,7 @@ def save_like():
     problemtype = int(request.form.get('problemtype'))
     j_l=int(request.form.get('j_l'))
     c_l = int(request.form.get('c_l'))
-    print "problemtype=",problemtype
+    # print "problemtype=",problemtype
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     if problemtype == 1:
