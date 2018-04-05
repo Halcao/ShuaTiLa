@@ -137,7 +137,10 @@ def save_like():
     if problemtype == 3:
         likeid = likeid - c_l-j_l;
         update_like = 'INSERT INTO fill_collection VALUES (%s,%s,%s)'
-    cur.execute(update_like, (likeid, lessonid, current_user.id))
+    try:
+        cur.execute(update_like, (likeid, lessonid, current_user.id))
+    except:
+        pass
     db.commit()
     db.close()
     return ''
@@ -160,7 +163,10 @@ def save_dislike():
     if problemtype == 3:
         dislikeid = dislikeid - c_l - j_l;
         update_dislike = 'DELETE FROM fill_collection WHERE Problem_id=%s AND Lesson_id=%s AND Student_id=%s'
-    cur.execute(update_dislike, (dislikeid, lessonid, current_user.id))
+    try:
+        cur.execute(update_dislike, (dislikeid, lessonid, current_user.id))
+    except:
+        pass
     db.commit()
     db.close()
     return ''

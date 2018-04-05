@@ -273,7 +273,9 @@
         <div class="content">
             <div class="row">
                 <div class="btn-group">
-                    <button class="btn btn-default" type="button" onClick="history.go(-1);">返回上一个页面</button>
+                    <button class="btn btn-default" type="button"
+                            onClick=window.open("{{ url_for('test.test_page', id=id) }}",'_self')>返回上一个页面
+                    </button>
                     <button class="btn btn-default" type="button" onClick="location.reload()">刷新</button>
                     {% if current_user.is_authenticated %}
                     <button class="btn btn-default" type="button"
