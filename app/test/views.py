@@ -7,6 +7,7 @@ import pymysql
 import json
 
 @test.route('/', methods=['GET', 'POST'])
+@login_required
 def index():
     # return render_template('index.html')
     id = 1
@@ -14,6 +15,7 @@ def index():
 
 
 @test.route('/test_page&id=<int:id>', methods=['GET', 'POST'])
+@login_required
 def test_page(id):
     # id = 5
     S_id = current_user.id
@@ -107,6 +109,7 @@ def test_page(id):
 
 
 @test.route('/save_page',methods=['GET', 'POST'])
+@login_required
 def save_last():
     userlast = request.form.get('last')
     lessonid = request.form.get('lessonid')
@@ -119,6 +122,7 @@ def save_last():
     return ''
 
 @test.route('/like_page',methods=['GET', 'POST'])
+@login_required
 def save_like():
     likeid = request.form.get('likeid')
     likeid=int(likeid)+1
@@ -146,6 +150,7 @@ def save_like():
     return ''
 
 @test.route('/dislike_page',methods=['GET', 'POST'])
+@login_required
 def save_dislike():
     dislikeid = request.form.get('dislikeid')
     dislikeid = int(dislikeid) + 1

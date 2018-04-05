@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>刷题啦-管理员界面</title>
+</head>
+<body>
+
+<a href="{{ url_for('auth.auth_page') }}">返回首页</a><br/>
+<form action="{{ url_for('admin.change_answer') }}" method="POST">
+    <p>课程编号: <input type="text" name="lesson_id"/></p>
+    <p>题目编号: <input type="text" name="problem_id"/></p>
+    <p>题目类型: <input type="text" name="problem_type"/></p>
+    <p>（1--选择题，2--判断题，3--填空题）</p>
+    <p>答案: <input type="text" name="answer"/></p>
+    <input type="submit" value="修改此题答案"/>
+</form>
+            1--创新创业领导力<br/>
+            2--当代中国经济<br/>
+            3--美学原理<br/>
+            4--微观经济学<br/>
+            5--西方哲学智慧<br/>
+            6--社会心理学<br/>
+            7--心理行为与文化<br/>
+            8--经济学百年<br/>
+            9--国际经济学<br/>
+            10--大学语文<br/>
+            11--先秦君子风范<br/>
+
+</body>
+</html>

@@ -8,6 +8,7 @@ import json
 
 
 @like.route('/', methods=['GET', 'POST'])
+@login_required
 def index():
     # return render_template('index.html')
     id = 1
@@ -15,6 +16,7 @@ def index():
 
 
 @like.route('/like_page&id=<int:id>', methods=['GET'])
+@login_required
 def like_page(id):
     # id = 5
     # print current_user.name

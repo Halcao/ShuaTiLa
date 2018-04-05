@@ -35,7 +35,7 @@ def login():
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     # sql =  "select Student_id, Student_password from student where Student_id='%s'"%(str(name))
-    cur.execute("select Student_id, Student_password, Email from student where Student_name=%s", (name))
+    cur.execute("select Student_id, Student_password, Email, If_admin from student where Student_name=%s", (name))
     results = cur.fetchall()
     cur.close()
     db.close()
@@ -48,7 +48,7 @@ def login():
         return redirect(url_for('.auth_page'))
     else:
         # session['username'] = name
-        user = User(id=results[0][0], name=name, email=results[0][2])
+        user = User(id=results[0][0], name=name, email=results[0][2], if_admin=results[0][3])
         login_user(user)
         payload = {
             'id': results[0][0],

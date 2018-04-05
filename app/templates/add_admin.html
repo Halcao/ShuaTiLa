@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>刷题啦-管理员界面</title>
+</head>
+<body>
+
+<a href="{{ url_for('auth.auth_page') }}">返回首页</a><br/>
+<form action="{{ url_for('admin.add_admin') }}" method="POST">
+    <p>输入学号: <input type="text" name="student_id"/></p>
+    <input type="submit" value="将此学生设置为管理员"/>
+</form>
+
+</body>
+</html>
