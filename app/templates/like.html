@@ -278,7 +278,7 @@
                     </button>
                     {% if current_user.is_authenticated %}
                     <button class="btn btn-default" type="button"
-                            onClick=window.open("{{ url_for('auth.auth_page', lesson_id=id) }}",'_self')>返回主页
+                            onClick=window.open("{{ url_for('auth.auth_page') }}",'_self')>返回主页
                     </button>
                     {% endif %}
                 </div>
