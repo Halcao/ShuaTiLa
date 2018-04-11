@@ -12,8 +12,14 @@
         var HH = 0;//时
         var mm = 0;//分
         var ss = 0;//秒
+        var ansa=0;
+        var ansb=0;
+        var ansc=0;
+        var ansd=0;
+
         var timeState = true;//时间状态 默认为true 开启时间
         var all_like = {{all_like|safe}};//之前已收藏的题目list
+        console.log(all_like);
         var questions_choice = {{question_dict|safe}};
         var questions_judge = {{judge_dict|safe}};
         var questions_fill = {{fill_dict|safe}};
@@ -66,8 +72,18 @@
         function showQuestion(id) {
             checkans="#";
             nowid=id+1;
-            $("#unHeart").show();
-            $("#Heart").hide();
+             console.log(String(id+1));
+             console.log(all_like.indexOf(String(id+1)));
+
+            if(all_like.indexOf(String(id+1))==-1){
+                $("#Heart").show();
+
+            }else{
+                 $("#unHeart").show();
+                 $("#Heart").hide();
+            }
+
+
             $(".questioned").text(id+1);
             return_last=activeQuestion;
 
@@ -85,9 +101,32 @@
             var item = "";
             $("#answer-label").hide();
             $("#fill-answer").hide();
-            if (items.length == 4) {
+            qans=question.questionAnswer
+            //多选题的情况
+            if(qans.length > 1&& qans.length<5&&items.length==4){
+
+                    item = "<li class='question_info' onclick='clickTrim(this,5)' id='item"
+                        + 0 + "'><input type='checkbox' name='item0' value='" + itemList[0] + "'>&nbsp;" + itemList[0] + "." + items[0] + "</li>";
+                    $(".question").append(item);
+
+                    item = "<li class='question_info' onclick='clickTrim(this,5)' id='item"
+                        + 1 + "'><input type='checkbox' name='item1' value='" + itemList[1] + "'>&nbsp;" + itemList[1] + "." + items[1] + "</li>";
+                    $(".question").append(item);
+
+                    item = "<li class='question_info' onclick='clickTrim(this,5)' id='item"
+                        + 2 + "'><input type='checkbox' name='item2' value='" + itemList[2] + "'>&nbsp;" + itemList[2] + "." + items[2] + "</li>";
+                    $(".question").append(item);
+
+                    item = "<li class='question_info' onclick='clickTrim(this,5)' id='item"
+                        + 3 + "'><input type='checkbox' name='item3' value='" + itemList[3] + "'>&nbsp;" + itemList[3] + "." + items[3] + "</li>";
+                    $(".question").append(item);
+
+            }
+
+            //单选题的情况
+            else if (qans.length == 1&&items.length==4) {
                 for (var i = 0; i < items.length; i++) {
-                    item = "<li class='question_info' onclick='clickTrim(this)' id='item"
+                    item = "<li class='question_info' onclick='clickTrim(this,4)' id='item"
                         + i + "'><input type='radio' name='item' value='" + itemList[i] + "'>&nbsp;" + itemList[i] + "." + items[i] + "</li>";
                     $(".question").append(item);
                 }
@@ -102,7 +141,7 @@
                         nowanswer = "×";
                         choice = "B";
                     }
-                    item = "<li class='question_info' onclick='clickTrim(this)' id='item"
+                    item = "<li class='question_info' onclick='clickTrim(this,2)' id='item"
                         + i + "'><input type='radio' name='item' value='" + itemList[i] + "'>&nbsp;" + itemList2[i] + "." + items[i] + "</li>";
                     $(".question").append(item);
                 }
@@ -154,21 +193,52 @@
         /*选中考题*/
         var Question;
 
-        function clickTrim(source) {
+        function clickTrim(source,itemlen) {
             var id = source.id;
-            $("#" + id).find("input").prop("checked", "checked");
-            $("#" + id).addClass("clickTrim");
-            $("#ques" + activeQuestion).removeClass("question_id").addClass("clickQue");
+            var currans = $("#" + id).find("input[name=item]:checked").val();
+
+
+            //判断这个选项是否已经被选中了，如果是的话就取消选中
+            if($("#" + id).find("input").prop("checked")){
+                $("#" + id).find("input").attr("checked",false);
+                $("#" + id).removeClass("clickTrim");
+            }
+            else{
+                $("#" + id).find("input").prop("checked", true);
+                $("#" + id).addClass("clickTrim");
+            }
+            // $("#ques" + activeQuestion).removeClass("question_id").addClass("clickQue");
             var ques = 0;
 
             for (var i = 0; i < checkQues.length; i++) {
                 if (checkQues[i].id == activeQuestion && checkQues[i].item != id) {
                     ques = checkQues[i].id;
-                    checkQues[i].item = id;//获取当前考题的选项ID
+                    checkQues[i].item = id;   //获取当前考题的选项ID
                     checkQues[i].answer = $("#" + id).find("input[name=item]:checked").val();//获取当前考题的选项值
                     checkans = $("#" + id).find("input[name=item]:checked").val();
                 }
             }
+            //每次更换选项后都更新
+            var checkans01= String(checkans0);
+            var checkans11= String(checkans1);
+            var checkans21= String(checkans2);
+            var checkans31= String(checkans3);
+           var checkans0 = $("#" + id).find("input[name=item0]:checked").val();
+           var checkans1 = $("#" + id).find("input[name=item1]:checked").val();
+           var checkans2 = $("#" + id).find("input[name=item2]:checked").val();
+           var checkans3 = $("#" + id).find("input[name=item3]:checked").val();
+           checkans0=String(checkans0);
+           checkans1=String(checkans1);
+           checkans2=String(checkans2);
+           checkans3=String(checkans3);
+           if(checkans0!=checkans01) ansa=(ansa+1)%2;
+           if(checkans1!=checkans11)ansb=(ansb+1)%2;
+           if(checkans2!=checkans21)ansc=(ansc+1)%2;
+           if(checkans3!=checkans31) ansd=(ansd+1)%2;
+           // console.log(all_like);
+
+           /*这句话可以在chrome控制台里看到当前选项集合是什么*/
+
             if (checkQues.length == 0 || Question != activeQuestion && activeQuestion != ques) {
                 var check = {};
                 check.id = activeQuestion;//获取当前考题的编号
@@ -177,13 +247,17 @@
                 checkans = $("#" + id).find("input[name=item]:checked").val();
                 checkQues.push(check);
             }
-            $(".question_info").each(function () {
-                var otherId = $(this).attr("id");
-                if (otherId != id) {
-                    $("#" + otherId).find("input").prop("checked", false);
-                    $("#" + otherId).removeClass("clickTrim");
-                }
-            })
+
+            //如果这个题目是单选题或者是判断题，那么选项之间是互斥的
+            if(itemlen <= 4){
+                $(".question_info").each(function () {
+                    var otherId = $(this).attr("id");
+                    if (otherId != id) {
+                        $("#" + otherId).find("input").prop("checked", false);
+                        $("#" + otherId).removeClass("clickTrim");
+                    }
+                })
+            }
             Question = activeQuestion;
         }
 
@@ -293,6 +367,15 @@
 
             //显示答案
             $("#showAnswers").click(function () {
+                checkans="";
+                if(ansa==1) checkans=checkans+"A";
+                if(ansb==1) checkans=checkans+"B";
+                if(ansc==1) checkans=checkans+"C";
+                if(ansd==1) checkans=checkans+"D";
+                ansa=0;
+                ansb=0;
+                ansc=0;
+                ansd=0;
                 /*alert(JSON.stringify(checkQues));*/
                 //alert("已做答:"+($(".clickQue").length)+"道题,还有"+(questions.length-($(".clickQue").length))+"道题未完成");
                 if (activeQuestion > questions_choice.length + questions_judge.length)
@@ -314,19 +397,19 @@
             $("#preQuestion").click(function () {
                 $("#unHeart").show();
                 $("#Heart").hide();
-                if ((activeQuestion - 1) != -1)
-                    showQuestion(activeQuestion - 1);
-                else
-                    showQuestion(activeQuestion)
+                //if ((activeQuestion - 1) != -1)
+                showQuestion((activeQuestion + questions.length - 1) % questions.length);
+                //else
+                //    showQuestion(activeQuestion)
             })
             //进入下一题
             $("#nextQuestion").click(function () {
                 $("#unHeart").show();
                 $("#Heart").hide();
-                if ((activeQuestion + 1) < questions.length)
-                    showQuestion(activeQuestion + 1)
-                else
-                    showQuestion(activeQuestion)
+                //if ((activeQuestion + 1) < questions.length)
+                showQuestion((activeQuestion + questions.length + 1) % questions.length);
+                //else
+                    //showQuestion(activeQuestion)
             })
         })
     </script>

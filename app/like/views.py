@@ -5,7 +5,9 @@ from . import like
 from .. import config
 import pymysql
 import json
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 @like.route('/', methods=['GET', 'POST'])
 @login_required
@@ -70,3 +72,77 @@ def like_page(id):
     return render_template('like.html', id=json.dumps(id), question_dict=json.dumps(question_dict),
                            judge_dict=json.dumps(judge_dict), fill_dict=json.dumps(fill_dict),
                            all_dict=json.dumps(all_dict))
+@like.route('/delheart_page',methods=['GET', 'POST'])
+@login_required
+def delheart_page():
+    title = request.form.get('title')
+    itemss = int ((request.form.get('itemss')))
+    lessonid1= int ((request.form.get('lessonid1')))
+    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+    cur = db.cursor()
+    update_like = "aa"
+    if itemss == 4:
+        update_like = 'DELETE FROM choice_collection WHERE ' \
+                      'Lesson_id=%s AND Student_id=%s' \
+                      ' AND Problem_id = (SELECT Problem_id FROM choice_problems' \
+                      ' WHERE choice_problems.Question=%s ' \
+                      'AND choice_collection.Problem_id=choice_problems.Problem_id ' \
+                      'AND choice_collection.Lesson_id=choice_problems.Lesson_id)'
+
+    if itemss == 2:
+        update_like ='DELETE FROM judge_collection WHERE ' \
+                      'Lesson_id=%s AND Student_id=%s' \
+                      ' AND Problem_id = (SELECT Problem_id FROM judge_problems' \
+                      ' WHERE judge_problems.Question=%s ' \
+                      'AND judge_collection.Problem_id=judge_problems.Problem_id ' \
+                      'AND judge_collection.Lesson_id=judge_problems.Lesson_id)'
+    if itemss == 1:
+        update_like = 'DELETE FROM fill_collection WHERE ' \
+                      'Lesson_id=%s AND Student_id=%s' \
+                      ' AND Problem_id = (SELECT Problem_id FROM fill_problems' \
+                      ' WHERE fill_problems.Question=%s ' \
+                      'AND fill_collection.Problem_id=fill_problems.Problem_id ' \
+                      'AND fill_collection.Lesson_id=fill_problems.Lesson_id)'
+    try:
+        cur.execute(update_like, (lessonid1, current_user.id,title))
+    except:
+        pass
+    db.commit()
+    db.close()
+    return ''
+
+
+@like.route('/oheart_page',methods=['GET', 'POST'])
+@login_required
+def oheart_page():
+    title = request.form.get('title')
+    itemss = int ((request.form.get('itemss')))
+    lessonid1= int ((request.form.get('lessonid1')))
+    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+    cur = db.cursor()
+    update_like="aa"
+    again_like="aa"
+    laji= int (1)
+    if itemss == 4:
+        update_like = 'INSERT INTO choice_collection VALUES (%s,%s,%s) '
+        again_like = 'UPDATE choice_collection SET Problem_id=(SELECT Problem_id FROM choice_problems' \
+                      ' WHERE choice_problems.Question=%s )'
+
+    if itemss == 2:
+        update_like = 'INSERT INTO judge_collection VALUES (%s,%s,%s) '
+        again_like = 'UPDATE judge_collection SET Problem_id=(SELECT Problem_id FROM judge_problems' \
+                             ' WHERE judge_problems.Question=%s )'
+    if itemss == 1:
+        update_like = 'INSERT INTO fill_collection VALUES (%s,%s,%s) '
+        again_like = 'UPDATE fill_collection SET Problem_id=(SELECT Problem_id FROM fill_problems' \
+                             ' WHERE fill_problems.Question=%s )'
+    try:
+
+
+        cur.execute(update_like, (laji,lessonid1, current_user.id))
+        cur.execute(again_like, (title))
+    except:
+        pass
+    db.commit()
+    db.close()
+    return ''

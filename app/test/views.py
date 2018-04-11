@@ -103,6 +103,7 @@ def test_page(id):
         all_dict.append(dict(zip(question2, question1)))
     cur.close()
     db.close()
+    print all_like
     return render_template('test.html', id=json.dumps(id), question_dict=json.dumps(question_dict),
                            judge_dict=json.dumps(judge_dict), fill_dict=json.dumps(fill_dict),
                            all_dict=json.dumps(all_dict),last=json.dumps(last),all_like=json.dumps(all_like))
