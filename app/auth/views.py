@@ -32,7 +32,7 @@ def login():
     ip = request.remote_addr
     browser = request.user_agent.browser
     platform = request.user_agent.platform
-    print(ip,browser,platform)
+    print('login',ip,browser,platform)
     name = request.values.get("logname")
     password = request.values.get("logpass")
     password = hashlib.md5(password).hexdigest()
@@ -66,7 +66,7 @@ def login():
         cur = db.cursor()
         i = datetime.datetime.now()
         # sql =  "select Student_id, Student_password from student where Student_id='%s'"%(str(name))
-        cur.execute("insert into log(user,event,time,IP) values (%s,%s,%s,%s)", (name,'login',str(i),str(ip)))
+        cur.execute("insert into log_info(Student_id,Log_event,created_at,event_ip) values (%s,%s,%s,%s)", (results[0][0],'login',str(i),str(ip)))
         cur.close()
         db.commit()
         db.close()
@@ -107,8 +107,8 @@ def log_off():
     ip = request.remote_addr
     browser = request.user_agent.browser
     platform = request.user_agent.platform
-    print(ip,browser,platform)
-    name = current_user.name
+    print('log off',ip,browser,platform)
+    id = current_user.id
     logout_user()
     response = redirect(url_for('.auth_page'))
     response.delete_cookie('forum_token')
@@ -116,7 +116,7 @@ def log_off():
     cur = db.cursor()
     i = datetime.datetime.now()
     # sql =  "select Student_id, Student_password from student where Student_id='%s'"%(str(name))
-    cur.execute("insert into log(user,event,time,IP) values (%s,%s,%s,%s)", (name, 'log off', str(i), str(ip)))
+    cur.execute("insert into log_info(Student_id,Log_event,created_at,event_ip) values (%s,%s,%s,%s)",(id, 'log off', str(i), str(ip)))
     cur.close()
     db.commit()
     db.close()
