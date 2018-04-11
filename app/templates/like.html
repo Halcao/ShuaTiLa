@@ -329,7 +329,7 @@
 
             //显示答案
             $("#showAnswers").click(function () {
-                checkans="";
+
                 if(ansa==1) checkans=checkans+"A";
                 if(ansb==1) checkans=checkans+"B";
                 if(ansc==1) checkans=checkans+"C";
@@ -347,11 +347,13 @@
                     $(".correct-answers").text(nowanswer);
                     $(".correct-answers").show();
                     $("#showAnswers").hide();
+                    checkans="";
                 } else {
                     nowanswer = "Wrong!    Answer:" + nowanswer;
                     $(".wrong-answers").text(nowanswer);
                     $(".wrong-answers").show();
                     $("#showAnswers").hide();
+                    checkans="";
                 }
 
             })
