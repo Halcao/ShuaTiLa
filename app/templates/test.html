@@ -19,7 +19,7 @@
 
         var timeState = true;//时间状态 默认为true 开启时间
         var all_like = {{all_like|safe}};//之前已收藏的题目list
-        console.log(all_like);
+
         var questions_choice = {{question_dict|safe}};
         var questions_judge = {{judge_dict|safe}};
         var questions_fill = {{fill_dict|safe}};
@@ -367,7 +367,7 @@
 
             //显示答案
             $("#showAnswers").click(function () {
-                checkans="";
+
                 if(ansa==1) checkans=checkans+"A";
                 if(ansb==1) checkans=checkans+"B";
                 if(ansc==1) checkans=checkans+"C";
@@ -380,16 +380,19 @@
                 //alert("已做答:"+($(".clickQue").length)+"道题,还有"+(questions.length-($(".clickQue").length))+"道题未完成");
                 if (activeQuestion > questions_choice.length + questions_judge.length)
                     checkans = $("#fill-answer").val();
+                 console.log(all_like);
                 if (checkans == choice) {
                     nowanswer = "Right!    Answer:" + nowanswer;
                     $(".correct-answers").text(nowanswer);
                     $(".correct-answers").show();
                     $("#showAnswers").hide();
+                    checkans="";
                 } else {
                     nowanswer = "Wrong!    Answer:" + nowanswer;
                     $(".wrong-answers").text(nowanswer);
                     $(".wrong-answers").show();
                     $("#showAnswers").hide();
+                    checkans="";
                 }
 
             })
