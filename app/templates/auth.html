@@ -41,6 +41,7 @@
 {#            9--国际经济学#}
 {#            10--大学语文#}
 {#            11--先秦君子风范#}
+{#            12--从爱因斯坦到霍金的宇宙#}
 
             <div class="act-b">
                 {%  if current_user.is_authenticated  %}
@@ -141,6 +142,15 @@
                         </li>
                     </a>
 
+                    <a href="{{ url_for('test.test_page', id=12) }}">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star3/270_169c/55505a86e4b017d277eb6d34.jpg">
+                            </div>
+                            <div class="act-a2">从爱因斯坦到霍金的宇宙</div>
+                        </li>
+                    </a>
+
                     <a href="javascript:window.alert('暂未开放')">
                         <li>
                             <div class="act-b1"><img
@@ -191,15 +201,6 @@
                                     src="http://p.ananas.chaoxing.com/star3/270_169c/3fd0e35f66f72f301196d96ead1657d0.jpg">
                             </div>
                             <div class="act-a2">《理想国》导读</div>
-                        </li>
-                    </a>
-
-                    <a href="javascript:window.alert('暂未开放')">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star3/270_169c/55505a86e4b017d277eb6d34.jpg">
-                            </div>
-                            <div class="act-a2">从爱因斯坦到霍金的宇宙</div>
                         </li>
                     </a>
                 </ul>
