@@ -5,7 +5,7 @@ from . import auth
 from .. import config
 from ..models import User
 import pymysql
-import hashlib
+import hashlib,datetime
 import jwt
 
 JWT_SECRET = 'ksaj./*&&*%&^$d9ad80fa'
@@ -29,6 +29,10 @@ def auth_page():
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
+    ip = request.remote_addr
+    browser = request.user_agent.browser
+    platform = request.user_agent.platform
+    print(ip,browser,platform)
     name = request.values.get("logname")
     password = request.values.get("logpass")
     password = hashlib.md5(password).hexdigest()
@@ -58,6 +62,14 @@ def login():
         jwt_token = jwt.encode(payload, JWT_SECRET, JWT_ALGORITHM)
         response = redirect(url_for('.auth_page'))
         response.set_cookie('forum_token', jwt_token)
+        db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+        cur = db.cursor()
+        i = datetime.datetime.now()
+        # sql =  "select Student_id, Student_password from student where Student_id='%s'"%(str(name))
+        cur.execute("insert into log(user,event,time,IP) values (%s,%s,%s,%s)", (name,'login',str(i),str(ip)))
+        cur.close()
+        db.commit()
+        db.close()
         return response
 
 
@@ -92,9 +104,22 @@ def regist():
 
 @auth.route('/log_off', methods=['GET', 'POST'])
 def log_off():
+    ip = request.remote_addr
+    browser = request.user_agent.browser
+    platform = request.user_agent.platform
+    print(ip,browser,platform)
+    name = current_user.name
     logout_user()
     response = redirect(url_for('.auth_page'))
     response.delete_cookie('forum_token')
+    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+    cur = db.cursor()
+    i = datetime.datetime.now()
+    # sql =  "select Student_id, Student_password from student where Student_id='%s'"%(str(name))
+    cur.execute("insert into log(user,event,time,IP) values (%s,%s,%s,%s)", (name, 'log off', str(i), str(ip)))
+    cur.close()
+    db.commit()
+    db.close()
     return response
 
 
