@@ -7,6 +7,7 @@ from ..models import User
 import pymysql
 import hashlib,datetime
 import jwt
+import os
 
 JWT_SECRET = 'ksaj./*&&*%&^$d9ad80fa'
 JWT_ALGORITHM = 'HS256'
@@ -19,12 +20,16 @@ def index():
 
 @auth.route('/auth_page', methods=['GET', 'POST'])
 def auth_page():
+    BASE_DIR = os.path.dirname(__file__)
+    with open(BASE_DIR + '/announcement.txt', 'r') as f:
+        announcement = f.read().strip()
+
     if current_user.is_authenticated:
         # name = session.get('username')
         # print current_user.id
-        return render_template('auth.html', user_name=current_user.id)
+        return render_template('auth.html', announcement=announcement, user_name=current_user.id)
     else:
-        return render_template('auth.html')
+        return render_template('auth.html', announcement=announcement)
 
 
 @auth.route('/login', methods=['GET', 'POST'])
@@ -32,7 +37,7 @@ def login():
     ip = request.remote_addr
     browser = request.user_agent.browser
     platform = request.user_agent.platform
-    print('login',ip,browser,platform)
+    # print('login',ip,browser,platform)
     name = request.values.get("logname")
     password = request.values.get("logpass")
     password = hashlib.md5(password).hexdigest()
@@ -107,7 +112,7 @@ def log_off():
     ip = request.remote_addr
     browser = request.user_agent.browser
     platform = request.user_agent.platform
-    print('log off',ip,browser,platform)
+    # print('log off',ip,browser,platform)
     id = current_user.id
     logout_user()
     response = redirect(url_for('.auth_page'))
