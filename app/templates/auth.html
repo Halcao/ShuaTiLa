@@ -42,6 +42,8 @@
 {#            10--大学语文#}
 {#            11--先秦君子风范#}
 {#            12--从爱因斯坦到霍金的宇宙#}
+{#            13--商法#}
+{#            14--项目管理学#}
 
             <div class="act-b">
                 {%  if current_user.is_authenticated  %}
@@ -151,7 +153,16 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('暂未开放')">
+                    <a href="{{ url_for('test.test_page', id=13) }}">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402907577503faidu.jpg">
+                            </div>
+                            <div class="act-a2">商法</div>
+                        </li>
+                    </a>
+
+                    <a href="{{ url_for('test.test_page', id=14) }}">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star3/270_169/56d955cce4b0dfadae7a4050.jpg"></div>
@@ -183,15 +194,6 @@
                                     src="http://p.ananas.chaoxing.com/star3/270_169c/730f10b991aa1381ef5b4a22cb17ef77.jpg">
                             </div>
                             <div class="act-a2">舌尖上的植物学</div>
-                        </li>
-                    </a>
-
-                    <a href="javascript:window.alert('暂未开放')">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402907577503faidu.jpg">
-                            </div>
-                            <div class="act-a2">商法</div>
                         </li>
                     </a>
 
@@ -314,6 +316,15 @@
                     <a href="javascript:window.alert('请先登录')">
                         <li>
                             <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402907577503faidu.jpg">
+                            </div>
+                            <div class="act-a2">商法</div>
+                        </li>
+                    </a>
+
+                    <a href="javascript:window.alert('请先登录')">
+                        <li>
+                            <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star3/270_169/56d955cce4b0dfadae7a4050.jpg"></div>
                             <div class="act-a2">项目管理学</div>
                         </li>
@@ -343,15 +354,6 @@
                                     src="http://p.ananas.chaoxing.com/star3/270_169c/730f10b991aa1381ef5b4a22cb17ef77.jpg">
                             </div>
                             <div class="act-a2">舌尖上的植物学</div>
-                        </li>
-                    </a>
-
-                    <a href="javascript:window.alert('请先登录')">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402907577503faidu.jpg">
-                            </div>
-                            <div class="act-a2">商法</div>
                         </li>
                     </a>
 
