@@ -187,6 +187,10 @@
             else{
                 $("#" + id).find("input").prop("checked", true);
                 $("#" + id).addClass("clickTrim");
+                if(id=="item0") ansa=0;
+                if(id=="item1")ansb=0;
+                if(id=="item2")ansc=0;
+                if(id=="item3") ansd=0;
             }
             // $("#ques" + activeQuestion).removeClass("question_id").addClass("clickQue");
             var ques = 0;
@@ -208,6 +212,7 @@
            var checkans1 = $("#" + id).find("input[name=item1]:checked").val();
            var checkans2 = $("#" + id).find("input[name=item2]:checked").val();
            var checkans3 = $("#" + id).find("input[name=item3]:checked").val();
+           console.log(checkans0,checkans1,checkans2,checkans3);
            checkans0=String(checkans0);
            checkans1=String(checkans1);
            checkans2=String(checkans2);

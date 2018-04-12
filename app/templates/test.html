@@ -16,7 +16,7 @@
         var ansb=0;
         var ansc=0;
         var ansd=0;
-
+        var nowid=1;
         var timeState = true;//时间状态 默认为true 开启时间
         var all_like = {{all_like|safe}};//之前已收藏的题目list
 
@@ -72,15 +72,18 @@
         function showQuestion(id) {
             checkans="#";
             nowid=id+1;
-             console.log(String(id+1));
-             console.log(all_like.indexOf(String(id+1)));
+            console.log(all_like);
+             console.log(Number(id+1));
+             console.log(all_like.indexOf(Number(id+1)));
 
-            if(all_like.indexOf(String(id+1))==-1){
-                $("#Heart").show();
-
-            }else{
-                 $("#unHeart").show();
+            if(all_like.indexOf(Number(nowid))==-1){
+                $("#unHeart").show();
                  $("#Heart").hide();
+                 console.log("ddddd");
+            }else{
+                 $("#Heart").show();
+                 $("#unHeart").hide();
+                 console.log("hhhhhhhh");
             }
 
 
@@ -142,7 +145,7 @@
                         choice = "B";
                     }
                     item = "<li class='question_info' onclick='clickTrim(this,2)' id='item"
-                        + i + "'><input type='radio' name='item' value='" + itemList[i] + "'>&nbsp;" + itemList2[i] + "." + items[i] + "</li>";
+                            + i + "'><input type='radio' name='item' value='" + itemList[i] + "'>&nbsp;" + itemList2[i] + "." + items[i] + "</li>";
                     $(".question").append(item);
                 }
             }
@@ -165,8 +168,6 @@
             $(".correct-answers").hide();
             $(".wrong-answers").hide();
             $("#showAnswers").show();
-            $("#unheart").show();
-            $("#heart").hide();
 
             $.ajax({
                 url:"./save_page",
@@ -202,6 +203,12 @@
             if($("#" + id).find("input").prop("checked")){
                 $("#" + id).find("input").attr("checked",false);
                 $("#" + id).removeClass("clickTrim");
+                if(id=="item0") ansa=0;
+                if(id=="item1")ansb=0;
+                if(id=="item2")ansc=0;
+                if(id=="item3") ansd=0;
+                console.log("quxiao");
+                console.log(id);
             }
             else{
                 $("#" + id).find("input").prop("checked", true);
@@ -231,6 +238,7 @@
            checkans1=String(checkans1);
            checkans2=String(checkans2);
            checkans3=String(checkans3);
+           console.log(checkans0,checkans1,checkans2,checkans3);
            if(checkans0!=checkans01) ansa=(ansa+1)%2;
            if(checkans1!=checkans11)ansb=(ansb+1)%2;
            if(checkans2!=checkans21)ansc=(ansc+1)%2;
@@ -304,7 +312,8 @@
             /*收藏按钮的切换*/
             $("#unHeart").click(function () {
                 $(this).hide();
-                $("#heart").show();
+                $("#Heart").show();
+                all_like.push(Number(nowid));
                 ptype=-1;
                 c_l=questions_choice.length
                 j_l=questions_judge.length
@@ -327,9 +336,15 @@
             })
 
             })
-            $("#heart").click(function () {
+            $("#Heart").click(function () {
                 $(this).hide();
                 $("#unHeart").show();
+                for(var i=0;i<=all_like.length;i++){
+                if(all_like[i]==Number(nowid)){
+                    all_like.splice(i);
+                    break;
+                    }
+                 }
                  ptype=-1;
                  c_l=questions_choice.length;
                 j_l=questions_judge.length;
@@ -380,7 +395,7 @@
                 //alert("已做答:"+($(".clickQue").length)+"道题,还有"+(questions.length-($(".clickQue").length))+"道题未完成");
                 if (activeQuestion > questions_choice.length + questions_judge.length)
                     checkans = $("#fill-answer").val();
-                 console.log(all_like);
+
                 if (checkans == choice) {
                     nowanswer = "Right!    Answer:" + nowanswer;
                     $(".correct-answers").text(nowanswer);
@@ -398,8 +413,7 @@
             })
             //返回上一题
             $("#preQuestion").click(function () {
-                $("#unHeart").show();
-                $("#Heart").hide();
+
                 //if ((activeQuestion - 1) != -1)
                 showQuestion((activeQuestion + questions.length - 1) % questions.length);
                 //else
@@ -407,8 +421,7 @@
             })
             //进入下一题
             $("#nextQuestion").click(function () {
-                $("#unHeart").show();
-                $("#Heart").hide();
+
                 //if ((activeQuestion + 1) < questions.length)
                 showQuestion((activeQuestion + questions.length + 1) % questions.length);
                 //else
@@ -502,9 +515,9 @@
                                 <div class="operation" style="margin-top: 20px;">
                                     <div class="text-left"
                                          style="margin-left:20px;font-size: 15px;float: left;line-height: 30px;">
-                                        <div id="unHeart" style="color:#999999;"><span
+                                        <div id="unHeart" style="color:#999999;block: none;"><span
                                                 class="glyphicon glyphicon-heart-empty"></span> <span>收藏本题</span></div>
-                                        <div id="heart" style="color:#C40000;display: none;"><span
+                                        <div id="Heart" style="color:#C40000;block: none;"><span
                                                 class="glyphicon glyphicon-heart"></span> <span>已收藏</span></div>
                                     </div>
                                     <div class="text-right" style="margin-right: 20px;">
