@@ -158,8 +158,8 @@
             $("#ques" + id).removeClass("active_question_id").addClass("question_id");
             for (var i = 0; i < checkQues.length; i++) {
                 if (checkQues[i].id == id) {
-                    $("#" + checkQues[i].item).find("input").prop("checked", "checked");
-                    $("#" + checkQues[i].item).addClass("clickTrim");
+                   // $("#" + checkQues[i].item).find("input").prop("checked", "checked");
+                    //$("#" + checkQues[i].item).addClass("clickTrim"); //已选选项展示
                     $("#ques" + activeQuestion).removeClass("question_id").addClass("clickQue");
                 }
 
@@ -397,13 +397,13 @@
                     checkans = $("#fill-answer").val();
 
                 if (checkans == choice) {
-                    nowanswer = "Right!    Answer:" + nowanswer;
+                    nowanswer = "正确!    正确答案:" + nowanswer;
                     $(".correct-answers").text(nowanswer);
                     $(".correct-answers").show();
                     $("#showAnswers").hide();
                     checkans="";
                 } else {
-                    nowanswer = "Wrong!    Answer:" + nowanswer;
+                    nowanswer = "（建议收藏） 错误!    正确答案:" + nowanswer ;
                     $(".wrong-answers").text(nowanswer);
                     $(".wrong-answers").show();
                     $("#showAnswers").hide();
