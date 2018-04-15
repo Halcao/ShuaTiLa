@@ -19,7 +19,7 @@
         var nowid=1;
         var timeState = true;//时间状态 默认为true 开启时间
         var all_like = {{all_like|safe}};//之前已收藏的题目list
-
+        var mode=0;//0:刷题，1：背题
         var questions_choice = {{question_dict|safe}};
         var questions_judge = {{judge_dict|safe}};
         var questions_fill = {{fill_dict|safe}};
@@ -44,6 +44,7 @@
         var checkQues = []; //已做答的题的集合
         var checkans;//当前题的选项
         var nowanswer;
+        var bans;
         var choice;
         /*实现计时器*/
         var time = setInterval(function () {
@@ -98,6 +99,7 @@
             $(".question").find(".question_info").remove();
             var question = questions[id];
             nowanswer = question.questionAnswer;
+
             choice = nowanswer;
             $(".question_title").html("<strong>第 " + (id + 1) + " 题 、</strong>" + question.questionTitle);
             var items = question.questionItems.split(";");
@@ -167,7 +169,23 @@
             progress();
             $(".correct-answers").hide();
             $(".wrong-answers").hide();
-            $("#showAnswers").show();
+            $(".answers").hide();
+            if(mode==0)  {
+                $(".answers").hide();
+                $("#showAnswers").show();
+                $("#shuati").show();
+                $("#beiti").hide();
+
+            }
+            bans=nowanswer;
+            bans = "正确答案:" + bans;
+            if(mode==1)  {
+                $("#showAnswers").hide();
+                $(".answers").text(bans);
+                $(".answers").show();
+                $("#beiti").show();
+                $("#shuati").hide();
+            }
 
             $.ajax({
                 url:"./save_page",
@@ -380,6 +398,21 @@
                 $(this).hide();
             })
 
+            $("#shuati").click(function () {
+                $("#showAnswers").hide();
+                $(".answers").text(bans);
+                $(".answers").show();
+                $("#beiti").show();
+                $("#shuati").hide();
+                mode=1;
+               })
+            $("#beiti").click(function () {
+                $(".answers").hide();
+                $("#showAnswers").show();
+                $("#beiti").hide();
+                $("#shuati").show();
+                mode=0;
+               })
             //显示答案
             $("#showAnswers").click(function () {
                 if(ansa==1||ansb==1||ansc==1||ansd==1)  checkans="";
@@ -397,13 +430,13 @@
                     checkans = $("#fill-answer").val();
 
                 if (checkans == choice) {
-                    nowanswer = "正确!    正确答案:" + nowanswer;
+                    nowanswer = "正确答案:" + nowanswer;
                     $(".correct-answers").text(nowanswer);
                     $(".correct-answers").show();
                     $("#showAnswers").hide();
                     checkans="";
                 } else {
-                    nowanswer = "（建议收藏） 错误!    正确答案:" + nowanswer ;
+                    nowanswer = "（建议收藏）正确答案:" + nowanswer ;
                     $(".wrong-answers").text(nowanswer);
                     $(".wrong-answers").show();
                     $("#showAnswers").hide();
@@ -492,7 +525,7 @@
                             <div style="width: 100%;height: 50px;font-size:15px;color: #000;line-height: 50px;padding-left: 20px;">
                                 <div style="color:#FFF;background: red;width: 22px;height: 22px;border-radius:11px;line-height:22px;font-size:13px; text-align: center;"
                                      class="glyphicon glyphicon-map-marker"></div>
-                                题库顺序练习模块     网课将于2018年5月5日考试，请提前做好复习规划，把握时间！
+                                题库顺序练习模块. 网课将于2018年5月5日考试，请提前做好复习规划，把握时间！
                             </div>
                         </div>
                         <div style="width: 100%;height:auto;display: inline-block;border: 1px solid #CCC;border-bottom:1px dashed #CCC;background:#FFF;">
@@ -524,7 +557,10 @@
 
                                         <div class="form-group" style="color: #FFF;">
                                             <span style="color:#00EE00;font-size: 20px" class="correct-answers"></span>
+                                            <span style="color:#000000;font-size: 20px" class="answers"></span>
                                             <span style="color:#C40000;font-size: 20px" class="wrong-answers"></span>
+                                            <button class="btn btn-info" id="shuati">刷题模式</button>
+                                            <button class="btn btn-success" id="beiti">背题模式</button>
                                             <button class="btn btn-success" id="showAnswers">显示答案</button>
                                             <button class="btn btn-info" id="preQuestion">上一题</button>
                                             <button class="btn btn-info" id="nextQuestion">下一题</button>
