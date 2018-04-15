@@ -21,7 +21,7 @@ def index():
 @auth.route('/auth_page', methods=['GET', 'POST'])
 def auth_page():
     dirs = os.path.join(os.path.dirname(__file__), '../../..')
-    with open(dirs + '/announcement.txt', 'r') as f:
+    with open(dirs + './announcement.txt', 'r') as f:
         announcement = f.read().strip()
 
     if current_user.is_authenticated:
@@ -134,6 +134,7 @@ def find():
     flogemail = request.values.get("flogemail")
     flogpass = request.values.get("flogpass")
     flogstudentid = request.values.get("flogstudentid")
+    flogpass = hashlib.md5(flogpass).hexdigest()
     db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     # sql =  "select Student_id, Student_password from student where Student_id='%s'"%(str(name))
