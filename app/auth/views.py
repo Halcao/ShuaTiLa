@@ -21,7 +21,7 @@ def index():
 @auth.route('/auth_page', methods=['GET', 'POST'])
 def auth_page():
     dirs = os.path.join(os.path.dirname(__file__), '../../..')
-    with open(dirs + './announcement.txt', 'r') as f:
+    with open(dirs + '/announcement.txt', 'r') as f:
         announcement = f.read().strip()
 
     if current_user.is_authenticated:
