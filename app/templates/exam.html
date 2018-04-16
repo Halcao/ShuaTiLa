@@ -295,10 +295,15 @@
 
                                                 <label for={{ "2_answer_" + question_id|string }}>
                                                     答：
+                                                    {% if lesson_id != 15 %}
                                                     <input type="text" class="form-control"
                                                            name={{ 'fill' + question_id|string }}
                                                                    id={{ "2_answer_" + question_id|string }}
                                                     />
+                                                    {% else %}
+                                                    <br />
+                                                    <textarea rows="10" cols="60"></textarea>
+                                                    {% endif %}
                                                 </label>
 
                                             </div>

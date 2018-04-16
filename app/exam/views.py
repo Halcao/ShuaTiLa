@@ -71,7 +71,8 @@ def exam_page(lesson_id):
     db.close()
     session['question_list_index'] = question_list_index
     session['judge_list_index'] = judge_list_index
-    session['fill_list_index'] = fill_list_index
+    if lesson_id != 15:
+        session['fill_list_index'] = fill_list_index
     return render_template('exam.html', lesson_id=lesson_id, question_list=question_list,
                            judge_list=judge_list, fill_list=fill_list)
 
