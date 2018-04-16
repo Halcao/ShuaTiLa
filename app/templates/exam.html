@@ -272,7 +272,11 @@
                         {% if fill_list|length > 0 %}
                             <div class="test_content">
                                 <div class="test_content_title">
+                                    {% if lesson_id == 15 %}
+                                    <h2>主观题（由于主观题没有标准答案，因此本网站无法测评，将默认您的答案为正确）</h2>
+                                    {% else %}
                                     <h2>填空题</h2>
+                                    {% endif %}
                                     <p>
                                         <span>共</span><i
                                             class="content_lit">{{ fill_list|length }}</i><span>题，</span><span>合计</span><i
@@ -365,7 +369,11 @@
                         {% if fill_list|length > 0 %}
                             <div class="rt_content">
                                 <div class="rt_content_tt">
-                                    <h2>填空题</h2>
+                                    {% if lesson_id == 15 %}
+                                        <h2>主观题</h2>
+                                    {% else %}
+                                        <h2>填空题</h2>
+                                    {% endif %}
                                     <p>
                                         <span>共</span><i class="content_lit">{{ fill_list|length }}</i><span>题</span>
                                     </p>
