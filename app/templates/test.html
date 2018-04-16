@@ -400,6 +400,8 @@
 
             $("#shuati").click(function () {
                 $("#showAnswers").hide();
+                $(".correct-answers").hide();
+                $(".wrong-answers").hide();
                 $(".answers").text(bans);
                 $(".answers").show();
                 $("#beiti").show();
@@ -408,6 +410,8 @@
                })
             $("#beiti").click(function () {
                 $(".answers").hide();
+                $(".correct-answers").hide();
+                $(".wrong-answers").hide();
                 $("#showAnswers").show();
                 $("#beiti").hide();
                 $("#shuati").show();
