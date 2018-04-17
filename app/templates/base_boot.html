@@ -4,6 +4,8 @@
 
 {% block head %}
     {{ super() }}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     {%- block styles %}
         {{ super() }}
         <link href="../static/auth/css/base.css" rel="stylesheet" type="text/css"/>
