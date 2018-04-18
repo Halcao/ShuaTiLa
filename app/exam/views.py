@@ -31,7 +31,7 @@ def exam_page(lesson_id):
     cur = db.cursor()
     sql_choice = 'SELECT Problem_id, Question, Choice_a, Choice_b, Choice_c, Choice_d, Answer ' \
                  'FROM choice_problems WHERE Lesson_id = %s ORDER BY rand() LIMIT 50;'
-    if lesson_id in (1, 4, 8, 10, 15):
+    if lesson_id in (1, 4, 8, 10, 14, 15):
         sql_judge = 'SELECT Problem_id, Question, Answer FROM judge_problems ' \
                     'WHERE Lesson_id = %s ORDER BY rand() LIMIT 30;'
     else:
