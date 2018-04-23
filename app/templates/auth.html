@@ -3,16 +3,6 @@
 {% block head %}
     {{ super() }}
     <title>{% block title %}刷题啦-尔雅网课{% endblock title %}</title>
-
-    {%- block metas %}
-        {{ super() }}
-        <meta http-equiv="content-type" content="text/html;charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {%- endblock metas %}
-
-
-
-    {#{{ super() }}#}
 {% endblock head %}
 
 
@@ -46,171 +36,174 @@
 {#            14--项目管理学#}
 {#            15--理想国导读#}
 {#            16--微生物与人类健康#}
+        <div class="container-fluid">
 
             <div class="act-b">
                 {%  if current_user.is_authenticated  %}
-                <ul class="act-ul">
-                    <a href="{{ url_for('test.test_page', id=1) }}">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402993455473cuwue.jpg">
-                            </div>
-                            <div class="act-a2">创新创业领导力</div>
-                        </li>
-                    </a>
+                <div class="act-ul">
+                    <div class="row">
+                        <a href="{{ url_for('test.test_page', id=1) }}" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402993455473cuwue.jpg">
+                                </div>
+                                <div class="act-a2">创新创业领导力</div>
+                            </li>
+                        </a>
 
-                    <a href="{{ url_for('test.test_page', id=2) }}">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1402558754659fhqkf.jpg">
-                            </div>
-                            <div class="act-a2">当代中国经济</div>
-                        </li>
-                    </a>
+                        <a href="{{ url_for('test.test_page', id=2) }}" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1402558754659fhqkf.jpg">
+                                </div>
+                                <div class="act-a2">当代中国经济</div>
+                            </li>
+                        </a>
 
-                    <a href="{{ url_for('test.test_page', id=3) }}">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1403007484652isxes.jpg">
-                            </div>
-                            <div class="act-a2">美学原理</div>
-                        </li>
-                    </a>
+                        <a href="{{ url_for('test.test_page', id=3) }}" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1403007484652isxes.jpg">
+                                </div>
+                                <div class="act-a2">美学原理</div>
+                            </li>
+                        </a>
 
-                    <a href="{{ url_for('test.test_page', id=4) }}">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star3/270_169/56d954bce4b0dfadae7a3fdd.jpg"></div>
-                            <div class="act-a2">微观经济学</div>
-                        </li>
-                    </a>
+                        <a href="{{ url_for('test.test_page', id=4) }}" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star3/270_169/56d954bce4b0dfadae7a3fdd.jpg"></div>
+                                <div class="act-a2">微观经济学</div>
+                            </li>
+                        </a>
 
-                    <a href="{{ url_for('test.test_page', id=5) }}">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star3/270_169c/5550558a53706586fff9cb8b.jpg">
-                            </div>
-                            <div class="act-a2">西方哲学智慧</div>
-                        </li>
-                    </a>
+                        <a href="{{ url_for('test.test_page', id=5) }}" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star3/270_169c/5550558a53706586fff9cb8b.jpg">
+                                </div>
+                                <div class="act-a2">西方哲学智慧</div>
+                            </li>
+                        </a>
 
-                    <a href="{{ url_for('test.test_page', id=6) }}">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star3/270_169c/555054f653706586fff9cb81.jpg">
-                            </div>
-                            <div class="act-a2">社会心理学</div>
-                        </li>
-                    </a>
+                        <a href="{{ url_for('test.test_page', id=6) }}" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star3/270_169c/555054f653706586fff9cb81.jpg">
+                                </div>
+                                <div class="act-a2">社会心理学</div>
+                            </li>
+                        </a>
 
-                    <a href="{{ url_for('test.test_page', id=7) }}">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star3/270_169/56d955f9e4b0dfadae7a405e.jpg"></div>
-                            <div class="act-a2">心理、行为与文化</div>
-                        </li>
-                    </a>
+                        <a href="{{ url_for('test.test_page', id=7) }}" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star3/270_169/56d955f9e4b0dfadae7a405e.jpg"></div>
+                                <div class="act-a2">心理、行为与文化</div>
+                            </li>
+                        </a>
 
-                    <a href="{{ url_for('test.test_page', id=8) }}">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star/270_169c/1395222258227jqpbs.png"></div>
-                            <div class="act-a2">经济学百年</div>
-                        </li>
-                    </a>
+                        <a href="{{ url_for('test.test_page', id=8) }}" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star/270_169c/1395222258227jqpbs.png"></div>
+                                <div class="act-a2">经济学百年</div>
+                            </li>
+                        </a>
 
-                    <a href="{{ url_for('test.test_page', id=9) }}">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402974409755udxjp.jpg">
-                            </div>
-                            <div class="act-a2">国际经济学</div>
-                        </li>
-                    </a>
+                        <a href="{{ url_for('test.test_page', id=9) }}" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402974409755udxjp.jpg">
+                                </div>
+                                <div class="act-a2">国际经济学</div>
+                            </li>
+                        </a>
 
-                    <a href="{{ url_for('test.test_page', id=10) }}">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star3/270_169c/56d94ef0e4b0dfadae7a3496.jpg">
-                            </div>
-                            <div class="act-a2">大学语文</div>
-                        </li>
-                    </a>
+                        <a href="{{ url_for('test.test_page', id=10) }}" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star3/270_169c/56d94ef0e4b0dfadae7a3496.jpg">
+                                </div>
+                                <div class="act-a2">大学语文</div>
+                            </li>
+                        </a>
 
-                    <a href="{{ url_for('test.test_page', id=11) }}">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1403149529959dlymv.jpg">
-                            </div>
-                            <div class="act-a2">先秦君子风范</div>
-                        </li>
-                    </a>
+                        <a href="{{ url_for('test.test_page', id=11) }}" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1403149529959dlymv.jpg">
+                                </div>
+                                <div class="act-a2">先秦君子风范</div>
+                            </li>
+                        </a>
 
-                    <a href="{{ url_for('test.test_page', id=12) }}">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star3/270_169c/55505a86e4b017d277eb6d34.jpg">
-                            </div>
-                            <div class="act-a2">从爱因斯坦到霍金的宇宙</div>
-                        </li>
-                    </a>
+                        <a href="{{ url_for('test.test_page', id=12) }}" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star3/270_169c/55505a86e4b017d277eb6d34.jpg">
+                                </div>
+                                <div class="act-a2">从爱因斯坦到霍金的宇宙</div>
+                            </li>
+                        </a>
 
-                    <a href="{{ url_for('test.test_page', id=13) }}">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402907577503faidu.jpg">
-                            </div>
-                            <div class="act-a2">商法</div>
-                        </li>
-                    </a>
+                        <a href="{{ url_for('test.test_page', id=13) }}" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402907577503faidu.jpg">
+                                </div>
+                                <div class="act-a2">商法</div>
+                            </li>
+                        </a>
 
-                    <a href="{{ url_for('test.test_page', id=14) }}">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star3/270_169/56d955cce4b0dfadae7a4050.jpg"></div>
-                            <div class="act-a2">项目管理学</div>
-                        </li>
-                    </a>
+                        <a href="{{ url_for('test.test_page', id=14) }}" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star3/270_169/56d955cce4b0dfadae7a4050.jpg"></div>
+                                <div class="act-a2">项目管理学</div>
+                            </li>
+                        </a>
 
-                    <a href="{{ url_for('test.test_page', id=15) }}">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star3/270_169c/3fd0e35f66f72f301196d96ead1657d0.jpg">
-                            </div>
-                            <div class="act-a2">《理想国》导读</div>
-                        </li>
-                    </a>
+                        <a href="{{ url_for('test.test_page', id=15) }}" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star3/270_169c/3fd0e35f66f72f301196d96ead1657d0.jpg">
+                                </div>
+                                <div class="act-a2">《理想国》导读</div>
+                            </li>
+                        </a>
 
-                    <a href="{{ url_for('test.test_page', id=16) }}">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402974177868fteuu.jpg">
-                            </div>
-                            <div class="act-a2">微生物与人类健康</div>
-                        </li>
-                    </a>
+                        <a href="{{ url_for('test.test_page', id=16) }}" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402974177868fteuu.jpg">
+                                </div>
+                                <div class="act-a2">微生物与人类健康</div>
+                            </li>
+                        </a>
 
-                    <a href="javascript:window.alert('暂未开放')">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1403487930128kdgfn.jpg">
-                            </div>
-                            <div class="act-a2">中国古典小说巅峰：四大名著鉴赏</div>
-                        </li>
-                    </a>
+                        <a href="javascript:window.alert('暂未开放')">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1403487930128kdgfn.jpg">
+                                </div>
+                                <div class="act-a2">中国古典小说巅峰：四大名著鉴赏</div>
+                            </li>
+                        </a>
 
-                    <a href="javascript:window.alert('暂未开放')">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star3/270_169c/730f10b991aa1381ef5b4a22cb17ef77.jpg">
-                            </div>
-                            <div class="act-a2">舌尖上的植物学</div>
-                        </li>
-                    </a>
+                        <a href="javascript:window.alert('暂未开放')" class="col-sm-8 col-md-4">
+                            <li>
+                                <div class="act-b1"><img
+                                        src="http://p.ananas.chaoxing.com/star3/270_169c/730f10b991aa1381ef5b4a22cb17ef77.jpg">
+                                </div>
+                                <div class="act-a2">舌尖上的植物学</div>
+                            </li>
+                        </a>
+                    </div>
                 </ul>
                 {%  else %}
                 <ul class="act-ul">
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402993455473cuwue.jpg">
@@ -219,7 +212,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1402558754659fhqkf.jpg">
@@ -228,7 +221,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1403007484652isxes.jpg">
@@ -237,7 +230,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star3/270_169/56d954bce4b0dfadae7a3fdd.jpg"></div>
@@ -245,7 +238,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star3/270_169c/5550558a53706586fff9cb8b.jpg">
@@ -254,7 +247,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star3/270_169c/555054f653706586fff9cb81.jpg">
@@ -263,7 +256,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star3/270_169/56d955f9e4b0dfadae7a405e.jpg"></div>
@@ -271,7 +264,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star/270_169c/1395222258227jqpbs.png"></div>
@@ -279,7 +272,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402974409755udxjp.jpg">
@@ -288,7 +281,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star3/270_169c/56d94ef0e4b0dfadae7a3496.jpg">
@@ -297,7 +290,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1403149529959dlymv.jpg">
@@ -306,7 +299,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star3/270_169c/55505a86e4b017d277eb6d34.jpg">
@@ -315,7 +308,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402907577503faidu.jpg">
@@ -324,7 +317,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star3/270_169/56d955cce4b0dfadae7a4050.jpg"></div>
@@ -332,7 +325,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star3/270_169c/3fd0e35f66f72f301196d96ead1657d0.jpg">
@@ -341,7 +334,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402974177868fteuu.jpg">
@@ -350,7 +343,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1403487930128kdgfn.jpg">
@@ -359,7 +352,7 @@
                         </li>
                     </a>
 
-                    <a href="javascript:window.alert('请先登录')">
+                    <a href="javascript:window.alert('请先登录')" class="col-sm-8 col-md-4">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star3/270_169c/730f10b991aa1381ef5b4a22cb17ef77.jpg">
@@ -370,13 +363,13 @@
                 </ul>
                 {% endif %}
             </div>
-
+        </div>
         </div>
 
 
     </div>
     	<div class="footer">
-		<div class="footerinner">
+		<div class="footerinner" style="height: 140px;">
 			<ul class="share">
 				<li>
 					<img class="qq_icon" src="../static/auth/images/share2.png" alt="">
