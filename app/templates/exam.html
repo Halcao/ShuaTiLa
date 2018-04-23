@@ -1,8 +1,8 @@
 {% extends "base_boot.html" %}
 
 {% block head %}
-    <title>{% block title %}尔雅网课刷题系统{% endblock title %}</title>
-
+    <title>{% block title %}刷题啦-尔雅网课{% endblock title %}</title>
+    {{ super() }}
     {%- block metas %}
         <meta http-equiv="content-type" content="text/html;charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -272,7 +272,11 @@
                         {% if fill_list|length > 0 %}
                             <div class="test_content">
                                 <div class="test_content_title">
+                                    {% if lesson_id == 15 %}
+                                    <h2>主观题（由于主观题没有标准答案，因此本网站无法测评，将默认您的答案为正确）</h2>
+                                    {% else %}
                                     <h2>填空题</h2>
+                                    {% endif %}
                                     <p>
                                         <span>共</span><i
                                             class="content_lit">{{ fill_list|length }}</i><span>题，</span><span>合计</span><i
@@ -291,10 +295,15 @@
 
                                                 <label for={{ "2_answer_" + question_id|string }}>
                                                     答：
+                                                    {% if lesson_id != 15 %}
                                                     <input type="text" class="form-control"
                                                            name={{ 'fill' + question_id|string }}
                                                                    id={{ "2_answer_" + question_id|string }}
                                                     />
+                                                    {% else %}
+                                                    <br />
+                                                    <textarea rows="10" cols="60"></textarea>
+                                                    {% endif %}
                                                 </label>
 
                                             </div>
@@ -365,7 +374,11 @@
                         {% if fill_list|length > 0 %}
                             <div class="rt_content">
                                 <div class="rt_content_tt">
-                                    <h2>填空题</h2>
+                                    {% if lesson_id == 15 %}
+                                        <h2>主观题</h2>
+                                    {% else %}
+                                        <h2>填空题</h2>
+                                    {% endif %}
                                     <p>
                                         <span>共</span><i class="content_lit">{{ fill_list|length }}</i><span>题</span>
                                     </p>

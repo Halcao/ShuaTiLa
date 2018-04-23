@@ -31,7 +31,7 @@ def exam_page(lesson_id):
     cur = db.cursor()
     sql_choice = 'SELECT Problem_id, Question, Choice_a, Choice_b, Choice_c, Choice_d, Answer ' \
                  'FROM choice_problems WHERE Lesson_id = %s ORDER BY rand() LIMIT 50;'
-    if lesson_id in (1, 4, 8, 10):
+    if lesson_id in (1, 4, 8, 10, 14, 15):
         sql_judge = 'SELECT Problem_id, Question, Answer FROM judge_problems ' \
                     'WHERE Lesson_id = %s ORDER BY rand() LIMIT 30;'
     else:
@@ -71,7 +71,8 @@ def exam_page(lesson_id):
     db.close()
     session['question_list_index'] = question_list_index
     session['judge_list_index'] = judge_list_index
-    session['fill_list_index'] = fill_list_index
+    if lesson_id != 15:
+        session['fill_list_index'] = fill_list_index
     return render_template('exam.html', lesson_id=lesson_id, question_list=question_list,
                            judge_list=judge_list, fill_list=fill_list)
 
@@ -130,18 +131,21 @@ def answer(lesson_id):
                 q.append(reply)
                 wrong_judge_list.append(q)
 
-        for i in range(len(session['fill_list_index'])):
-            sql_fill = 'SELECT Problem_id, Question, Answer FROM fill_problems ' \
-                       'WHERE Lesson_id = %s AND Problem_id = %s;'
-            cur.execute(sql_fill, (lesson_id, session['fill_list_index'][i]))
-            question = cur.fetchall()
-            q = list(question[0])
-            reply = request.values.get('fill' + str(i))
-            if q[-1] == reply:
-                score += 1
-            else:
-                q.append(reply)
-                wrong_fill_list.append(q)
+        if lesson_id != 15:
+            for i in range(len(session['fill_list_index'])):
+                sql_fill = 'SELECT Problem_id, Question, Answer FROM fill_problems ' \
+                           'WHERE Lesson_id = %s AND Problem_id = %s;'
+                cur.execute(sql_fill, (lesson_id, session['fill_list_index'][i]))
+                question = cur.fetchall()
+                q = list(question[0])
+                reply = request.values.get('fill' + str(i))
+                if q[-1] == reply:
+                    score += 1
+                else:
+                    q.append(reply)
+                    wrong_fill_list.append(q)
+        else:
+            score += 20
 
         session.pop('question_list_index', None)
         session.pop('judge_list_index', None)

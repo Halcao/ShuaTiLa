@@ -3,8 +3,10 @@
 <html {% block html_attribs %}{% endblock html_attribs %}>
 {%- block html %}
   <head>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
     {%- block head %}
-    <title>{% block title %}aaaa{% endblock title %}</title>
     {%- block metas %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {%- endblock metas %}

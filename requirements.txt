@@ -1,0 +1,6 @@
+Flask_Script==2.0.6
+PyMySQL==0.8.0
+Flask_Bootstrap==3.3.7.1
+Flask==0.12.2
+Flask_Login==0.4.1
+PyJWT==1.6.1

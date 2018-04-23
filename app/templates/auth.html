@@ -24,9 +24,12 @@
 
     <div class="content">
         <div class="wrap">
+
             <div class="tsm-height"></div>
             {{ super() }}
-
+                         <div>
+     <marquee><span style="font-weight: bolder;font-size: 20px;color: #e3391c;">{{ announcement }}</span></marquee>
+    </div>
 {#            1--创新创业领导力#}
 {#            2--当代中国经济#}
 {#            3--美学原理#}
@@ -38,6 +41,11 @@
 {#            9--国际经济学#}
 {#            10--大学语文#}
 {#            11--先秦君子风范#}
+{#            12--从爱因斯坦到霍金的宇宙#}
+{#            13--商法#}
+{#            14--项目管理学#}
+{#            15--理想国导读#}
+{#            16--微生物与人类健康#}
 
             <div class="act-b">
                 {%  if current_user.is_authenticated  %}
@@ -138,42 +146,16 @@
                         </li>
                     </a>
 
-                    <a href="">
+                    <a href="{{ url_for('test.test_page', id=12) }}">
                         <li>
                             <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star3/270_169/56d955cce4b0dfadae7a4050.jpg"></div>
-                            <div class="act-a2">项目管理学</div>
-                        </li>
-                    </a>
-
-                    <a href="">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1403487930128kdgfn.jpg">
+                                    src="http://p.ananas.chaoxing.com/star3/270_169c/55505a86e4b017d277eb6d34.jpg">
                             </div>
-                            <div class="act-a2">中国古典小说巅峰：四大名著鉴赏</div>
+                            <div class="act-a2">从爱因斯坦到霍金的宇宙</div>
                         </li>
                     </a>
 
-                    <a href="">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402974177868fteuu.jpg">
-                            </div>
-                            <div class="act-a2">微生物与人类健康</div>
-                        </li>
-                    </a>
-
-                    <a href="">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star3/270_169c/730f10b991aa1381ef5b4a22cb17ef77.jpg">
-                            </div>
-                            <div class="act-a2">舌尖上的植物学</div>
-                        </li>
-                    </a>
-
-                    <a href="">
+                    <a href="{{ url_for('test.test_page', id=13) }}">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402907577503faidu.jpg">
@@ -182,7 +164,15 @@
                         </li>
                     </a>
 
-                    <a href="">
+                    <a href="{{ url_for('test.test_page', id=14) }}">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star3/270_169/56d955cce4b0dfadae7a4050.jpg"></div>
+                            <div class="act-a2">项目管理学</div>
+                        </li>
+                    </a>
+
+                    <a href="{{ url_for('test.test_page', id=15) }}">
                         <li>
                             <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star3/270_169c/3fd0e35f66f72f301196d96ead1657d0.jpg">
@@ -191,12 +181,30 @@
                         </li>
                     </a>
 
-                    <a href="">
+                    <a href="{{ url_for('test.test_page', id=16) }}">
                         <li>
                             <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star3/270_169c/55505a86e4b017d277eb6d34.jpg">
+                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402974177868fteuu.jpg">
                             </div>
-                            <div class="act-a2">从爱因斯坦到霍金的宇宙</div>
+                            <div class="act-a2">微生物与人类健康</div>
+                        </li>
+                    </a>
+
+                    <a href="javascript:window.alert('暂未开放')">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1403487930128kdgfn.jpg">
+                            </div>
+                            <div class="act-a2">中国古典小说巅峰：四大名著鉴赏</div>
+                        </li>
+                    </a>
+
+                    <a href="javascript:window.alert('暂未开放')">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star3/270_169c/730f10b991aa1381ef5b4a22cb17ef77.jpg">
+                            </div>
+                            <div class="act-a2">舌尖上的植物学</div>
                         </li>
                     </a>
                 </ul>
@@ -301,35 +309,9 @@
                     <a href="javascript:window.alert('请先登录')">
                         <li>
                             <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star3/270_169/56d955cce4b0dfadae7a4050.jpg"></div>
-                            <div class="act-a2">项目管理学</div>
-                        </li>
-                    </a>
-
-                    <a href="javascript:window.alert('请先登录')">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1403487930128kdgfn.jpg">
+                                    src="http://p.ananas.chaoxing.com/star3/270_169c/55505a86e4b017d277eb6d34.jpg">
                             </div>
-                            <div class="act-a2">中国古典小说巅峰：四大名著鉴赏</div>
-                        </li>
-                    </a>
-
-                    <a href="javascript:window.alert('请先登录')">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402974177868fteuu.jpg">
-                            </div>
-                            <div class="act-a2">微生物与人类健康</div>
-                        </li>
-                    </a>
-
-                    <a href="javascript:window.alert('请先登录')">
-                        <li>
-                            <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star3/270_169c/730f10b991aa1381ef5b4a22cb17ef77.jpg">
-                            </div>
-                            <div class="act-a2">舌尖上的植物学</div>
+                            <div class="act-a2">从爱因斯坦到霍金的宇宙</div>
                         </li>
                     </a>
 
@@ -345,6 +327,14 @@
                     <a href="javascript:window.alert('请先登录')">
                         <li>
                             <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star3/270_169/56d955cce4b0dfadae7a4050.jpg"></div>
+                            <div class="act-a2">项目管理学</div>
+                        </li>
+                    </a>
+
+                    <a href="javascript:window.alert('请先登录')">
+                        <li>
+                            <div class="act-b1"><img
                                     src="http://p.ananas.chaoxing.com/star3/270_169c/3fd0e35f66f72f301196d96ead1657d0.jpg">
                             </div>
                             <div class="act-a2">《理想国》导读</div>
@@ -354,9 +344,27 @@
                     <a href="javascript:window.alert('请先登录')">
                         <li>
                             <div class="act-b1"><img
-                                    src="http://p.ananas.chaoxing.com/star3/270_169c/55505a86e4b017d277eb6d34.jpg">
+                                    src="http://p.ananas.chaoxing.com/star2/2014-06/270_169c/1402974177868fteuu.jpg">
                             </div>
-                            <div class="act-a2">从爱因斯坦到霍金的宇宙</div>
+                            <div class="act-a2">微生物与人类健康</div>
+                        </li>
+                    </a>
+
+                    <a href="javascript:window.alert('请先登录')">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star2/2014-06/origin/1403487930128kdgfn.jpg">
+                            </div>
+                            <div class="act-a2">中国古典小说巅峰：四大名著鉴赏</div>
+                        </li>
+                    </a>
+
+                    <a href="javascript:window.alert('请先登录')">
+                        <li>
+                            <div class="act-b1"><img
+                                    src="http://p.ananas.chaoxing.com/star3/270_169c/730f10b991aa1381ef5b4a22cb17ef77.jpg">
+                            </div>
+                            <div class="act-a2">舌尖上的植物学</div>
                         </li>
                     </a>
                 </ul>
@@ -382,7 +390,7 @@
 			</ul>
 			<div class="code_wrap">
 				<ul class="code">
-					<li><img class="qq" src="../static/auth/images/qq.jpg" alt=""></li>
+					<li><img class="qq" src="../static/auth/images/QQ.jpg" alt=""></li>
 					<li><img class="twitter" src="../static/auth/images/zhifubao.jpg" alt=""></li>
 					<li><img class="wechat" src="../static/auth/images/weixin.png" alt=""></li>
 				</ul>
@@ -456,9 +464,9 @@
                                                 placeholder="输入注册学号"></div>
                     <div class="login-d"><input id='flogemail' name='flogemail' type="text" class="login-text"
                                                 placeholder="输入注册邮箱"></div>
-                    <div class="login-d"><input id='flogpass' name='flogpass' type="text" class="login-text"
+                    <div class="login-d"><input id='flogpass' name='flogpass' type="password" class="login-text"
                                                 placeholder="新密码"></div>
-                    <div class="login-d"><input id='flogpass1' name='flogpass1' type="text" class="login-text"
+                    <div class="login-d"><input id='flogpass1' name='flogpass1' type="password" class="login-text"
                                                 placeholder="重复下新密码"></div>
                     <div class="login-d"><input type="submit" class="login-btn" value="提交"></div>
                 </div>
