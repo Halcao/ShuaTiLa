@@ -3,10 +3,9 @@
 {% block head %}
     {{ super() }}
     <title>{% block title %}刷题啦-尔雅网课{% endblock title %}</title>
-
+    
     {%- block metas %}
-        <meta http-equiv="content-type" content="text/html;charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {{ super() }}
     {%- endblock metas %}
 
     {%- block styles %}

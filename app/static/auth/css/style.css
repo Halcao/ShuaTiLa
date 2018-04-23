@@ -129,7 +129,7 @@
 .login-text,.login-pas {
 	width:270px;
 	height:33px;
-	line-height:333px;
+	line-height:33px;
 	border:1px solid #949494;
 	font-size:14px;
 	color:#949494;
@@ -144,6 +144,7 @@
 	background:#56a7f6;
 	border:0;}
 .login-d {
+	height: 33px;
 	margin-bottom:11px;}
 .login-f {
 	position:relative;
@@ -312,7 +313,7 @@
 
 /*focus*/
 .content {
-	width:1200px;
+	/* width:1200px; */
 	margin:0 auto;}
 .focus-banner {
 	background:url(../upload/focus-a.jpg) no-repeat center center;
@@ -501,7 +502,8 @@
 .act-a2 {
 	font-size:18px;
 	color:#000000;
-	margin-top:10px;}
+	/* margin-top:10px; */
+}
 .inside {
 	position:absolute;
 	background:url(../images/inside.png);
@@ -524,17 +526,57 @@
 
 .act-ul {
 	overflow:hidden;
-	margin-right:-20px;}
+	/* margin-right:-20px; */
+}
 .act-ul li{
-	width:318px;
-	margin:0  20px 25px 0;
-	float:left;}
-.act-b1 {
-	width:318px;
-	height:201px;}
+	/* width:318px; */
+	margin:0 20px 25px 0;
+	display: inline-block;
+	/* float:left; */
+}
+
+.act-ul a {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* .act-b1 {
+	padding: 62% 0 0;
+	position: relative;
+	width: 50%;
+}
 .act-b1 img{
-	max-width:318px;
-	max-height:201px;}
+	position: absolute;
+    width: 100%; height: 100%;
+    left: 0; top: 0;
+} 
+*/
+
+@media (min-width: 768px) { 
+	.act-b1 img{
+		width: 700px;
+		height: 437px;
+		/* max-width:318px; */
+		/* max-height:201px; */
+	}
+ }
+
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: 992px) { 
+	.act-b1 img{
+		width: 300px;
+		height: 187px;
+		/* max-width:318px; */
+		/* max-height:201px; */
+	}	
+ } 
+
+ .footerinner {
+	 height: 120px;
+ }
+
 .act-e {
 	width:996px;
 	height:152px;

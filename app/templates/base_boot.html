@@ -1,4 +1,4 @@
-{% extends "bootstrap/base.html" %}
+<!-- {% extends "base.html" %} -->
 
 {% block title %}刷题啦-尔雅网课{% endblock %}
 
@@ -47,7 +47,7 @@
 {% endblock navbar %}
 
 {% block content %}
-    <div class="container" style="width: auto">
+    <div class="container-fluid">
         {% for message in get_flashed_messages(with_categories=True) %}
             <div class="alert alert-{{ message[0] }}">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -73,7 +73,7 @@
 {#    {%- block head %}#}
 {#    <title>{% block title %}aaaa{% endblock title %}</title>#}
 {#    {%- block metas %}#}
-{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">#}
 {#    {%- endblock metas %}#}
 {##}
 {#    {%- block styles %}#}
