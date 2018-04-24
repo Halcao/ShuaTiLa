@@ -76,18 +76,18 @@
         function showQuestion(id) {
             checkans="#";
             nowid=id+1;
-            console.log(all_like);
-             console.log(Number(id+1));
-             console.log(all_like.indexOf(Number(id+1)));
+           //console.log(all_like);
+            // console.log(Number(id+1));
+             //console.log(all_like.indexOf(Number(id+1)));
 
             if(all_like.indexOf(Number(nowid))==-1){
                 $("#unHeart").show();
                  $("#Heart").hide();
-                 console.log("ddddd");
+
             }else{
                  $("#Heart").show();
                  $("#unHeart").hide();
-                 console.log("hhhhhhhh");
+
             }
 
 
@@ -216,6 +216,7 @@
         var Question;
 
         function clickTrim(source,itemlen) {
+
             var id = source.id;
             var currans = $("#" + id).find("input[name=item]:checked").val();
 
@@ -228,8 +229,7 @@
                 if(id=="item1")ansb=0;
                 if(id=="item2")ansc=0;
                 if(id=="item3") ansd=0;
-                console.log("quxiao");
-                console.log(id);
+
             }
             else{
                 $("#" + id).find("input").prop("checked", true);
@@ -237,7 +237,7 @@
             }
             // $("#ques" + activeQuestion).removeClass("question_id").addClass("clickQue");
             var ques = 0;
-
+            checkans = $("#" + id).find("input[name=item]:checked").val();
             for (var i = 0; i < checkQues.length; i++) {
                 if (checkQues[i].id == activeQuestion && checkQues[i].item != id) {
                     ques = checkQues[i].id;
@@ -259,7 +259,7 @@
            checkans1=String(checkans1);
            checkans2=String(checkans2);
            checkans3=String(checkans3);
-           console.log(checkans0,checkans1,checkans2,checkans3);
+           //console.log(checkans0,checkans1,checkans2,checkans3);
            if(checkans0!=checkans01) ansa=(ansa+1)%2;
            if(checkans1!=checkans11)ansb=(ansb+1)%2;
            if(checkans2!=checkans21)ansc=(ansc+1)%2;
@@ -435,7 +435,7 @@
                 //alert("已做答:"+($(".clickQue").length)+"道题,还有"+(questions.length-($(".clickQue").length))+"道题未完成");
                 if (activeQuestion > questions_choice.length + questions_judge.length)
                     checkans = $("#fill-answer").val();
-
+                console.log(checkans);
                 if (checkans == choice) {
                     nowanswer = "正确答案:" + nowanswer;
                     $(".correct-answers").text(nowanswer);
