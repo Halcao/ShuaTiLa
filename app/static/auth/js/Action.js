@@ -20,7 +20,7 @@ $(".login-click").click(function () {
     $(".mask").css({
         display: "block", height: $(document).height()
     });
-     var $box = $('.login');
+    var $box = $('.login');
     $box.css({
        display: "block"
     });
