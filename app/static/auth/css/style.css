@@ -86,19 +86,26 @@
 .nav li .bich a:hover {color:#fff!important;}
 .mask {width:100%;background:#949494;opacity:0.5;filter:alpha(opacity=50);-moz-opacity:0.5;z-index:99;position:fixed;
        top:0;left:0;display:none;}
-.login {width:521px;position:fixed;top:25%;left:0;right:0;margin:auto;z-index:2999;background:#fff;border-radius:6px;
+/* .login {width:521px;position:fixed;top:25%;left:0;right:0;margin:auto;z-index:2999;background:#fff;border-radius:6px;
         height:256px;display:none;}
 .reg {width:521px;position:fixed;top:25%;left:0;right:0;margin:auto;z-index:3000;background:#fff;border-radius:6px;
         height:350px;display:none;}
-.find {width:521px;position:fixed;top:25%;left:0;right:0;margin:auto;z-index:3000;background:#fff;border-radius:6px;
-        height:310px;display:none;}
+.find {width:521px;position:fixed;top:25%;left:0;right:0;margin:auto;z-index:3000;background:#fff;border-radius:6px; */
+		/* height:310px;display:none;} */
+.login {position:fixed;top:25%;left:0;right:0;margin:auto;z-index:2999;background:#fff;border-radius:6px;
+	display:none; padding-bottom: 20px; min-width: 200px;}
+.reg {position:fixed;top:25%;left:0;right:0;margin:auto;z-index:3000;background:#fff;border-radius:6px;
+	display:none; min-width: 200px;}
+.find {position:fixed;top:25%;left:0;right:0;margin:auto;z-index:3000;background:#fff;border-radius:6px;
+	display:none; min-width: 200px;}
+	
 .login-title {
 	position:relative;
 	height:18px;
-	padding:0 120px 0 0px;
-	margin:30px 0 0 116px;}
+	padding:0 0px 0 0px;
+	margin:30px 0 0 0px;}
 .login-a {
-	width:100px;
+	width:140px;
 	font-size:18px;
 	color:#292929;
 	background:#fff;
@@ -110,7 +117,9 @@
 	position:relative;}
 .login-b {
 	position:absolute;
-	width:284px;
+	width:90%;
+	margin-left: 5%;
+	margin-right: 5%;
 	left:0px;
 	top:8px;
 	height:1px;
@@ -125,9 +134,9 @@
 	font-weight:bold;}
 
 .login-btm  {
-	padding:25px 120px 0 116px;}
+	padding:25px 0px 0 0px;}
 .login-text,.login-pas {
-	width:270px;
+	width:80%;
 	height:33px;
 	line-height:33px;
 	border:1px solid #949494;
@@ -135,7 +144,7 @@
 	color:#949494;
 	padding:0 6px;}
 .login-btn {
-	width:284px;
+	width:80%;
 	text-align:center;
 	height:38px;
 	line-height:34px;
@@ -148,7 +157,7 @@
 	margin-bottom:11px;}
 .login-f {
 	position:relative;
-	font-size:14px;}
+	font-size:12px;}
 .login-f a{
 	color:#3990d6;}
 .login-f  span{
@@ -156,6 +165,17 @@
 	top:0;
 	right:0;}
 
+
+
+.find-href {
+	margin-top: 30px;
+	float: left;
+}
+
+.login-f span {
+	margin-top: 30px;
+	float: right;
+}
 
 .fullSlide{width:1200px;position:relative;height:601px;overflow:hidden;z-index:0}
 .fullSlide .box{margin:0 auto;position:relative;z-index:0;overflow:hidden;padding:0}
@@ -554,12 +574,65 @@
 } 
 */
 
-@media (min-width: 768px) { 
+@media (max-width: 768px) { 
 	.act-b1 img{
-		width: 700px;
-		height: 437px;
+		width: 300px;
+		height: 187.5px;
 		/* max-width:318px; */
 		/* max-height:201px; */
+	}
+	.login, .reg, .find {
+		width: 80%;
+		padding-bottom: 20px;
+	}
+	
+	.login form {
+		text-align: center;
+		width: 80%;
+		margin: 0px auto;
+	}
+	
+	.reg form {
+		text-align: center;
+		width: 80%;
+		margin: 0px auto;
+	}
+	
+	.find form {
+		text-align: center;
+		width: 80%;
+		margin: 0px auto;
+	}
+ }
+
+@media (min-width: 768px) { 
+	.act-b1 img{
+		width: 360px;
+		height: 225px;
+		/* max-width:318px; */
+		/* max-height:201px; */
+	}
+	.login, .reg, .find {
+		width: 60%;
+		padding-bottom: 20px;
+	}
+	
+	.login form {
+		text-align: center;
+		width: 60%;
+		margin: 0px auto;
+	}
+	
+	.reg form {
+		text-align: center;
+		width: 60%;
+		margin: 0px auto;
+	}
+	
+	.find form {
+		text-align: center;
+		width: 60%;
+		margin: 0px auto;
 	}
  }
 
@@ -570,7 +643,29 @@
 		height: 187px;
 		/* max-width:318px; */
 		/* max-height:201px; */
-	}	
+	}
+	.login, .reg, .find {
+		width: 60%;
+		padding-bottom: 20px;
+	}
+	
+	.login form {
+		text-align: center;
+		width: 60%;
+		margin: 0px auto;
+	}
+	
+	.reg form {
+		text-align: center;
+		width: 60%;
+		margin: 0px auto;
+	}
+	
+	.find form {
+		text-align: center;
+		width: 60%;
+		margin: 0px auto;
+	}
  } 
 
  .footerinner {

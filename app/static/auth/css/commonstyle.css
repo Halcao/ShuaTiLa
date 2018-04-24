@@ -22,7 +22,7 @@ img{
 }
 body{
 	width: 100%;
-	min-width: 1200px;
+	/* min-width: 1200px; */
 	font-family: "微软雅黑";
 }
 
