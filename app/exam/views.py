@@ -140,7 +140,7 @@ def answer(lesson_id):
                 q = list(question[0])
                 reply = request.values.get('fill' + str(i))
                 if q[-1] == reply:
-                    score += 1
+                    score += 2
                 else:
                     q.append(reply)
                     wrong_fill_list.append(q)
