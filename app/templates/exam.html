@@ -3,48 +3,36 @@
 {% block head %}
     <title>{% block title %}刷题啦-尔雅网课{% endblock title %}</title>
     {{ super() }}
-
-    {%- block metas %}
-        {{ super() }}
-    {%- endblock metas %}
-
-    {%- block styles %}
-        {{ super() }}
-        <link href="../static/exam/main.css" rel="stylesheet" type="text/css"/>
-        <link href="../static/exam/iconfont.css" rel="stylesheet" type="text/css"/>
-        <link href="../static/exam/exam.css" rel="stylesheet" type="text/css"/>
-    {%- endblock styles %}
-
-    <style type="text/css">
-        .hasBeenAnswer {
-            background: #5d9cec;
-            color: #fff;
-        }
-
-        .clearfloat {
-            clear: both;
-        }
-
-        .head-box {
-            position: relative;
-        }
-
-        .nav.fr {
-            background: transparent;
-            margin-top: 0px;
-        }
-
-        .rt_nr1 {
-            top: 100px;
-        }
-
-        .rt_nr1_title h1 {
-            line-height: 45px;
-        }
-
-    </style>
-
 {% endblock head %}
+
+{%- block styles %}
+{{ super() }}
+<link href="../static/exam/main.css" rel="stylesheet" type="text/css"/>
+<link href="../static/exam/iconfont.css" rel="stylesheet" type="text/css"/>
+<link href="../static/exam/exam.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">
+    .hasBeenAnswer {
+        background: #5d9cec;
+        color: #fff;
+    }
+    .clearfloat {
+        clear: both;
+    }
+    .head-box {
+        position: relative;
+    }
+    .nav.fr {
+        background: transparent;
+        margin-top: 0px;
+    }
+    .rt_nr1 {
+        top: 100px;
+    }
+    .rt_nr1_title h1 {
+        line-height: 45px;
+    }
+</style>
+{%- endblock styles %}
 
 {% block navbar %}
     {{ super() }}
@@ -52,7 +40,7 @@
 
 {% block content %}
     <div class="clearfloat"></div>
-    <div class="main">
+    <div class="main container-fluid">
         <!--nr start-->
         <div class="test_main">
             <div class="nr_left">
@@ -347,8 +335,6 @@
                                     {% for question_id in range(question_list|length) %}
                                         <li><a href={{ "#qu_0_" + question_id|string }}>{{ question_id + 1 }}</a></li>
                                     {% endfor %}
-
-
                                 </ul>
                             </div>
                         </div>
@@ -409,6 +395,7 @@
     <script src="../static/exam/jquery.easy-pie-chart.js"></script>
     <!--时间js-->
     <script src="../static/exam/time/jquery.countdown.js"></script>
+    <script src="../static/test/js/bootstrap.js"></script>
     <script>
         window.jQuery(function ($) {
             "use strict";

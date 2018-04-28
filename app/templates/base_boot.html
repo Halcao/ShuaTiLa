@@ -1,24 +1,13 @@
-<!-- {% extends "base.html" %} -->
+{% extends "base.html" %}
 
 {% block title %}刷题啦-尔雅网课{% endblock %}
 
-{% block head %}
-    {{ super() }}
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-    {%- block styles %}
-        {{ super() }}
-        <link href="../static/auth/css/base.css" rel="stylesheet" type="text/css"/>
-        <link href="../static/auth/css/style.css" rel="stylesheet" type="text/css"/>
-        <link href="../static/auth/css/commonstyle.css" rel="stylesheet" type="text/css"/>
-    {%- endblock styles %}
-
-    {%- block metas %}
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-    {%- endblock metas %}
-
-{% endblock %}
+{%- block styles %}
+{{ super() }}
+<link href="../static/auth/css/base.css" rel="stylesheet" type="text/css"/>
+<link href="../static/auth/css/style.css" rel="stylesheet" type="text/css"/>
+<link href="../static/auth/css/commonstyle.css" rel="stylesheet" type="text/css"/>
+{%- endblock styles %}
 
 {% block navbar %}
 <nav class="navbar navbar-inverse">
@@ -35,35 +24,21 @@
         </div>
         <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-2" aria-expanded="false" style="height: 1px;">
             <ul class="nav navbar-nav navbar-right">
-                <li class="nav-cut"><a href="{{ url_for('auth.auth_page') }}" style="line-height: 60px; padding-top: 0px; padding-bottom: 0px; height: 60px;">首页</a></li>
-                {#                       <li><a href="community.html">刷题</a></li>#}
-                {#                       <li><a href="{{ url_for('exam.exam_page', lesson_id=1) }}">真题模拟</a></li>#}
+                <li><a href="{{ url_for('auth.auth_page') }}">首页</a></li>
                 {% if current_user.is_authenticated %}
                     <li><a href="/forum/" target="_blank">社区</a></li>
-                    <li>欢迎,{{ current_user.name }}</li>
+                    <li><a>欢迎,{{ current_user.name }}</a></li>
                     <li><a href={{ url_for('auth.log_off') }}>注销</a></li>
                     {% if current_user.if_admin == 1 %}
                         <li><a href={{ url_for('admin.admin_page') }}>管理员</a></li>
                     {% endif %}
                 {% else: %}
-                    <li class="login-click ">登录</li>
-                    <li class="reg-click ">注册</li>
+                    <li class="login-click"><a>登录</a></li>
+                    <li class="reg-click "><a>注册</a></li>
                 {% endif %}
             </ul>
         </div>
       </div>
-    <!-- <div class="head-box"> -->
-        <!-- <div class="head wrap"> -->
-            <!-- <div class="head-right fr">
-                <div class="clearfix"></div>
-                <div class="nav fr">
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                </div>
-                </div>
-                <div class="clearfix"></div>
-            </div> -->
-        <!-- </div> -->
-    <!-- </div> -->
 </nav>
 {% endblock navbar %}
 
@@ -86,45 +61,3 @@
     <!-- <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
     {{ super() }}
 {% endblock %}
-
-
-
-{#{% block doc -%}#}
-{##}
-{#<html {% block html_attribs %}{% endblock html_attribs %}>#}
-{#{%- block html %}#}
-{#  <head>#}
-{#    {%- block head %}#}
-{#    <title>{% block title %}aaaa{% endblock title %}</title>#}
-{#    {%- block metas %}#}
-{#    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">#}
-{#    {%- endblock metas %}#}
-{##}
-{#    {%- block styles %}#}
-{#    <!-- Bootstrap -->#}
-{#    {%- endblock styles %}#}
-{#    {%- endblock head %}#}
-{#  </head>#}
-{#  <body{% block body_attribs %}{% endblock body_attribs %}>#}
-{#    {% block body -%}#}
-{#    {% block navbar %}#}
-{#    {%- endblock navbar %}#}
-{#    {% block content -%}#}
-{#        <div class="container">#}
-{#        {% for message in get_flashed_messages() %}#}
-{#            <div class="alert alert-warning">#}
-{#                <button type="button" class="close" data-dismiss="alert">&times;</button>#}
-{#                {{ message }}#}
-{#            </div>#}
-{#    {% endfor %}#}
-{#            {% block page_content %}{% endblock %}#}
-{#        </div>#}
-{##}
-{#{% endblock %}#}
-{#    {% block scripts %}#}
-{#    {%- endblock scripts %}#}
-{#    {%- endblock body %}#}
-{#  </body>#}
-{#{%- endblock html %}#}
-{#</html>#}
-{#{% endblock doc -%}#}
