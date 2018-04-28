@@ -41,6 +41,9 @@
 {% block content %}
     <div class="clearfloat"></div>
     <div class="main container-fluid">
+        <div class="right_button">
+            <p>答题卡</p>
+        </div>
         <!--nr start-->
         <div class="test_main">
             <div class="nr_left">
@@ -438,6 +441,37 @@
 
             });
         });
+
+        $(function() {
+            $('.right_button').click(function() {
+                var answerCard = $('.nr_right');
+                // if (answerCard.css('display') === "block") {
+                //     // 隐藏起来
+                //     answerCard.css('display', 'none');
+                //     answerCard.css('float', 'right');
+                //     answerCard.css('margin', '0px');
+                // } else {
+                //     // 显示
+                //     answerCard.css('display', 'block');
+                //     answerCard.css('float', 'none');
+                //     answerCard.css('margin', 'auto');
+                // }
+                answerCard.toggle('normal', function() {
+                    if (answerCard.css('display') === "block") {
+                        // 显示
+                        // answerCard.css('display', 'block');
+                        answerCard.css('float', 'none');
+                        answerCard.css('margin', 'auto');
+                        $('.rt_nr1').css('margin-top', '-90px');
+                    } else {
+                        answerCard.css('float', 'right');
+                        answerCard.css('margin', '0px');
+                        $('.rt_nr1').css('margin-top', '0px');
+                    }
+                });
+            });
+        }
+        );
 
         function sumbit_sure() {
             var gnl = confirm("交卷前请检查是否所有问题全部回答。确认交卷？");

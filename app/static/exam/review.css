@@ -1,9 +1,11 @@
 /*nr start*/
-.test_main{width:1200px;  margin:15px auto 0;}
-.nr_left{width:900px; height:100%; float:left;}
+/* .test_main{width:1200px;  margin:15px auto 0;} */
+.test_main{width:95%;  margin:0 25px;}
+/* .nr_left{width:900px; height:100%; float:left;} */
+.nr_left{width:100%; height:100%; float:left;}
 
 .test{ width:100%;  border:1px solid #e4e4e4; text-align:left; float:left;}
-.test_title{width:900px; height:45px; line-height:45px; background-color:#f7f7f7;position:fixed; bottom:0; z-index:1000;}
+.test_title{width:90%; height:45px; line-height:45px; background-color:#f7f7f7;position:fixed; bottom:0; z-index:1000;}
 .test_title p{padding:0 20px; display:block; float:left;}
 .test_time{color:#f00; line-height:45px;}
 .test_time i{font-size:20px; height:45px; line-height:40px; display:block; float:left}
@@ -54,7 +56,7 @@
 .rt_nr1_title p i{margin-left:10px;}
 
 .rt_content{width:278px; height:100%; border:1px solid #e4e4e4; border-top:0;}
-.rt_content_tt{width:95%; height:40px; line-height:40px; margin:0 auto; border-bottom:1px solid #e4e4e4;}
+.rt_content_tt{width:95%; height:40px; line-height:40px; margin:0 auto; border-bottom:1px solid #e4e4e4; display: inline;}
 .rt_content_tt h2{width:150px; font-size:14px; display:inline-block;}
 .rt_content_tt p{width:100px; display:inline-block;}
 .answerSheet ul{padding:10px; text-align:left;}
