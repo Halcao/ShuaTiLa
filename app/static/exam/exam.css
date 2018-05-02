@@ -1,5 +1,5 @@
 /*nr start*/
-.test_main{width:1200px;  margin:15px auto 0; overflow: scroll; -webkit-overflow-scrolling: touch;}
+.test_main{width:1200px;  margin:15px auto 0; overflow: scroll; overflow-x: hidden; -webkit-overflow-scrolling: touch;}
 .nr_left{width:900px; height:100%; float:left;}
 
 .test{ width:100%;  border:1px solid #e4e4e4; text-align:left; float:left;}
@@ -23,7 +23,7 @@
 .test_content_nr{width:100%; border-top:3px solid #efefef;}
 .test_content_nr>ul>li{width:100%;  border-bottom:5px solid #efefef; padding-top:10px;}
 .test_content_nr_tt{width:85%; height:auto; line-height:32px; margin:0 auto; border-bottom:1px solid #e4e4e4;}
-.test_content_nr_tt i{width:25px; height:25px; line-height:25px; text-align:center; display:block; float:left; background:#5d9cec; border-radius:50%; margin-left:-50px; color:#fff; margin-top:8px; font-size:16px;}
+.test_content_nr_tt i{width:25px; height:25px; line-height:25px; text-align:center; display:block; float:left; background:#5d9cec; border-radius:50%; margin-left:-37px; color:#fff; margin-top:8px; font-size:16px;}
 .test_content_nr_tt span{padding:0 8px;}
 .test_content_nr_tt font{font-size:14px}
 .test_content_nr_tt b{display:block; float:right; margin-right:-50px; color:#f48c27; font-size:20px;}
@@ -87,6 +87,7 @@
     .test_main {
         width: 100%;
         overflow: scroll;
+        overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
     }
 
