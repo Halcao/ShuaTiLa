@@ -19,7 +19,7 @@ def index():
 def test_page(id):
     # id = 5
     S_id = current_user.id
-    db = pymysql.connect('shuatila.com', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
 
     insert_user = 'INSERT INTO lesson_info(Student_id,Lesson_id) VALUES(%s,%s)'
@@ -114,7 +114,7 @@ def test_page(id):
 def save_last():
     userlast = request.form.get('last')
     lessonid = request.form.get('lessonid')
-    db = pymysql.connect('shuatila.com', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur=db.cursor()
     update_last = 'UPDATE lesson_info SET Last_index = %s WHERE Lesson_id = %s AND Student_id = %s'
     cur.execute(update_last, (userlast,lessonid,current_user.id))
@@ -132,7 +132,7 @@ def save_like():
     j_l=int(request.form.get('j_l'))
     c_l = int(request.form.get('c_l'))
     # print "problemtype=",problemtype
-    db = pymysql.connect('shuatila.com', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     if problemtype == 1:
         update_like = 'INSERT INTO choice_collection VALUES (%s,%s,%s)'
@@ -159,7 +159,7 @@ def save_dislike():
     problemtype = int(request.form.get('problemtype'))
     j_l = int(request.form.get('j_l'))
     c_l = int(request.form.get('c_l'))
-    db = pymysql.connect('shuatila.com', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     if problemtype == 1:
         update_dislike = 'DELETE FROM choice_collection WHERE Problem_id=%s AND Lesson_id=%s AND Student_id=%s'

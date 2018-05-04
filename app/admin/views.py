@@ -27,7 +27,7 @@ def change_answer():
         problem_type = request.values.get('problem_type')
         answer = request.values.get('answer')
 
-        db = pymysql.connect('shuatila.com', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+        db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
         cur = db.cursor()
         if problem_type == '1':
             sql = 'UPDATE choice_problems SET Answer = %s WHERE Problem_id = %s AND Lesson_id = %s'
@@ -59,7 +59,7 @@ def add_admin():
     if request.method == "POST":
         student_id = request.values.get('student_id')
 
-        db = pymysql.connect('shuatila.com', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+        db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
         cur = db.cursor()
         sql = 'UPDATE student SET If_admin = 1 WHERE Student_id = %s'
         try:
