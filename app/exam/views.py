@@ -27,7 +27,7 @@ def index():
 @login_required
 def exam_page(lesson_id):
     # id = 5
-    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+    db = pymysql.connect('shuatila.com', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     sql_choice = 'SELECT Problem_id, Question, Choice_a, Choice_b, Choice_c, Choice_d, Answer ' \
                  'FROM choice_problems WHERE Lesson_id = %s ORDER BY rand() LIMIT 50;'
@@ -93,7 +93,7 @@ def answer(lesson_id):
         wrong_judge_list = []
         wrong_fill_list = []
 
-        db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+        db = pymysql.connect('shuatila.com', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
         cur = db.cursor()
         # 选择题
         for i in range(len(session['question_list_index'])):
@@ -199,7 +199,7 @@ def add_collect():
     info = examId.split('_')
     question_type = int(info[1])
     question_id = int(info[2])
-    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+    db = pymysql.connect('shuatila.com', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
 
     if question_type == 0:
@@ -230,7 +230,7 @@ def delete_collect():
     info = examId.split('_')
     question_type = int(info[1])
     question_id = int(info[2])
-    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+    db = pymysql.connect('shuatila.com', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
 
     if question_type == 0:
