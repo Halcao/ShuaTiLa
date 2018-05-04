@@ -14,7 +14,7 @@ class User(UserMixin):
 
 @login_mamager.user_loader
 def load_user(user_id):
-    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+    db = pymysql.connect('shuatila.com', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     sql = 'SELECT Student_name, Email, If_admin FROM student where Student_id = %s'
     cur.execute(sql, (user_id))

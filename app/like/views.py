@@ -23,7 +23,7 @@ def like_page(id):
     # id = 5
     # print current_user.name
     S_id=current_user.id
-    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+    db = pymysql.connect('shuatila.com', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     sql_choice = 'SELECT Problem_id,Question, Choice_a, Choice_b, Choice_c, Choice_d, Answer ' \
                  'FROM choice_problems WHERE Lesson_id = %s AND Problem_id in (' \
@@ -78,7 +78,7 @@ def delheart_page():
     title = request.form.get('title')
     itemss = int ((request.form.get('itemss')))
     lessonid1= int ((request.form.get('lessonid1')))
-    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+    db = pymysql.connect('shuatila.com', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     update_like = "aa"
     if itemss == 4:
@@ -118,7 +118,7 @@ def oheart_page():
     title = request.form.get('title')
     itemss = int ((request.form.get('itemss')))
     lessonid1= int ((request.form.get('lessonid1')))
-    db = pymysql.connect('localhost', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
+    db = pymysql.connect('shuatila.com', 'root', config['MYSQL_PASSWORD'], 'net_lesson', charset='utf8')
     cur = db.cursor()
     update_like="aa"
     again_like="aa"
